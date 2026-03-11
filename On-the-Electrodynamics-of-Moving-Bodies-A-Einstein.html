@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On the Electrodynamics of Moving Bodies - A. Einstein</title>
+    <meta name="description" content="On the Electrodynamics of Moving Bodies - A. Einstein">
+    <link rel="icon" href="https://jankleinx.github.io/Jan-Klein.ico">
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            color: #000000;
+        }
+        .paper {
+            max-width: 600px;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 10px 40px 40px 40px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        h1 {
+            font-size: 1.8em;
+            text-align: center;
+            font-weight: normal;
+            margin: 30px 0 10px 0;
+            letter-spacing: 0.5px;
+        }
+        .author-line {
+            text-align: right;
+            font-size: 1.1em;
+            margin: 20px 0 10px 0;
+        }
+        h2 {
+            font-size: 1.4em;
+            font-weight: normal;
+            text-align: center;
+            margin: 30px 0 15px 0;
+        }
+        h3 {
+            font-size: 1.2em;
+            font-weight: normal;
+            margin: 25px 0 10px 0;
+        }
+        p {
+            text-align: justify;
+            margin: 0 0 8px 0;
+            text-indent: 2em;
+        }
+        .no-indent {
+            text-indent: 0;
+        }
+        .formula-block {
+            margin: 18px 0;
+            text-align: center;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #000000;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        .formula-line {
+            margin: 8px 0;
+            white-space: nowrap;
+        }
+        .footnote {
+            font-size: 0.9em;
+            margin-top: 15px;
+            text-indent: 0;
+            border: none;
+            padding: 0;
+        }
+        .footnote p {
+            text-indent: 0;
+            margin: 2px 0;
+        }
+        .received {
+            text-align: right;
+            margin-top: 30px;
+            font-style: italic;
+        }
+        sup {
+            font-size: 0.75em;
+            line-height: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="paper">
+    <h1>8. On the Electrodynamics of Moving Bodies<br>by A. Einstein.</h1>
+    <strong><p>Original Document - Bern, 30. Juni 1905 von Albert Einstein - <a href="https://sites.pitt.edu/~jdnorton/teaching/Einstein_graduate/pdfs/Einstein_STR_1905_English.pdf">site.pitt.edu</a></p></strong>
+    <strong><p>As html Document New - Hannover, 10 März 2026 von Jan Klein - <a href="https://bix.pages.dev/">bix.pages.dev</a></p></strong>
+    <p>It is known that Maxwell's electrodynamics—as usually understood at the present time—when applied to moving bodies, leads to asymmetries which do not appear to be inherent in the phenomena. Take, for example, the reciprocal electrodynamic action of a magnet and a conductor. The observable phenomenon here depends only on the relative motion of the conductor and the magnet, whereas the customary view draws a sharp distinction between the two cases in which one or the other of these bodies is in motion. For if the magnet is in motion and the conductor at rest, there arises in the vicinity of the magnet an electric field with a certain definite energy, producing a current at the places where parts of the conductor are situated. But if the magnet is stationary and the conductor in motion, no electric field arises in the vicinity of the magnet, but an electromotive force arises in the conductor, to which in itself there is no corresponding energy, but which, assuming equality of relative motion in the two cases under consideration, gives rise to electrical currents of the same path and intensity as those produced by the electric forces in the former case.</p>
+    <p>Examples of this sort, together with the unsuccessful attempts to discover any motion of the earth relative to the "light medium," suggest that the phenomena of electrodynamics as well as of mechanics possess no properties corresponding to the idea of absolute rest, but rather that, as has already been shown to the first order of small quantities, the same laws of electrodynamics and optics will be valid for all coordinate systems for which the equations of mechanics hold. We will raise this conjecture (the purport of which will hereafter be called the "Principle of Relativity") to the status of a postulate, and also introduce another postulate, which is only apparently irreconcilable with the former, namely, that light is always propagated in empty space with a definite velocity <em>V</em> which is independent of the state of motion of the emitting body. These two postulates suffice for the attainment of a simple and consistent theory of the electrodynamics of moving bodies based on Maxwell's theory for stationary bodies. The introduction of a "luminiferous ether" will prove to be superfluous inasmuch as the view here to be developed will not require an "absolutely stationary space" provided with special properties, nor assign a velocity-vector to a point of empty space where electromagnetic processes take place.</p>
+    <p>The theory to be developed—like every other electrodynamics—is based on the kinematics of rigid bodies, since the assertions of any such theory have to do with the relationships between rigid bodies (coordinate systems), clocks, and electromagnetic processes. Insufficient consideration of this circumstance is the root of the difficulties with which the electrodynamics of moving bodies has had to contend.</p>
+    <h2>I. Kinematical Part.</h2>
+    <h3>§ 1. Definition of Simultaneity.</h3>
+    <p>Let us take a system of coordinates in which the equations of Newtonian mechanics hold. In order to render our presentation more precise and to distinguish this system of coordinates verbally from others which will be introduced hereafter, we will call it the "stationary system."</p>
+    <p>If a material point is at rest relatively to this coordinate system, its position can be defined relatively thereto by the employment of rigid standards of measurement and the methods of Euclidean geometry, and can be expressed in Cartesian coordinates.</p>
+    <p>If we wish to describe the motion of a material point, we give the values of its coordinates as functions of time. Now we must bear carefully in mind that a mathematical description of this kind has no physical meaning unless we are quite clear as to what we understand by "time."</p>
+    <p>We have to take into account that all our judgments in which time plays a part are always judgments of simultaneous events. If, for instance, I say, "That train arrives here at 7 o'clock," I mean something like this: "The pointing of the small hand of my watch to 7 and the arrival of the train are simultaneous events."<sup>1</sup></p>
+    <p>It might appear possible to overcome all the difficulties attending the definition of "time" by substituting "the position of the small hand of my watch" for "time." Such a definition is indeed adequate when we have to define time exclusively for the place where the watch is located; but it is no longer adequate when we have to connect in time series of events occurring at different places, or—what comes to the same thing—to evaluate (for the purposes of time measurement) events occurring at places remote from the watch.</p>
+    <p>We might, of course, content ourselves with evaluating the time of events by stationing an observer with the watch at the origin of the coordinates, who coordinates every event occurring at an arbitrary point with the corresponding position of the watch's hands, as soon as a light signal informing him of the event reaches him through empty space. But this coordination has the disadvantage that it is not independent of the standpoint of the observer with the watch, as we know from experience. We arrive at a much more practical determination along the following line of thought.</p>
+    <p>If at the point <em>A</em> of space there is a clock, an observer at <em>A</em> can determine the time values of events in the immediate proximity of <em>A</em> by finding the positions of the hands which are simultaneous with these events. If there is at the point <em>B</em> of space another clock in all respects resembling the one at <em>A</em>, it is possible for an observer at <em>B</em> to determine the time values of events in the immediate neighborhood of <em>B</em>. But it is not possible without further assumption to compare, in respect of time, an event at <em>A</em> with an event at <em>B</em>. We have so far defined only an "<em>A</em> time" and a "<em>B</em> time." We have not defined a common "time" for <em>A</em> and <em>B</em>, for the latter cannot be defined at all unless we establish by definition that the "time" required by light to travel from <em>A</em> to <em>B</em> equals the "time" it requires to travel from <em>B</em> to <em>A</em>. Let a ray of light start at the "<em>A</em> time" <em>t<sub>A</sub></em> from <em>A</em> towards <em>B</em>, let it at the "<em>B</em> time" <em>t<sub>B</sub></em> be reflected at <em>B</em> in the direction of <em>A</em>, and arrive again at <em>A</em> at the "<em>A</em> time" <em>t'<sub>A</sub></em>. In accordance with definition the two clocks synchronize if</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>t<sub>B</sub> - t<sub>A</sub> = t'<sub>A</sub> - t<sub>B</sub>.</em></div>
+    </div>
+    <p>We assume that this definition of synchronism is free from contradictions, and possible for any number of points; and that the following relations are universally valid:</p>
+    <p>1. If the clock at <em>B</em> synchronizes with the clock at <em>A</em>, the clock at <em>A</em> synchronizes with the clock at <em>B</em>.</p>
+    <p>2. If the clock at <em>A</em> synchronizes with the clock at <em>B</em> and also with the clock at <em>C</em>, the clocks at <em>B</em> and <em>C</em> also synchronize with each other.</p>
+    <p>Thus with the help of certain (imagined) physical experiences we have established what we understand when we speak of clocks at rest at different places running synchronously; and thereby we have obtained a definition of "simultaneous" and of "time." The "time" of an event is the reading simultaneous with the event of a clock at rest at the location of the event, which clock runs synchronously with a specific clock at rest, and indeed with the same clock for all time determinations.</p>
+    <p>In agreement with experience we further assume the quantity</p>
+    <div class="formula-block">
+        <div class="formula-line">2 <em>AB</em></div>
+        <div class="formula-line">————— = <em>V</em></div>
+        <div class="formula-line"><em>t'<sub>A</sub> - t<sub>A</sub></em></div>
+    </div>
+    <p>to be a universal constant (the velocity of light in empty space).</p>
+    <p>It is essential to note that we have defined time by means of clocks at rest in the stationary system. On account of this belonging to the stationary system we call it "the time of the stationary system."</p>
+    <h3>§ 2. On the Relativity of Lengths and Times.</h3>
+    <p>The following considerations are based on the principle of relativity and on the principle of constancy of the velocity of light, which we define as follows.</p>
+    <p>1. The laws by which the states of physical systems undergo change are independent of which of two coordinate systems in uniform translational motion relative to each other these changes of state are referred to.</p>
+    <p>2. Any ray of light moves in the "stationary" coordinate system with the definite velocity <em>V</em>, independent of whether this ray of light is emitted by a body at rest or in motion. Hence</p>
+    <div class="formula-block">
+        <div class="formula-line">Path of light</div>
+        <div class="formula-line">Velocity = ———————————</div>
+        <div class="formula-line">Time interval</div>
+    </div>
+    <p>where "time interval" is to be understood in the sense of the definition in § 1.</p>
+    <p>Let there be given a stationary rigid rod; and let its length be <em>l</em> as measured by a measuring rod which is also stationary. We now imagine the axis of the rod lying along the <em>X</em>-axis of the stationary coordinate system, and the rod then given a uniform parallel translational motion (velocity <em>v</em>) along the <em>X</em>-axis in the direction of increasing <em>x</em>. We now inquire as to the length of the moving rod, which we imagine to be ascertained by the following two operations:</p>
+    <p>a) The observer moves together with the aforementioned measuring rod and the rod to be measured, and measures the length of the rod directly by superposition of the measuring rod, just as if all three were at rest.</p>
+    <p>b) By means of stationary clocks set up in the stationary system and synchronizing in accordance with § 1, the observer ascertains at what points of the stationary system the two ends of the rod to be measured are located at a definite time <em>t</em>. The distance between these two points, measured by the measuring rod already used, which in this case is at rest, is also a length which we may call the "length of the rod."</p>
+    <p>In accordance with the principle of relativity the length to be discovered by the operation a)—which we will call "the length of the rod in the moving system"—must be equal to the length <em>l</em> of the stationary rod.</p>
+    <p>The length to be discovered by the operation b)—which we will call "the length of the (moving) rod in the stationary system"—we will determine on the basis of our two principles, and we shall find that it differs from <em>l</em>.</p>
+    <p>Current kinematics tacitly assumes that the lengths determined by these two operations are precisely equal, or in other words, that a moving rigid body at the epoch <em>t</em> may in geometrical respects be perfectly represented by the same body when it is at rest in a definite position.</p>
+    <p>We imagine further that at the two ends (<em>A</em> and <em>B</em>) of the rod, clocks are placed which synchronize with the clocks of the stationary system, i.e. their readings at any instant correspond to the "time of the stationary system" at the places where they happen to be; these clocks are therefore "synchronous in the stationary system."</p>
+    <p>We imagine further that with each clock there is an observer moving with it, and that these observers apply to the two clocks the criterion established in § 1 for the synchronous running of two clocks. At the time<sup>1</sup> <em>t<sub>A</sub></em>, a ray of light departs from <em>A</em>, is reflected at <em>B</em> at time <em>t<sub>B</sub></em>, and returns to <em>A</em> at time <em>t'<sub>A</sub></em>. Taking into consideration the principle of constancy of the velocity of light we find:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>t<sub>B</sub> - t<sub>A</sub> = r<sub>AB</sub> / (V - v)</em></div>
+        <div class="formula-line">and</div>
+        <div class="formula-line"><em>t'<sub>A</sub> - t<sub>B</sub> = r<sub>AB</sub> / (V + v)</em>,</div>
+    </div>
+    <p>where <em>r<sub>AB</sub></em> denotes the length of the moving rod—measured in the stationary system. Observers moving with the moving rod would thus find that the two clocks were not synchronous, while observers in the stationary system would declare the clocks to be synchronous.</p>
+    <p>So we see that we cannot attach any absolute signification to the concept of simultaneity, but that two events which, viewed from one coordinate system, are simultaneous, can no longer be looked upon as simultaneous events when viewed from a system that is in motion relatively to that system.</p>
+    <h3>§ 3. Theory of the Transformation of Coordinates and Times from the Stationary System to another System in Uniform Translational Motion Relatively to the Former.</h3>
+    <p>Let there be given, in "stationary" space, two coordinate systems, i.e. two systems of three rigid material lines, perpendicular to one another, and emanating from a point. Let the <em>X</em>-axes of both systems coincide, and their <em>Y</em>- and <em>Z</em>-axes respectively be parallel. Let each system be provided with a rigid measuring rod and a number of clocks, and let both measuring rods, and likewise all the clocks of the two systems, be in all respects alike.</p>
+    <p>Now to the origin of one of the two systems (<em>k</em>) let a (constant) velocity <em>v</em> be imparted in the direction of the increasing <em>x</em> of the other stationary system (<em>K</em>), and let this velocity be communicated to the axes of the coordinates, the relevant measuring rod, and the clocks. To each time <em>t</em> of the stationary system <em>K</em> there then corresponds a definite position of the axes of the moving system, and from reasons of symmetry we are entitled to assume that the motion of <em>k</em> may be such that the axes of the moving system are at the time <em>t</em> (by "<em>t</em>" we always mean the time of the stationary system) parallel to the axes of the stationary system.</p>
+    <p>We now imagine space to be measured from the stationary system <em>K</em> by means of the stationary measuring rod, and also from the moving system <em>k</em> by means of the measuring rod moving with it; and that we thus obtain the coordinates <em>x, y, z</em> respectively <em>ξ, η, ζ</em>. Further, let the time <em>t</em> of the stationary system be determined for all points thereof at which there are clocks by means of light signals in the manner indicated in § 1; similarly let the time <em>τ</em> of the moving system be determined for all points of the moving system at which there are clocks at rest relatively to that system by applying the method, given in § 1, of light signals between the points at which these latter clocks are located.</p>
+    <p>To every system of values <em>x, y, z, t</em> which completely defines the place and time of an event in the stationary system, there belongs a system of values <em>ξ, η, ζ, τ</em> determining that event relatively to the system <em>k</em>, and our task is now to find the system of equations connecting these quantities.</p>
+    <p>In the first place it is clear that the equations must be linear on account of the properties of homogeneity which we attribute to space and time.</p>
+    <p>If we set <em>x' = x - vt</em>, it is clear that a point at rest in the system <em>k</em> must have a system of values <em>x', y, z</em> independent of time. We first determine <em>τ</em> as a function of <em>x', y, z</em> and <em>t</em>. To do this we have to express in equations that <em>τ</em> is nothing else than the summary of the data of clocks at rest in system <em>k</em>, which have been synchronized according to the rule given in § 1.</p>
+    <p>From the origin of system <em>k</em> let a ray be emitted at time <em>τ<sub>0</sub></em> along the <em>X</em>-axis towards <em>x'</em>, and at time <em>τ<sub>1</sub></em> be reflected thence to the origin of coordinates, arriving there at time <em>τ<sub>2</sub></em>; we then must have:</p>
+    <div class="formula-block">
+        <div class="formula-line">½ (<em>τ<sub>0</sub> + τ<sub>2</sub></em>) = <em>τ<sub>1</sub></em></div>
+    </div>
+    <p>or, by inserting the arguments of the function <em>τ</em> and applying the principle of constancy of the velocity of light in the stationary system:</p>
+    <div class="formula-block">
+        <div class="formula-line">½ [ <em>τ(0,0,0,t) + τ(0,0,0,{ t + x'/(V-v) + x'/(V+v) }) ] = τ( x',0,0, t + x'/(V-v) )</em>.</div>
+    </div>
+    <p>Hence, if we choose <em>x'</em> infinitesimally small:</p>
+    <div class="formula-block">
+        <div class="formula-line">½ ( 1/(<em>V-v</em>) + 1/(<em>V+v</em>) ) <em>∂τ/∂t</em> = <em>∂τ/∂x'</em> + 1/(<em>V-v</em>) <em>∂τ/∂t</em>,</div>
+        <div class="formula-line">or</div>
+        <div class="formula-line"><em>∂τ/∂x'</em> + <em>v/(V² - v²)</em> <em>∂τ/∂t</em> = 0.</div>
+    </div>
+    <p>It is to be noted that instead of the origin of coordinates we might have chosen any other point as the starting point of the ray, and therefore the equation just obtained holds for all values of <em>x', y, z</em>.</p>
+    <p>An analogous consideration—applied to the <em>H</em>- and <em>Z</em>-axes—yields, when we bear in mind that light when viewed from the stationary system always propagates along these axes with the velocity √(<em>V² - v²</em>):</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>∂τ/∂y</em> = 0,</div>
+        <div class="formula-line"><em>∂τ/∂z</em> = 0.</div>
+    </div>
+    <p>From these equations it follows, since <em>τ</em> is a <em>linear</em> function:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>τ = a ( t - v/(V² - v²) x' )</em>,</div>
+    </div>
+    <p>where <em>a</em> is a function <em>φ(v)</em> at present unknown, and where for brevity we assume that at the origin of <em>k</em>, <em>τ = 0</em> when <em>t = 0</em>.</p>
+    <p>With the help of this result we can easily determine the quantities <em>ξ, η, ζ</em> by expressing in equations that light (as required by the principle of constancy of the velocity of light in conjunction with the principle of relativity) also propagates with velocity <em>V</em> when measured in the moving system. For a ray of light emitted at time <em>τ = 0</em> in the direction of the increasing <em>ξ</em>:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>ξ = V τ</em>,</div>
+        <div class="formula-line">or</div>
+        <div class="formula-line"><em>ξ = a V ( t - v/(V² - v²) x' )</em>.</div>
+    </div>
+    <p>But the ray of light moves relatively to the origin of <em>k</em> with velocity <em>V - v</em>, when measured in the stationary system; therefore</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>x'/(V - v) = t</em>.</div>
+    </div>
+    <p>Substituting this value of <em>t</em> in the equation for <em>ξ</em>, we obtain:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>ξ = a V²/(V² - v²) x'</em>.</div>
+    </div>
+    <p>In an analogous manner we find, by considering rays moving along the two other axes:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>η = V τ = a V ( t - v/(V² - v²) x' )</em>,</div>
+        <div class="formula-line">where</div>
+        <div class="formula-line"><em>y/(√(V² - v²)) = t; x' = 0</em>;</div>
+        <div class="formula-line">hence</div>
+        <div class="formula-line"><em>η = a V/√(V² - v²) y</em></div>
+        <div class="formula-line">and</div>
+        <div class="formula-line"><em>ζ = a V/√(V² - v²) z</em>.</div>
+    </div>
+    <p>Substituting for <em>x'</em> its value, we obtain:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>τ = φ(v) β ( t - v/V² x )</em>,</div>
+        <div class="formula-line"><em>ξ = φ(v) β ( x - v t )</em>,</div>
+        <div class="formula-line"><em>η = φ(v) y</em>,</div>
+        <div class="formula-line"><em>ζ = φ(v) z</em>,</div>
+        <div class="formula-line">where</div>
+        <div class="formula-line"><em>β = 1 / √( 1 - (v/V)² )</em></div>
+    </div>
+    <p>and <em>φ</em> is an as yet unknown function of <em>v</em>. If no assumption is made concerning the initial position of the moving system and the zero point of <em>τ</em>, an additive constant is to be placed on the right side of each of these equations.</p>
+    <p>We now have to prove that every ray of light, measured in the moving system, propagates with velocity <em>V</em>, if, as we have assumed, this is the case in the stationary system; for we have not as yet furnished the proof that the principle of constancy of the velocity of light is compatible with the principle of relativity. At time <em>t = τ = 0</em>, when the origin of the coordinates is common to the two systems, let a spherical wave be emitted therefrom, and propagate with velocity <em>V</em> in system <em>K</em>. If (<em>x, y, z</em>) is a point just attained by this wave, then</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>x² + y² + z² = V² t²</em>.</div>
+    </div>
+    <p>Transforming this equation with the aid of our transformation equations we obtain after a simple calculation:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>ξ² + η² + ζ² = V² τ²</em>.</div>
+    </div>
+    <p>The wave under consideration is therefore no less a spherical wave with velocity of propagation <em>V</em> when viewed in the moving system. This shows that our two fundamental principles are compatible.</p>
+    <p>In the equations of transformation which have been developed there enters an unknown function <em>φ(v)</em>, which we will now determine. For this purpose we introduce a third coordinate system <em>K'</em>, which, relatively to system <em>k</em>, is in a state of parallel translational motion parallel to the <em>Ξ</em>-axis, such that its origin moves with velocity <em>-v</em> on the <em>Ξ</em>-axis. At the time <em>t = 0</em>, let all three origins coincide, and when <em>t = x = y = z = 0</em>, let the time <em>t'</em> of the system <em>K'</em> be zero. We call the coordinates, measured in the system <em>K'</em>, <em>x', y', z'</em>, and by twofold application of our transformation equations we obtain:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>t' = φ(-v) β(-v) { τ + v/V² ξ } = φ(v) φ(-v) t</em>,</div>
+        <div class="formula-line"><em>x' = φ(-v) β(-v) { ξ + v τ } = φ(v) φ(-v) x</em>,</div>
+        <div class="formula-line"><em>y' = φ(-v) η = φ(v) φ(-v) y</em>,</div>
+        <div class="formula-line"><em>z' = φ(-v) ζ = φ(v) φ(-v) z</em>.</div>
+    </div>
+    <p>Since the relations between <em>x', y', z'</em> and <em>x, y, z</em> do not contain the time <em>t</em>, the systems <em>K</em> and <em>K'</em> are at rest with respect to one another, and it is clear that the transformation from <em>K</em> to <em>K'</em> must be the identical transformation. Hence:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>φ(v) φ(-v) = 1</em>.</div>
+    </div>
+    <p>We now inquire as to the significance of <em>φ(v)</em>. We consider the part of the <em>H</em>-axis of system <em>k</em> lying between <em>ξ = 0</em>, <em>η = 0</em>, <em>ζ = 0</em> and <em>ξ = 0</em>, <em>η = l</em>, <em>ζ = 0</em>. This part of the <em>H</em>-axis is a rod moving perpendicularly to its axis with velocity <em>v</em> relative to system <em>K</em>. Its ends possess in <em>K</em> the coordinates:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>x<sub>1</sub> = vt, y<sub>1</sub> = l/φ(v), z<sub>1</sub> = 0</em></div>
+        <div class="formula-line">and</div>
+        <div class="formula-line"><em>x<sub>2</sub> = vt, y<sub>2</sub> = 0, z<sub>2</sub> = 0</em>.</div>
+    </div>
+    <p>The length of the rod measured in <em>K</em> is therefore <em>l/φ(v)</em>; thus the meaning of the function <em>φ</em> is given. From reasons of symmetry it is now evident that the length of a given rod moving perpendicularly to its axis, measured in the stationary system, must depend only on the velocity, and not on the direction and sense of the motion. The length of the moving rod measured in the stationary system does not change, therefore, if <em>v</em> and <em>-v</em> are interchanged. Hence follows:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>l/φ(v) = l/φ(-v)</em>,</div>
+        <div class="formula-line">or</div>
+        <div class="formula-line"><em>φ(v) = φ(-v)</em>.</div>
+    </div>
+    <p>From this relation and the one previously found it follows that <em>φ(v) = 1</em> must hold, so that the transformation equations which have been found become:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>τ = β ( t - v/V² x )</em>,</div>
+        <div class="formula-line"><em>ξ = β ( x - v t )</em>,</div>
+        <div class="formula-line"><em>η = y</em>,</div>
+        <div class="formula-line"><em>ζ = z</em>,</div>
+        <div class="formula-line">where</div>
+        <div class="formula-line"><em>β = 1 / √( 1 - (v/V)² )</em>.</div>
+    </div>
+    <h3>§ 4. Physical Meaning of the Equations Obtained: Concerning Moving Rigid Bodies and Moving Clocks.</h3>
+    <p>We consider a rigid sphere<sup>1</sup> of radius <em>R</em> at rest relative to the moving system <em>k</em>, and with its center at the origin of coordinates of <em>k</em>. The equation of the surface of this sphere, which is moving with velocity <em>v</em> relative to system <em>K</em>, is:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>ξ² + η² + ζ² = R²</em>.</div>
+    </div>
+    <p>Expressed in terms of <em>x, y, z</em> at time <em>t = 0</em>, the equation of this surface is:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>x² / ( √(1 - (v/V)²) )² + y² + z² = R²</em>.</div>
+    </div>
+    <p>A rigid body which, measured in a state of rest, has the form of a sphere, therefore has in a state of motion—viewed from the stationary system—the form of an ellipsoid of revolution with the axes</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>R √(1 - (v/V)²), R, R</em>.</div>
+    </div>
+    <p>Thus, whereas the <em>Y</em>- and <em>Z</em>-dimensions of the sphere (and therefore of every rigid body of any form) do not appear modified by the motion, the <em>X</em>-dimension appears shortened in the ratio 1 : √(1 - (v/V)²), i.e. the greater the value of <em>v</em>, the greater the shortening. For <em>v = V</em> all moving objects—viewed from the "stationary" system—shrink into plane structures. For velocities greater than that of light our deliberations become meaningless; we shall, however, find in what follows that the velocity of light in our theory plays the part, physically, of an infinitely great velocity.</p>
+    <p>It is clear that the same results hold for bodies at rest in the "stationary" system, viewed from a system in uniform motion. —</p>
+    <p>Further, we imagine one of the clocks which are qualified to mark the time <em>t</em> when at rest relatively to the stationary system, and the time <em>τ</em> when at rest relatively to the moving system, to be located at the origin of the coordinates of <em>k</em>, and so adjusted that it marks the time <em>τ</em>. What is the rate of this clock, when viewed from the stationary system?</p>
+    <p>Between the quantities <em>x, t</em> and <em>τ</em>, which refer to the position of the clock, we have, evidently, the equations:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>τ = 1/√(1 - (v/V)²) ( t - v/V² x )</em></div>
+        <div class="formula-line">and</div>
+        <div class="formula-line"><em>x = v t</em>.</div>
+    </div>
+    <p>Therefore</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>τ = t √(1 - (v/V)²) = t - ( 1 - √(1 - (v/V)²) ) t</em>,</div>
+    </div>
+    <p>whence it follows that the reading of the clock (viewed in the stationary system) is retarded per second by <em>(1 - √(1 - (v/V)²))</em> seconds, or—neglecting magnitudes of fourth and higher order—by <em>½ (v/V)²</em> seconds.</p>
+    <p>From this there ensues the following peculiar consequence. If at the points <em>A</em> and <em>B</em> of <em>K</em> there are stationary clocks which, viewed in the stationary system, are synchronous; and if the clock at <em>A</em> is moved with velocity <em>v</em> along the line <em>AB</em> to <em>B</em>, then on its arrival at <em>B</em> the two clocks no longer synchronize, but the clock moved from <em>A</em> to <em>B</em> lags behind the clock that has from the beginning been at <em>B</em> by <em>½ t v² / V²</em> seconds (up to magnitudes of fourth and higher order), <em>t</em> being the time occupied in the journey from <em>A</em> to <em>B</em>.</p>
+    <p>It is at once apparent that this result still holds good if the clock moves from <em>A</em> to <em>B</em> in any polygonal line, and also when the points <em>A</em> and <em>B</em> coincide.</p>
+    <p>If we assume that the result proved for a polygonal line is also valid for a continuously curved line, we arrive at this result: If at <em>A</em> there are two synchronous clocks, and if we set one of them in motion along a closed curve with constant velocity, until it returns to <em>A</em>, the journey lasting <em>t</em> seconds, then on its arrival at <em>A</em> the latter clock will lag behind the clock which has remained at rest by <em>½ t (v/V)²</em> seconds. From this we conclude that a balance-clock at the equator must go more slowly, by a very small amount, than a precisely similar clock situated at one of the poles under otherwise identical conditions.</p>
+    <h3>§ 5. The Theorem of the Addition of Velocities.</h3>
+    <p>In the system <em>k</em> moving along the <em>X</em>-axis of system <em>K</em> with velocity <em>v</em>, let a point move in accordance with the equations:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>ξ = w<sub>ξ</sub> τ</em>,</div>
+        <div class="formula-line"><em>η = w<sub>η</sub> τ</em>,</div>
+        <div class="formula-line"><em>ζ = 0</em>,</div>
+    </div>
+    <p>where <em>w<sub>ξ</sub></em> and <em>w<sub>η</sub></em> denote constants.</p>
+    <p>Required: the motion of the point relatively to system <em>K</em>. If we introduce into the equations of motion of the point the quantities <em>x, y, z, t</em> with the aid of the transformation equations developed in § 3, we obtain:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>x = (w<sub>ξ</sub> + v) / (1 + v w<sub>ξ</sub>/V²) t</em>,</div>
+        <div class="formula-line"><em>y = ( √(1 - (v/V)²) / (1 + v w<sub>ξ</sub>/V²) ) w<sub>η</sub> t</em>,</div>
+        <div class="formula-line"><em>z = 0</em>.</div>
+    </div>
+    <p>The law of the parallelogram of velocities holds therefore only to a first approximation according to our theory. We set:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>U² = (dx/dt)² + (dy/dt)²</em>,</div>
+        <div class="formula-line"><em>w² = w<sub>ξ</sub>² + w<sub>η</sub>²</em></div>
+        <div class="formula-line">and</div>
+        <div class="formula-line"><em>α = arctg (w<sub>η</sub> / w<sub>ξ</sub>)</em>;</div>
+    </div>
+    <p><em>α</em> is then to be looked upon as the angle between the velocities <em>v</em> and <em>w</em>. After a simple calculation we obtain:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>U = √( (v² + w² + 2 v w cos α) - (v w sin α)² ) / (1 + v w cos α / V²)</em>.</div>
+    </div>
+    <p>It is noteworthy that <em>v</em> and <em>w</em> enter into the expression for the resultant velocity in a symmetrical manner. If <em>w</em> also has the direction of the <em>X</em>-axis (<em>Ξ</em>-axis), we obtain:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>U = (v + w) / (1 + v w / V²)</em>.</div>
+    </div>
+    <p>From this equation it follows that from a composition of two velocities which are less than <em>V</em>, there always results a velocity less than <em>V</em>. For if we set <em>v = V - χ</em>, <em>w = V - λ</em>, where <em>χ</em> and <em>λ</em> are positive and less than <em>V</em>, then:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>U = V (2V - χ - λ) / (2V - χ - λ + χλ/V) &lt; V</em>.</div>
+    </div>
+    <p>It further follows that the velocity of light <em>V</em> cannot be altered by composition with a velocity less than that of light. For this case we obtain:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>U = (V + w) / (1 + w/V) = V</em>.</div>
+    </div>
+    <p>We might also have obtained the formula for <em>U</em> for the case when <em>v</em> and <em>w</em> have the same direction, by compounding two transformations in accordance with § 3. If in addition to the systems <em>K</em> and <em>k</em> figuring in § 3 we introduce still another coordinate system <em>k'</em> moving parallel to <em>k</em>, whose initial point moves on the <em>Ξ</em>-axis with velocity <em>w</em>, we obtain equations between the quantities <em>x, y, z, t</em> and the corresponding quantities of <em>k'</em> which differ from those found in § 3 only in that the place of "<em>v</em>" is taken by the quantity</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>(v + w) / (1 + v w / V²)</em></div>
+    </div>
+    <p>from which we see that such parallel velocities compose in accordance with the same law as in our theory. —</p>
+    <p>We will now treat in the following the electrodynamic equations of the Maxwell-Hertz theory for empty space, and show that the principle of relativity also leads to definite transformations here.</p>
+    <h2>II. Electrodynamical Part.</h2>
+    <h3>§ 6. Transformation of the Maxwell-Hertz Equations for Empty Space.</h3>
+    <p>The Maxwell-Hertz equations for empty space, when the usual vector notation is employed, are:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>curl H = (1/V) ∂E/∂t</em>,</div>
+        <div class="formula-line"><em>curl E = -(1/V) ∂H/∂t</em>,</div>
+        <div class="formula-line">div <em>E</em> = 0, div <em>H</em> = 0.</div>
+    </div>
+    <p>These equations hold for the stationary system <em>K</em>. We now wish to derive the corresponding equations for the moving system <em>k</em>. To do this we transform the differential operations and the field strengths. After a lengthy but elementary calculation, using the transformation equations of § 3, we obtain:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>∂X/∂x + ∂Y/∂y + ∂Z/∂z = 0</em>,</div>
+        <div class="formula-line"><em>∂L/∂x + ∂M/∂y + ∂N/∂z = 0</em>,</div>
+        <div class="formula-line"><em>∂X/∂t = V (∂N/∂y - ∂M/∂z)</em>,</div>
+        <div class="formula-line"><em>∂Y/∂t = V (∂L/∂z - ∂N/∂x)</em>,</div>
+        <div class="formula-line"><em>∂Z/∂t = V (∂M/∂x - ∂L/∂y)</em>,</div>
+        <div class="formula-line">and correspondingly for the magnetic forces.</div>
+    </div>
+    <p>If we now introduce the new variables <em>ξ, η, ζ, τ</em>, it turns out that the Maxwell equations retain their form, if we define the transformed field quantities appropriately. Namely, we obtain:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>X' = X, L' = L</em>,</div>
+        <div class="formula-line"><em>Y' = β (Y - (v/V) N), M' = β (M + (v/V) Z)</em>,</div>
+        <div class="formula-line"><em>Z' = β (Z + (v/V) M), N' = β (N - (v/V) Y)</em>.</div>
+    </div>
+    <p>Thus it is shown that the Maxwell equations for empty space are covariant with respect to the Lorentz transformations.</p>
+    <h3>§ 7. Theory of Doppler's Principle and of Aberration.</h3>
+    <p>In the system <em>K</em>, very far from the origin of coordinates, let there be a source of electrodynamic waves, which in a part of space containing the origin of coordinates may be represented to a sufficient degree of approximation by the equations:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>X = X₀ sin Φ, L = L₀ sin Φ</em>,</div>
+        <div class="formula-line"><em>Y = Y₀ sin Φ, M = M₀ sin Φ</em>,</div>
+        <div class="formula-line"><em>Z = Z₀ sin Φ, N = N₀ sin Φ</em>,</div>
+        <div class="formula-line">with <em>Φ = ω ( t - (a x + b y + c z)/V )</em>.</div>
+    </div>
+    <p>Here <em>(X₀, Y₀, Z₀)</em> and <em>(L₀, M₀, N₀)</em> are the vectors determining the amplitudes of the wave train, <em>a, b, c</em> the direction-cosines of the wave-normals.</p>
+    <p>We inquire as to the constitution of these waves when they are examined by an observer at rest in the moving system <em>k</em>. — By applying the transformation equations for the electric and magnetic forces found in § 6, and the transformation equations for coordinates and time found in § 3, we obtain immediately:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>X' = X₀ sin Φ'</em>, <em>L' = L₀ sin Φ'</em>,</div>
+        <div class="formula-line"><em>Y' = β (Y₀ - (v/V) N₀) sin Φ'</em>, <em>M' = β (M₀ + (v/V) Z₀) sin Φ'</em>,</div>
+        <div class="formula-line"><em>Z' = β (Z₀ + (v/V) M₀) sin Φ'</em>, <em>N' = β (N₀ - (v/V) Y₀) sin Φ'</em>,</div>
+        <div class="formula-line"><em>Φ' = ω' ( τ - (a' ξ + b' η + c' ζ)/V )</em>,</div>
+    </div>
+    <p>where</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>ω' = ω β (1 - a v/V)</em>,</div>
+        <div class="formula-line"><em>a' = (a - v/V) / (1 - a v/V)</em>,</div>
+        <div class="formula-line"><em>b' = b / (β (1 - a v/V))</em>,</div>
+        <div class="formula-line"><em>c' = c / (β (1 - a v/V))</em>.</div>
+    </div>
+    <p>From the equation for <em>ω'</em> it follows: If an observer moves with velocity <em>v</em> relative to an infinitely distant source of light of frequency <em>ν</em>, in such a way that the connecting line "source-observer" makes the angle <em>φ</em> with the velocity of the observer referred to a coordinate system at rest relative to the source, then the frequency <em>ν'</em> of the light perceived by the observer is given by the equation:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>ν' = ν (1 - cos φ · v/V) / √(1 - (v/V)²)</em>.</div>
+    </div>
+    <p>This is Doppler's principle for any velocities. For <em>φ = 0</em> the equation assumes the perspicuous form:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>ν' = ν √((1 - v/V) / (1 + v/V))</em>.</div>
+    </div>
+    <p>We see that, in contrast with the customary view, for <em>v = -V</em>, <em>ν' = ∞</em>.</p>
+    <p>If we call <em>φ'</em> the angle between the wave-normal (direction of the ray) in the moving system and the connecting line "source-observer," the equation for <em>a'</em> assumes the form:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>cos φ' = (cos φ - v/V) / (1 - (v/V) cos φ)</em>.</div>
+    </div>
+    <p>This equation expresses the law of aberration in its most general form. If <em>φ = π/2</em>, the equation takes the simple form:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>cos φ' = -v/V</em>.</div>
+    </div>
+    <p>We have still to find the amplitude of the waves, as it appears in the moving system. If we call <em>A</em> and <em>A'</em> respectively the amplitude of the electric or magnetic force measured in the stationary and in the moving system, we obtain:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>A'² = A² (1 - (v/V) cos φ)² / (1 - (v/V)²)</em>,</div>
+    </div>
+    <p>which equation, for <em>φ = 0</em>, simplifies into:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>A'² = A² (1 - v/V) / (1 + v/V)</em>.</div>
+    </div>
+    <p>It follows from these results that to an observer approaching a source of light with velocity <em>V</em>, this source of light must appear of infinite intensity.</p>
+    <h3>§ 8. Transformation of the Energy of Light Rays. Theory of the Radiation Pressure on a Perfect Mirror.</h3>
+    <p>Since <em>A²/8π</em> equals the light energy per unit volume, we have, according to the principle of relativity, to regard <em>A'²/8π</em> as the light energy in the moving system. Thus <em>A'²/A²</em> would be the ratio of the "measured in motion" to the "measured at rest" energy of a given light complex, if the volume of a light complex were the same, whether measured in <em>K</em> or measured in <em>k</em>. This is not the case. If <em>a, b, c</em> are the direction-cosines of the wave-normals of the light in the stationary system, no energy passes through the surface elements of a spherical surface moving with the velocity of light:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>(x - V a t)² + (y - V b t)² + (z - V c t)² = R²</em></div>
+    </div>
+    <p>We may therefore say that this surface permanently encloses the same light complex. We inquire as to the quantity of energy enclosed by this surface, viewed in system <em>k</em>, i.e. as to the energy of the light complex relatively to system <em>k</em>.</p>
+    <p>The spherical surface—viewed in the moving system—is an ellipsoidal surface, which at time <em>τ = 0</em> has the equation:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>(β ξ - a β (v/V) ξ)² + (η - b β (v/V) ξ)² + (ζ - c β (v/V) ξ)² = R²</em>.</div>
+    </div>
+    <p>If <em>S</em> denotes the volume of the sphere, and <em>S'</em> that of this ellipsoid, a simple calculation shows that:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>S'/S = √(1 - (v/V)²) / (1 - (v/V) cos φ)</em>.</div>
+    </div>
+    <p>Thus, if we call <em>E</em> the light energy measured in the stationary system, <em>E'</em> that measured in the moving system, which is enclosed by the surface considered, we obtain:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>E'/E = (A'² S')/(A² S) = (1 - (v/V) cos φ) / √(1 - (v/V)²)</em>,</div>
+    </div>
+    <p>which formula, for <em>φ = 0</em>, simplifies into:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>E'/E = √((1 - v/V) / (1 + v/V))</em>.</div>
+    </div>
+    <p>It is remarkable that the energy and the frequency of a light complex vary with the state of motion of the observer in accordance with the same law.</p>
+    <p>Now let the coordinate plane <em>ξ = 0</em> be a perfectly reflecting surface, at which the plane waves considered in the last paragraph are reflected. We inquire as to the light pressure exerted on the reflecting surface, and as to the direction, frequency, and intensity of the light after reflection.</p>
+    <p>Let the incident light be defined by the quantities <em>A, cos φ, ν</em> (referred to system <em>K</em>). Viewed from <em>k</em>, the corresponding quantities are:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>A' = A (1 - (v/V) cos φ) / √(1 - (v/V)²)</em>,</div>
+        <div class="formula-line"><em>cos φ' = (cos φ - v/V) / (1 - (v/V) cos φ)</em>,</div>
+        <div class="formula-line"><em>ν' = ν (1 - (v/V) cos φ) / √(1 - (v/V)²)</em>.</div>
+    </div>
+    <p>For the reflected light we obtain, when the process is referred to system <em>k</em>:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>A'' = A'</em>,</div>
+        <div class="formula-line"><em>cos φ'' = -cos φ'</em>,</div>
+        <div class="formula-line"><em>ν'' = ν'</em>.</div>
+    </div>
+    <p>Finally, by transforming back to the stationary system <em>K</em>, we obtain for the reflected light:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>A''' = A'' (1 + (v/V) cos φ'') / √(1 - (v/V)²) = A (1 - 2(v/V) cos φ + (v/V)²) / (1 - (v/V)²)</em>,</div>
+        <div class="formula-line"><em>cos φ''' = (cos φ'' + v/V) / (1 + (v/V) cos φ'') = -( (1 + (v/V)²) cos φ - 2 v/V ) / (1 - 2(v/V) cos φ + (v/V)²)</em>,</div>
+        <div class="formula-line"><em>ν''' = ν'' (1 + (v/V) cos φ'') / √(1 - (v/V)²) = ν (1 - 2(v/V) cos φ + (v/V)²) / (1 - (v/V)²)</em>.</div>
+    </div>
+    <p>The energy falling on unit area of the mirror per unit of time (measured in the stationary system) is evidently <em>A²/8π (V cos φ - v)</em>. The energy leaving unit area of the mirror per unit of time is <em>A'''²/8π (-V cos φ''' + v)</em>. The difference of these two expressions is, by the principle of energy, the work done by the light pressure in unit time. If we set this equal to the product <em>P·v</em>, where <em>P</em> is the light pressure, we obtain:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>P = 2 (A²/8π) (cos φ - v/V)² / (1 - (v/V)²)</em>.</div>
+    </div>
+    <p>To the first approximation, in agreement with experience and with other theories, we obtain</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>P = 2 (A²/8π) cos² φ</em>.</div>
+    </div>
+    <p>All problems of optics of moving bodies can be solved by the method here employed. The essential point is that the electric and magnetic forces of light, which are influenced by a moving body, be transformed to a coordinate system at rest relative to the body. In this way every problem of the optics of moving bodies is reduced to a series of problems of the optics of stationary bodies.</p>
+    <h3>§ 9. Transformation of the Maxwell-Hertz Equations with Consideration of the Convection Currents.</h3>
+    <p>We now proceed to the Maxwell-Hertz equations for ponderable bodies. Restricting ourselves to the case where the velocity of matter is small compared with the velocity of light, the equations can be written in the familiar manner with consideration of the convection currents. Carrying out the Lorentz transformation, it turns out that the equations retain their form if the field quantities and the current densities are transformed correspondingly. In particular, it follows that the ponderomotive force on moving charges is given by:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>F = ε { E + (1/V) [v × H] }</em>.</div>
+    </div>
+    <p>This is the well-known Lorentz force, which plays a fundamental role in the theory.</p>
+    <h3>§ 10. Dynamics of the (Slowly Accelerated) Electron.</h3>
+    <p>Let there be in motion in an electromagnetic field a point-like particle (hereinafter called "electron") with electric charge <em>ε</em>, concerning whose law of motion we assume only the following:</p>
+    <p>If the electron is at rest at a given epoch, then in the next instant of time its motion follows the equations</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>μ d²x/dt² = ε X</em>,</div>
+        <div class="formula-line"><em>μ d²y/dt² = ε Y</em>,</div>
+        <div class="formula-line"><em>μ d²z/dt² = ε Z</em>,</div>
+    </div>
+    <p>where <em>x, y, z</em> are the coordinates of the electron, and <em>μ</em> is its mass, insofar as it is moving slowly.</p>
+    <p>Now, secondly, let the electron have the velocity <em>v</em> at a certain epoch. We seek the law of motion of the electron in the immediately following instants of time.</p>
+    <p>Without affecting the general character of our considerations, we may and will assume that the electron, at the moment when we observe it, is at the origin of coordinates and moves with the velocity <em>v</em> along the <em>X</em>-axis of system <em>K</em>. It is then clear that at the given moment (<em>t = 0</em>) the electron is at rest relatively to a coordinate system <em>k</em> which is in parallel motion with velocity <em>v</em> along the <em>X</em>-axis.</p>
+    <p>From the assumption made above, in combination with the principle of relativity, it is clear that in the immediately following time (for small values of <em>t</em>), viewed from system <em>k</em>, the electron moves in accordance with the equations:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>μ d²ξ/dτ² = ε X'</em>,</div>
+        <div class="formula-line"><em>μ d²η/dτ² = ε Y'</em>,</div>
+        <div class="formula-line"><em>μ d²ζ/dτ² = ε Z'</em>,</div>
+    </div>
+    <p>where the symbols <em>ξ, η, ζ, τ, X', Y', Z'</em> refer to system <em>k</em>. If, further, we decide that for <em>t = x = y = z = 0</em>, we shall also have <em>τ = ξ = η = ζ = 0</em>, then the transformation equations of §§ 3 and 6 hold, so that we have:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>τ = β ( t - (v/V²) x )</em>,</div>
+        <div class="formula-line"><em>ξ = β ( x - v t )</em>,</div>
+        <div class="formula-line"><em>η = y</em>,</div>
+        <div class="formula-line"><em>ζ = z</em>,</div>
+        <div class="formula-line"><em>X' = X</em>,</div>
+        <div class="formula-line"><em>Y' = β ( Y - (v/V) N )</em>,</div>
+        <div class="formula-line"><em>Z' = β ( Z + (v/V) M )</em>.</div>
+    </div>
+    <p>With the help of these equations we transform the above equations of motion from system <em>k</em> to system <em>K</em>, and obtain:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>d²x/dt² = (ε/μ) (1/β²) X</em>,</div>
+        <div class="formula-line"><em>d²y/dt² = (ε/μ) (1/β) ( Y - (v/V) N )</em>,</div>
+        <div class="formula-line"><em>d²z/dt² = (ε/μ) (1/β) ( Z + (v/V) M )</em>.</div>
+    </div>
+    <p>Following the usual method of treatment, we now inquire as to the "longitudinal" and the "transverse" mass of the moving electron. We write the equations in the form</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>μ β³ d²x/dt² = ε X</em>,</div>
+        <div class="formula-line"><em>μ β² d²y/dt² = ε β ( Y - (v/V) N )</em>,</div>
+        <div class="formula-line"><em>μ β² d²z/dt² = ε β ( Z + (v/V) M )</em>,</div>
+    </div>
+    <p>and note firstly that <em>ε X', ε Y', ε Z'</em> are the components of the ponderomotive force acting upon the electron, as viewed in a system moving with the electron at the same velocity as the electron. (This force might, for example, be measured by a spring balance at rest in this last system.) If we simply call this force "the force acting upon the electron," and maintain the equation</p>
+    <p>mass number × acceleration number = force number,</p>
+    <p>and if we further decide that the accelerations are to be measured in the stationary system <em>K</em>, we obtain from the above equations:</p>
+    <div class="formula-block">
+        <div class="formula-line">Longitudinal mass = <em>μ / ( √(1 - (v/V)²) )³</em>,</div>
+        <div class="formula-line">Transverse mass = <em>μ / ( 1 - (v/V)² )</em>.</div>
+    </div>
+    <p>Naturally, with a different definition of force and acceleration we should obtain different numbers for the masses; this shows that we must proceed carefully in comparing different theories of the motion of the electron.</p>
+    <p>We remark that these results concerning the mass also hold for ponderable material points; for a ponderable material point can be made into an electron (in our sense) by the addition of an arbitrarily small electric charge.</p>
+    <p>We determine the kinetic energy of the electron. If an electron moves from the origin of coordinates of system <em>K</em> with initial velocity 0 constantly along the <em>X</em>-axis under the action of an electrostatic force <em>X</em>, it is clear that the energy withdrawn from the electrostatic field has the value <em>∫ ε X dx</em>. Since the electron is supposed to be slowly accelerated, and consequently no energy is emitted in the form of radiation, the energy withdrawn from the electrostatic field must be put equal to the kinetic energy <em>W</em> of the electron. Bearing in mind that throughout the process of motion under consideration the first of the above equations holds, we therefore obtain:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>W = ∫ ε X dx = ∫₀ᵛ μ β³ v dv = μ V² ( 1/√(1 - (v/V)²) - 1 )</em>.</div>
+    </div>
+    <p>Thus, for <em>v = V</em>, <em>W</em> becomes infinite. Velocities exceeding that of light have—as in our previous results—no possibility of existence.</p>
+    <p>This expression for the kinetic energy must, by the argument stated above, also hold for ponderable masses.</p>
+    <p>We will now enumerate the properties of the motion of the electron which follow from the system of equations, and are accessible to experiment.</p>
+    <p>1. From the second equation of the system it follows that an electric force <em>Y</em> and a magnetic force <em>N</em> have an equally strong deflecting action on an electron moving with velocity <em>v</em>, when <em>Y = N · v/V</em>. Thus it is seen that the determination of the electron's velocity from the ratio of magnetic deflexion <em>Aₘ</em> and electric deflexion <em>Aₑ</em> is possible, according to our theory, for any velocity, by applying the law:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>Aₘ / Aₑ = v / V</em>.</div>
+    </div>
+    <p>This relation can be tested experimentally, since the velocity of the electron can be measured directly, e.g. by means of rapidly oscillating electric and magnetic fields.</p>
+    <p>2. From the derivation for the kinetic energy of the electron it follows that between the potential difference traversed and the acquired velocity <em>v</em> of the electron there must be the relationship:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>P = ∫ X dx = (μ/ε) V² ( 1/√(1 - (v/V)²) - 1 )</em>.</div>
+    </div>
+    <p>3. We calculate the radius of curvature <em>R</em> of the path, when a magnetic force <em>N</em> is present (as the only deflecting force), acting perpendicularly to the velocity of the electron. From the second of the equations we obtain:</p>
+    <div class="formula-block">
+        <div class="formula-line"><em>-d²y/dt² = v²/R = (ε/μ) (v/V) N √(1 - (v/V)²)</em></div>
+        <div class="formula-line">or</div>
+        <div class="formula-line"><em>R = V² (μ/ε) · (v/V) / ( √(1 - (v/V)²) · N )</em>.</div>
+    </div>
+    <p>These three relationships are a complete expression for the laws according to which, by the theory here advanced, the electron must move.</p>
+    <p>In conclusion, I wish to say that in working at the problem here dealt with I have had the loyal assistance of my friend and colleague M. Besso, and that I am indebted to him for several valuable suggestions.</p>
+    <div class="received">
+        <p>Bern, June 1905.</p>
+        <p>(Received June 30, 1905.)</p>
+    </div>
+    <div class="footnote">
+        <p><sup>1</sup> The inaccuracy which lurks in the concept of simultaneity of two events at (approximately) the same place, and which must be bridged over by an abstraction, will not be discussed here.</p>
+        <p><sup>1</sup> "Time" here denotes "time of the stationary system" and also "position of the hands of the moving clock situated at the place under discussion."</p>
+        <p><sup>1</sup> That is, a body possessing spherical form when examined at rest.</p>
+    </div>
+</div>
+</body>
+</html>
