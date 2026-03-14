@@ -1,4 +1,3 @@
-html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -310,4 +309,3 @@ Sonuç olarak şudur: Bu makale, bilimin en ünlü fikirlerinden birine yeni bir
 <a href="https://bix.pages.dev/E">E</a> © 2026, <a href="https://bix.pages.dev">Jan Klein</a> tarafından <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a> lisansı altında lisanslanmıştır<span> &#x1F16D; &#x1F16F;</span>
 </body>
 </html>
-```
