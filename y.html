@@ -1,546 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>On the Energy of Moving Bodies in the Presence of Fields · Jan Klein</title>
-    <style>
-        /* Exact styling from https://bix.pages.dev/Unified-Synthesis-of-Mass-Motion-and-Field-Energy */
-        body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            line-height: 1.7;
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-            color: #1a1a1a;
-            background-color: #fafafa;
-            font-size: 1.05rem;
-        }
-        h1 {
-            font-size: 2.4rem;
-            line-height: 1.2;
-            border-bottom: 3px solid #2c3e50;
-            padding-bottom: 0.3rem;
-            margin-top: 2rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-        h2 {
-            font-size: 1.8rem;
-            margin-top: 2.5rem;
-            border-bottom: 1px solid #b0c4d9;
-            padding-bottom: 0.2rem;
-            font-weight: 500;
-        }
-        h3 {
-            font-size: 1.4rem;
-            margin-top: 1.8rem;
-            font-weight: 500;
-            color: #2c3e50;
-        }
-        h4 {
-            font-size: 1.2rem;
-            margin-top: 1.5rem;
-            font-weight: 500;
-            font-style: italic;
-        }
-        p {
-            margin: 1.2rem 0;
-            text-align: justify;
-            hyphens: auto;
-        }
-        a {
-            color: #1e4668;
-            text-decoration: none;
-            border-bottom: 1px dotted #8ba0b9;
-        }
-        a:hover {
-            border-bottom: 2px solid #1e4668;
-        }
-        blockquote {
-            border-left: 5px solid #2c3e50;
-            background-color: #f0f4f9;
-            margin: 1.8rem 0;
-            padding: 0.8rem 1.5rem;
-            font-style: normal;
-            border-radius: 0 6px 6px 0;
-        }
-        code, pre, .equation {
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            background-color: #eef3f8;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-size: 0.95em;
-        }
-        .equation {
-            display: block;
-            text-align: center;
-            margin: 1.8rem auto;
-            font-size: 1.5rem;
-            background-color: #eaf0f6;
-            padding: 1rem;
-            border-radius: 10px;
-            border: 1px solid #bdd1e6;
-            max-width: 90%;
-            overflow-x: auto;
-        }
-        ul, ol {
-            padding-left: 1.8rem;
-        }
-        li {
-            margin: 0.3rem 0;
-        }
-        .footer {
-            margin-top: 3rem;
-            padding-top: 1rem;
-            border-top: 2px solid #2c3e50;
-            font-size: 0.9rem;
-            color: #3a4e64;
-            text-align: center;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bix.pages.dev</title>
+<meta name="description" content="bix.pages.dev — Jan Klein, Architect of Understandable AI (UAI)">
+<link rel="icon" href="/favicon.ico">
+<style>
+body{margin:16px;font-family:Arial,sans-serif;background:#000;color:#fff;line-height:1.6;max-width:900px}
+h1{font-size:clamp(2.6rem,12vw,6rem);margin:0}
+h2{font-size:clamp(1.3rem,5vw,2.2rem);margin:.3em 0}
+h3{font-size:clamp(1.3rem,5vw,2.2rem);margin:.4em 0}
+p{font-size:clamp(.95rem,2.6vw,1.2rem)}
+a,a:visited,a:hover,a:active,a:focus{color:#2E2EFF;text-decoration:none;font-weight:700;font-size:inherit}
+h1 a,h2 a,h3 a{font-size:inherit;font-weight:inherit;color:#2E2EFF}
+.logos img{height:90px;margin-right:12px}
+footer{margin-top:32px;font-size:.9rem}
+.img-row{display:flex;align-items:flex-start;gap:20px;margin:20px 0}
+.img-row img{width:200px;height:200px;flex-shrink:0}
+.img-row .list{margin:0}
+.img-row .list h2,.img-row .list h3{margin:0 0 5px 0;line-height:1.2}
+@media(max-width:500px){.img-row{flex-direction:column}}
+</style>
 </head>
 <body>
-
-<h1>On the Energy of Moving Bodies in the Presence of Fields</h1>
-
-<h2>Unified Synthesis of Mass, Motion and Field Energy</h2>
-
-<p><strong>Original Research Paper</strong></p>
-
-<p>Hannover, Germany, 10 March 2026 by Jan Klein · bix.pages.dev</p>
-
-<p>Licensed under Creative Commons Attribution 4.0 International</p>
-
-<h3>Abstract</h3>
-
-<p>Einstein's equation E = mc² stands as one of the most recognized in all of science. Yet it describes an idealized case: a particle at rest in empty space, free of external fields. Modern physics reveals that no such particle exists. Every particle is immersed in a tapestry of fields: gravitational, electromagnetic, Higgs, and quantum vacuum fluctuations, each contributing to its total energy. In this paper, we derive a generalized energy equation from first principles in general relativity and quantum field theory. We show that the total energy of any particle, at rest or in motion, immersed in any combination of fields, must take the form:</p>
-
-<div class="equation">E = γ(mc² + κ(x)Φ)</div>
-
-<p>where γ is the Lorentz factor for motion, m is the intrinsic mass of the particle, Φ is the strength of the field in which it is embedded, and κ(x) is a coupling function that may vary with position, measuring the interaction between the particle and the field. We demonstrate that this formulation naturally encompasses all known contributions to mass: the gravitational potential in GPS time dilation, the Higgs mechanism for elementary particle masses, the gluon field energy giving 99% of proton mass, and nuclear binding energy. We further propose two classes of testable predictions: composition dependent violations of the equivalence principle, and anomalous clock rates differing between atomic species. This work does not replace Einstein but completes his insight, revealing that mass is not a primitive property but a summary of a particle's interactions with the fields that fill all of reality.</p>
-
-<h2>1. Introduction</h2>
-
-<h3>1.1 The Most Famous Equation</h3>
-
-<p>In 1905, a young patent clerk named Albert Einstein published four papers that changed physics forever. Among them was a short derivation of a relationship that would become synonymous with modern physics itself:</p>
-
-<div class="equation">E = mc²</div>
-
-<p>The equation states that mass and energy are not separate entities but two manifestations of the same underlying quantity. A small amount of mass contains a staggering amount of energy. Nuclear fission, fusion, and particle antiparticle annihilation have confirmed this beyond doubt. The complete conversion of one kilogram of mass would yield approximately 90 quadrillion joules, enough to power a city for a year.</p>
-
-<p>Yet Einstein's derivation carried an implicit assumption that is often overlooked. He considered a particle in an <strong>inertial frame</strong>: a region of space with no acceleration, no gravity, and no external influences. In this idealized vacuum, his equation holds perfectly.</p>
-
-<h3>1.2 The Universe We Actually Inhabit</h3>
-
-<p>We do not live in that idealized vacuum. We live on a planet immersed in gravity. We exist in a universe filled with fields:</p>
-
-<ul>
-<li>The <strong>gravitational field</strong> anchors our feet to the ground and varies with height. Its strength is different at sea level, on a mountaintop, and aboard the International Space Station.</li>
-<li>The <strong>electromagnetic field</strong> carries light, radio waves, X rays, and all forms of electromagnetic radiation. It mediates forces between charged particles and possesses real, measurable energy density: a capacitor stores energy in its electric field, an inductor in its magnetic field.</li>
-<li>The <strong>Higgs field</strong>, confirmed in 2012 at CERN's Large Hadron Collider, permeates all of space and gives mass to elementary particles through interactions. Particles that couple strongly to it, like the top quark, are heavy; those that couple weakly, like the electron, are light; those that do not couple at all, like the photon, remain massless.</li>
-<li><strong>Quantum fields</strong> for every particle type fluctuate even in what we call empty space. The Casimir effect demonstrates that two metal plates brought very close together experience a tiny attractive force because quantum fields between them have fewer fluctuations than those outside. Empty space is doing something.</li>
-</ul>
-
-<p>All of these fields contain energy. All of them interact with the particles moving through them. This raises an inevitable question:</p>
-
-<p><strong>Shouldn't these fields appear in the fundamental equation for energy?</strong></p>
-
-<h3>1.3 The Central Thesis of This Work</h3>
-
-<p>We propose that the complete expression for a particle's total energy must incorporate three elements:</p>
-
-<ol>
-<li><strong>Intrinsic mass</strong>  the energy present even in isolation, absent fields and motion.</li>
-<li><strong>Field energy</strong>  the energy contributed by every field in which the particle is immersed.</li>
-<li><strong>Motion</strong>  the relativistic amplification of all forms of energy as velocity increases.</li>
-</ol>
-
-<p>We will demonstrate, by derivation from established physics, that these three elements combine into a single expression:</p>
-
-<div class="equation">E = γ(mc² + κ(x)Φ)</div>
-
-<p>where γ is the Lorentz factor, m is the intrinsic mass, Φ is the field strength at the particle's location, and κ(x) is a coupling function that may vary with position. This is not a new invention but a necessary consequence of combining general relativity with quantum field theory. The goal is not to replace Einstein but to build upon his foundation, taking the next step toward the fuller picture that modern physics has revealed.</p>
-
-<h2>2. The Gravitational Contribution: Derivation from General Relativity</h2>
-
-<p>We begin with the most familiar field: gravity. General relativity, Einstein's theory published a decade after his special relativity, describes gravity as the curvature of spacetime. For a weak field like Earth's, we can use the Schwarzschild metric, the exact solution for spacetime around a spherical mass.</p>
-
-<h3>2.1 The Schwarzschild Metric</h3>
-
-<p>For a spherical mass M, the spacetime interval is given by:</p>
-
-<div class="equation">ds² = (1 + 2Φ/c²) c² dt²  (1  2Φ/c²) dr²  r² dΩ²</div>
-
-<p>where Φ = GM/r is the Newtonian gravitational potential (negative, approaching zero at infinity). The term (1 + 2Φ/c²) is the g₀₀ component of the metric tensor; it tells us how time flows differently in a gravitational field.</p>
-
-<h3>2.2 Energy of a Particle at Rest</h3>
-
-<p>For a particle at rest (dr = 0, dΩ = 0), the proper time dτ (the time experienced by the particle itself) is related to coordinate time dt by:</p>
-
-<div class="equation">dτ = √(g₀₀) dt = √(1 + 2Φ/c²) dt</div>
-
-<p>This is the origin of gravitational time dilation: clocks run slower where gravity is stronger (where Φ is more negative).</p>
-
-<p>The energy of the particle, as measured by a distant observer, is given by:</p>
-
-<div class="equation">E = mc² (dt/dτ) = mc² / √(1 + 2Φ/c²)</div>
-
-<p>This is an exact result from general relativity.</p>
-
-<h3>2.3 Weak Field Approximation</h3>
-
-<p>On Earth's surface, Φ/c² is approximately 10⁻⁹, a very small number. We can expand using the binomial approximation. For small x, (1 + x)⁻¹/² ≈ 1  x/2 + 3x²/8 ... Keeping only the first order term:</p>
-
-<div class="equation">E ≈ mc² (1  Φ/c²) = mc²  mΦ</div>
-
-<p>Since Φ is negative, mΦ is positive. A particle at a higher altitude (less negative Φ) has more energy than one at sea level. This energy difference is precisely what the Pound Rebka experiment measured in 1960, confirming that gravitational fields affect energy.</p>
-
-<h3>2.4 Adding Motion</h3>
-
-<p>For a particle in motion, the full solution of the geodesic equations (the general relativistic equations of motion) gives a beautiful result. The energy can be written as:</p>
-
-<div class="equation">E = γ mc² √(g₀₀)</div>
-
-<p>where γ = 1/√(1  v²/c²) is the Lorentz factor from special relativity. This expression shows how motion and gravity combine: the Lorentz factor multiplies the gravitational effect.</p>
-
-<p>In the weak field limit, √(g₀₀) ≈ 1 + Φ/c², giving:</p>
-
-<div class="equation">E = γ mc² (1 + Φ/c²) = γ( mc² + mΦ )</div>
-
-<h3>2.5 Result for Gravity</h3>
-
-<p>We have derived that for any particle in a weak gravitational field, the total energy is:</p>
-
-<div class="equation">E_grav = γ( mc² + mΦ )</div>
-
-<p>This already has the form of our target equation, with κ = m and Φ representing the gravitational potential. The coupling constant for gravity is simply the particle's mass, a reflection of the equivalence principle.</p>
-
-<h2>3. The Quantum Field Contribution: Mass from Fields</h2>
-
-<p>We now turn to the quantum fields that give particles their very mass. Modern physics reveals that what we call "mass" is often energy stored in fields. The Higgs mechanism, quantum chromodynamics, and nuclear binding all demonstrate this principle.</p>
-
-<h3>3.1 The Higgs Mechanism</h3>
-
-<p>In the Standard Model of particle physics, the Higgs field H is a quantum field that permeates all of space. Through a process called spontaneous symmetry breaking, it acquires a constant value everywhere called the vacuum expectation value:</p>
-
-<div class="equation">⟨H⟩ = v/√2, where v ≈ 246 GeV</div>
-
-<p>Particles interact with this field through terms in the Lagrangian called Yukawa couplings. For an electron, the Lagrangian contains:</p>
-
-<div class="equation">L = y_e ⟨H⟩ \bar{e} e</div>
-
-<p>This has exactly the same form as a mass term m_e \bar{e} e. Comparing them, we identify:</p>
-
-<div class="equation">m_e = y_e v/√2</div>
-
-<p>Multiplying by c² to convert mass to energy:</p>
-
-<div class="equation">m_e c² = (y_e c²) · (v/√2)</div>
-
-<p>This is precisely of the form κΦ, with κ_e = y_e c² and Φ_Higgs = v/√2. The electron's mass is entirely due to its interaction with the Higgs field.</p>
-
-<h3>3.2 The Strong Nuclear Field and Proton Mass</h3>
-
-<p>A proton is not an elementary particle. It consists of three quarks bound by the strong nuclear field, described by quantum chromodynamics (QCD). If we add up the masses of its constituent quarks (two up quarks and one down quark), we get only about 9 MeV/c², approximately 1% of the proton's total mass of 938 MeV/c².</p>
-
-<p>Where does the other 99% come from?</p>
-
-<p>It comes from the energy of the gluon field, the mediator of the strong force. Even in the vacuum, the gluon field has a non zero energy density due to quantum fluctuations; this is called the <strong>gluon condensate</strong> ⟨G²⟩. Within a proton, this field energy is enormous.</p>
-
-<p>The proton mass can be written as:</p>
-
-<div class="equation">m_p c² = Σ m_q c² + f(⟨G²⟩)</div>
-
-<p>where f(⟨G²⟩) represents the field energy contribution. While the precise function f is complex (involving non perturbative QCD), the principle is clear: the dominant part of the proton's mass is field energy of the form κΦ, with Φ representing the gluon field strength squared.</p>
-
-<h3>3.3 Nuclear Binding Energy</h3>
-
-<p>When protons and neutrons bind into a nucleus, the strong field configuration changes. The binding energy released in nuclear reactions, whether in the Sun, in nuclear power plants, or in atomic bombs, is precisely the difference in field energy between the initial and final states.</p>
-
-<p>In a uranium nucleus, the strong field stores energy that is released upon fission. In our formulation, this appears as a negative κΦ term for the bound state. When the nucleus splits, κΦ becomes less negative, and the difference appears as kinetic energy of the fragments.</p>
-
-<h3>3.4 Particle Creation in Colliders</h3>
-
-<p>When particles collide at high energy in accelerators, new particles can be created. Energy transforms into mass. A classic example is electron positron annihilation producing muon pairs: the colliding particles annihilate into pure energy, which then condenses into muons and antimuons.</p>
-
-<p>In our framework, this is natural. The total energy E includes both the mass term and the field term, multiplied by γ. Upon collision, that energy redistributes, creating new particles with their own masses, each of which, in turn, can be understood as mc² + κΦ for that particle.</p>
-
-<h3>3.5 The General Principle</h3>
-
-<p>These examples reveal a universal truth: in quantum field theory, physical mass is not a primitive input but an output of interactions with fields. It always takes the form:</p>
-
-<div class="equation">m_physical c² = m₀c² + κΦ</div>
-
-<p>where m₀ is a bare intrinsic mass (possibly zero for particles like the electron), and κΦ represents the energy contributed by all fields with which the particle interacts.</p>
-
-<h2>4. The Unified Equation</h2>
-
-<h3>4.1 Synthesis of General Relativity and Quantum Field Theory</h3>
-
-<p>We now have two results:</p>
-
-<ul>
-<li>From <strong>general relativity</strong>: A particle in a gravitational field has energy E = γ( mc² + mΦ_grav )</li>
-<li>From <strong>quantum field theory</strong>: A particle's mass itself arises from field interactions: mc² = m₀c² + κ_Higgs Φ_Higgs + κ_QCD Φ_QCD + ...</li>
-</ul>
-
-<p>These are not separate effects. The "m" that appears in the gravitational term is the same physical mass that includes all quantum field contributions. And the gravitational field is itself one field among many.</p>
-
-<p>Recognizing this unity, we can write the complete energy equation in a single, elegant form:</p>
-
-<div class="equation">E = γ( mc² + κ(x)Φ )</div>
-
-<p>Here, κ(x)Φ represents <strong>the total energy contributed by all fields</strong> (gravitational, Higgs, strong, electromagnetic, and any others yet discovered) in which the particle is immersed. The coupling function κ(x) may vary with position, allowing for spatial variations in field interactions.</p>
-
-<h3>4.2 Interpretation of Terms</h3>
-
-<ul>
-<li><strong>E</strong>  Total energy of the particle</li>
-<li><strong>γ</strong>  Lorentz factor = 1/√(1  v²/c²); equals 1 for a particle at rest, increases without bound as v approaches c</li>
-<li><strong>m</strong>  Intrinsic mass of the particle; the energy present even in isolation, absent fields and motion</li>
-<li><strong>c²</strong>  Conversion factor between mass and energy; its large value explains why small masses yield enormous energies</li>
-<li><strong>κ(x)</strong>  Coupling function; measures the strength of interaction between this particular particle and the field; may vary with position</li>
-<li><strong>Φ</strong>  Field strength or potential at the particle's location; may represent gravitational potential, Higgs field value, gluon field strength, or any other field</li>
-</ul>
-
-<p>The term κ(x)Φ is added to mc² within the parentheses, indicating that mass energy and field energy combine before multiplication by the motion factor. This reflects the physical insight that motion amplifies all forms of energy equally, whether intrinsic to the particle or contributed by its environment.</p>
-
-<h3>4.3 The Equation in Various Regimes</h3>
-
-<ul>
-<li>Particle at rest, no fields: γ=1, Φ=0 → E = mc² (back to Einstein).</li>
-<li>Particle at rest in a field: γ=1, Φ≠0 → E = mc² + κΦ.</li>
-<li>Moving particle, no fields: γ>1, Φ=0 → E = γmc².</li>
-<li>Moving particle in a field: γ>1, Φ≠0 → E = γ(mc² + κΦ).</li>
-<li>Moving through changing field: κ(x) varies, energy changes with position.</li>
-</ul>
-
-<h3>4.4 Why the Field Term Is Not Already in E=mc²</h3>
-
-<p>A reasonable question arises: if field energy is real and always present, why didn't Einstein include it? The answer lies in his simplifying assumptions. He considered a particle in empty space with no external influences, an idealized inertial frame. In that special case, the field term vanishes, and his equation holds perfectly.</p>
-
-<p>Einstein was, of course, aware of fields. He spent the decade following 1905 developing general relativity, which treats gravity as a field. He simply never combined these ideas into a single mass energy equation. That synthesis is what we undertake here.</p>
-
-<h3>4.5 A Note on Units</h3>
-
-<p>Physical equations require dimensional consistency. In E = γ(mc² + κΦ), the term κΦ must have units of energy, just as mc² does. This means κ must have units that convert the field strength Φ into energy units. This is unproblematic; coupling constants in physics routinely perform such conversions.</p>
-
-<p>In the Higgs mechanism, for instance, the Yukawa coupling y has units that, when multiplied by the Higgs field value v, yield a mass. Multiplying by c² then gives energy. So κΦ is simply a compact notation for "field contributed mass times c²."</p>
-
-<h2>5. Empirical Consistency</h2>
-
-<p>A theoretical formulation gains credence when it illuminates known phenomena. The following examples demonstrate how our equation aligns with established physics.</p>
-
-<h3>5.1 GPS and Gravitational Time Dilation</h3>
-
-<p>Every time you use GPS on your phone, you rely on both special and general relativity. The satellites move fast, so special relativity says their clocks run slow. They are also higher in Earth's gravity well, so general relativity says their clocks run fast. The net effect is about 38 microseconds per day faster than Earth clocks, a difference engineers must compensate for.</p>
-
-<p>Our equation handles this naturally. For gravity, κ = m, so:</p>
-
-<div class="equation">E = γ( mc² + mΦ ) = γ mc² (1 + Φ/c²)</div>
-
-<p>The energy difference between satellite and ground is ΔE/E = ΔΦ/c². Since frequency is proportional to energy for quantum clocks (E = hf), this gives Δf/f = ΔΦ/c², exactly the gravitational time dilation predicted by general relativity and confirmed by GPS operation.</p>
-
-<h3>5.2 The Origin of Proton Mass</h3>
-
-<p>For a proton at rest (γ = 1), our equation gives:</p>
-
-<div class="equation">E_proton = mc² + κ(x)Φ</div>
-
-<p>We identify κ(x)Φ with the gluon field energy that dominates the proton's mass. The "m" term represents the intrinsic masses of the three quarks (about 9 MeV/c² total), while κ(x)Φ accounts for the remaining approximately 929 MeV/c² from the strong field. This matches the QCD result that about 99% of the proton's mass comes from field energy, not from the quarks themselves.</p>
-
-<h3>5.3 The Higgs Boson and Particle Masses</h3>
-
-<p>For an electron at rest (γ = 1), our equation gives:</p>
-
-<div class="equation">m_e c² = mc² + κ(x)Φ</div>
-
-<p>In the Standard Model, electrons have no intrinsic mass; their mass comes entirely from interaction with the Higgs field. Thus m = 0, and we have:</p>
-
-<div class="equation">m_e c² = κ(x)Φ</div>
-
-<p>This is exactly the Higgs mechanism result, with κ representing the Yukawa coupling times c² and Φ representing the Higgs vacuum expectation value.</p>
-
-<p>For the top quark, which interacts strongly with the Higgs field, κ is large, giving a large mass. For the photon, which does not interact with the Higgs field at all, κ = 0, giving m_γ = 0.</p>
-
-<h3>5.4 Nuclear Binding Energy</h3>
-
-<p>When a heavy nucleus such as uranium fissions, the fragments have slightly less total mass than the original nucleus. This mass defect has been converted to energy, the principle underlying nuclear power and weapons.</p>
-
-<p>Where did this mass reside? It was stored in the strong nuclear field binding the nucleus together. In our equation, the κΦ term for the bound nucleus is negative (binding energy reduces total mass). When the nucleus splits, κΦ becomes less negative, and the difference emerges as kinetic energy of the fragments.</p>
-
-<h3>5.5 Particle Creation in Colliders</h3>
-
-<p>When particles collide at high energy in accelerators, new particles can be created. Energy transforms into mass. Our equation represents this naturally:</p>
-
-<div class="equation">E_total = γ( mc² + κΦ ) for initial particles → redistributes → Σ [ γ_i ( m_i c² + κ_i Φ_i ) ] for final particles</div>
-
-<p>The equation is symmetric: energy can become mass, and mass can become energy, with fields mediating the process.</p>
-
-<h3>5.6 What These Examples Reveal</h3>
-
-<p>Each of these examples is well established physics. None contradicts E=mc². Rather, they demonstrate that the m in that equation is not simple but a summary of myriad field interactions. Our equation makes this explicit, revealing that fields are not optional additions to the story of energy but essential protagonists.</p>
-
-<h2>6. Novel Predictions</h2>
-
-<p>A theory must do more than explain the known; it must predict the unknown. Our equation offers two classes of testable predictions.</p>
-
-<h3>6.1 Composition Dependent Violations of the Equivalence Principle</h3>
-
-<p>In our equation, the gravitational coupling for a composite object is its total mass M = (mc² + κ(x)Φ)/c². But different fields contribute to M in different proportions depending on the object's composition. A hydrogen atom, for example, has most of its mass in the proton (from the strong field), while a neutron star material has a different balance of field energies.</p>
-
-<p>If the coupling function κ(x) were exactly the same for all field types, all objects would fall at the same rate (the Einstein Equivalence Principle). However, if κ(x) differs for different fields (if, say, strong field energy couples to gravity slightly differently than Higgs field energy), then objects with different compositions would fall at different rates.</p>
-
-<p><strong>Prediction:</strong> The acceleration of a test mass in a gravitational field may depend on its composition at a level of 1 part in 10¹⁵ or below.</p>
-
-<p><strong>Test:</strong> Compare the free fall of objects made of different materials, such as titanium versus platinum, using torsion balances or satellite experiments like MICROSCOPE. Current experiments bound such violations to about 1 part in 10¹⁵; future experiments could push sensitivity further.</p>
-
-<h3>6.2 Anomalous Clock Rates</h3>
-
-<p>Different atomic clocks tick based on electronic transitions that sample different combinations of field energies. An aluminum ion clock and a mercury ion clock, for instance, have different proportions of electromagnetic, strong, and weak field contributions to their energy levels.</p>
-
-<p>If κ(x) varies with field type, then clocks of different designs would experience slightly different gravitational time dilation, even at the same location.</p>
-
-<p><strong>Prediction:</strong> Comparing two ultra stable clocks of different designs as Earth's gravity varies (due to tides or orbital motion) should reveal a relative frequency shift beyond that predicted by general relativity.</p>
-
-<p><strong>Test:</strong> Current optical clock networks are approaching the precision needed to detect such effects. Future space based clock experiments could push sensitivity further.</p>
-
-<h3>6.3 Strong Field Regime</h3>
-
-<p>Our derivation in Section 2 used the weak field approximation (Φ/c² ≪ 1). Near neutron stars or black holes, Φ/c² is not small. Our equation predicts corrections to particle energies beyond the linear approximation:</p>
-
-<div class="equation">E = γ mc² / √(1 + 2Φ/c²) ≈ γ mc² (1  Φ/c² + 3Φ²/2c⁴  ...)</div>
-
-<p>The quadratic term represents a deviation from standard general relativity at the level of (Φ/c²)². For a neutron star, Φ/c² ~ 0.1, so the correction is at the 1% level, potentially observable in the spectra of accretion disks or in gravitational wave signals from inspiraling compact objects.</p>
-
-<h2>7. Discussion</h2>
-
-<h3>7.1 What This Equation Reveals About Mass</h3>
-
-<p>The most profound implication of this work is conceptual. It transforms how we understand mass:</p>
-
-<ul>
-<li>In <strong>Newtonian physics</strong>, mass was simply a property objects possessed, a primitive, unexplained quantity.</li>
-<li>In <strong>Einstein's physics</strong>, mass became a form of energy, interchangeable with other forms through E = mc².</li>
-<li>In our <strong>extended view</strong>, mass emerges as a kind of summary: the aggregate of all ways a particle interacts with fields, plus whatever intrinsic mass it might harbor.</li>
-</ul>
-
-<p>The equation E = γ(mc² + κ(x)Φ) makes this explicit. It reveals that the "m" in Einstein's famous formula is not simple but a shorthand for a rich structure of field interactions. Mass is not something particles <em>have</em>; it is something particles <em>do</em>, a record of their couplings to the fields that fill the universe.</p>
-
-<h3>7.2 Connection to the Cosmological Constant Problem</h3>
-
-<p>One of the deepest puzzles in modern physics is the cosmological constant: the energy of empty space. Quantum field theory predicts that the vacuum should have an enormous energy density, some 10¹²⁰ times larger than the observed value that drives the universe's accelerated expansion. This discrepancy is one of the worst in the history of science.</p>
-
-<p>Our formulation suggests a possible perspective. The vacuum hosts fields with Φ_vac ≠ 0, contributing a term κ_vac Φ_vac to the energy of everything. If the coupling function κ(x) for vacuum fields were different from that for ordinary matter (if vacuum energy coupled to gravity differently), this could reconcile the huge predicted value with the small observed one.</p>
-
-<p>In our equation, this would mean that the κ in κ(x)Φ for vacuum fluctuations is not the same as the κ for ordinary matter. The vacuum energy might be large, but its gravitational effect might be suppressed by a small coupling.</p>
-
-<p>This is speculative, but it illustrates how our equation reframes old problems in new light. It does not solve the cosmological constant problem, but it offers a fresh direction for inquiry.</p>
-
-<h3>7.3 Relation to Einstein's Original Work</h3>
-
-<p>We emphasize throughout that this is not a rejection of Einstein. His derivation assumed an idealized inertial frame with no external fields. In that special case, our equation reduces to:</p>
-
-<ul>
-<li>For a particle at rest (γ = 1, Φ = 0): <strong>E = mc²</strong></li>
-<li>For a particle in motion (γ > 1, Φ = 0): <strong>E = γmc²</strong></li>
-</ul>
-
-<p>Einstein's formula survives as the foundation upon which we build. What we have done is extend that foundation to incorporate the richer understanding of fields that 120 years of subsequent physics have revealed.</p>
-
-<p>He provided the framework; we are furnishing the rooms.</p>
-
-<h2>8. Conclusion</h2>
-
-<p>We began with Einstein's beautiful insight that mass and energy are one. E = mc² became the emblem of that insight, printed on T shirts and chalkboards, recognized even by those who know nothing else of physics.</p>
-
-<p>But Einstein worked in 1905. Physics has learned immeasurably since. We now understand that space is filled with fields: gravitational, electromagnetic, Higgs, and fluctuating quantum fields. These are not background scenery; they are active participants in the universe, containing energy, interacting with particles, and conferring much of what we call mass.</p>
-
-<p>We asked a simple question: if particles are always immersed in fields, and if those fields contain energy, shouldn't they appear in the equation?</p>
-
-<p>By deriving from first principles in general relativity and quantum field theory, we have shown that the complete energy equation must be:</p>
-
-<div class="equation">E = γ(mc² + κ(x)Φ)</div>
-
-<p>This expression:</p>
-
-<ul>
-<li>Reduces to E = mc² in the idealized case of no fields and no motion</li>
-<li>Naturally encompasses all known field contributions to mass: gravitational, Higgs, strong nuclear, and binding energies</li>
-<li>Makes testable predictions for violations of the equivalence principle and anomalous clock rates</li>
-<li>Offers a new perspective on the nature of mass and the cosmological constant problem</li>
-</ul>
-
-<p>For a particle at rest in empty space, Einstein's formula stands. But for a proton in a nucleus, our equation reminds us that most mass comes from the strong field. For an electron, it reminds us that mass comes from the Higgs field. For a satellite in orbit, it reminds us that energy depends on position within Earth's gravitational field.</p>
-
-<p>This is not a rejection of Einstein. It is an extension, a building upon the foundation he laid. He gave us the framework; we are simply furnishing the rooms.</p>
-
-<p>The future of E = mc² lies not in replacing the old equation but in understanding it more deeply: recognizing that the m in that equation is not simple but a summary of myriad interactions, and that fields are not optional additions to the story of energy but essential characters.</p>
-
-<p>We do not claim that our equation is the final word. Physics will continue to learn. New fields may be discovered. New couplings may be measured. New theories may emerge that render our synthesis as limited as Newton's laws now appear. That is how science works: it builds, extends, deepens.</p>
-
-<p>But for now, this equation offers a way to perceive the unity beneath the diversity. Mass, motion, and fields are all forms of energy, all connected through one simple expression:</p>
-
-<div class="equation">E = γ(mc² + κ(x)Φ)</div>
-
-<p>Einstein showed us that mass is frozen energy. We add that fields are the freezer.</p>
-
-<h2>9. Final Reflection</h2>
-
-<p>Einstein once remarked that the most incomprehensible thing about the universe is that it is comprehensible. E = mc² was one of the first glimpses of that hidden simplicity, revealing that matter and energy are not separate substances but expressions of the same underlying reality.</p>
-
-<p>Modern physics has progressively disclosed that this reality is richer than initially apparent. Particles are not isolated objects drifting through emptiness; they are excitations within a sea of fields, constantly interacting with structures that permeate all of space. Mass, motion, and fields are different facets of the same energetic fabric.</p>
-
-<p>The expression</p>
-
-<div class="equation">E = γ(mc² + κ(x)Φ)</div>
-
-<p>is therefore not meant to replace Einstein's equation but to place it within a broader context. It reminds us that energy resides not only in matter but also in the fields that shape the universe and in the motion that carries everything through spacetime.</p>
-
-<p>Whether this formulation proves useful or merely suggestive, it points toward a deeper idea: the universe may ultimately be understood not as a collection of separate things, but as a dynamic web of interacting fields and energies.</p>
-
-<p>If E = mc² taught us that matter is condensed energy, the next step may be recognizing that matter itself is only one expression of a far larger energetic landscape.</p>
-
-<p>And perhaps that is the real legacy of Einstein's insight, not a final equation, but an invitation to keep extending the picture.</p>
-
-<p>Jan Klein, Hannover, Germany, 10 March 2026</p>
-
-<h2>10. Referral Links</h2>
-
-<p>On the Electrodynamics of Moving Bodies. By Albert Einstein. Translated by Jan Klein</p>
-<p>Does the Inertia of a Body Depend Upon Its Energy Content? By Albert Einstein (PDF)</p>
-<p>E = γ(mc² + κ(x)Φ) By Jan Klein (Research Paper)</p>
-<p>An Introduction to Quantum Field Theory. By Peskin and Schroeder (PDF)</p>
-
-<h2>11. References</h2>
-
-<ol>
-<li>Einstein, A. (1905). On the Electrodynamics of Moving Bodies. <em>Annalen der Physik</em>, 17, 891 921.</li>
-<li>Einstein, A. (1905). Does the Inertia of a Body Depend Upon Its Energy Content? <em>Annalen der Physik</em>, 18, 639 641.</li>
-<li>Klein.J. (2026). E = γ(mc² + κ(x)Φ) Research Paper</li>
-<li>Pound, R. V., & Rebka, G. A. (1960). Apparent Weight of Photons. <em>Physical Review Letters</em>, 4, 337 341.</li>
-<li>Higgs, P. W. (1964). Broken Symmetries and the Masses of Gauge Bosons. <em>Physical Review Letters</em>, 13, 508 509.</li>
-<li>Englert, F., & Brout, R. (1964). Broken Symmetry and the Mass of Gauge Vector Mesons. <em>Physical Review Letters</em>, 13, 321 323.</li>
-<li>Guralnik, G. S., Hagen, C. R., & Kibble, T. W. B. (1964). Global Conservation Laws and Massless Particles. <em>Physical Review Letters</em>, 13, 585 587.</li>
-<li>ATLAS Collaboration. (2012). Observation of a New Particle in the Search for the Standard Model Higgs Boson. <em>Physics Letters B</em>, 716, 1 29.</li>
-<li>CMS Collaboration. (2012). Observation of a New Boson at a Mass of 125 GeV. <em>Physics Letters B</em>, 716, 30 61.</li>
-<li>Wilczek, F. (1999). Mass Without Mass I: Most of Matter. <em>Physics Today</em>, 52(11), 11 13.</li>
-<li>Wilczek, F. (2000). Mass Without Mass II: The Medium is the Massage. <em>Physics Today</em>, 53(1), 13 15.</li>
-<li>Casimir, H. B. G. (1948). On the Attraction Between Two Perfectly Conducting Plates. <em>Proceedings of the Koninklijke Nederlandse Akademie van Wetenschappen</em>, 51, 793 795.</li>
-<li>Ashby, N. (2003). Relativity in the Global Positioning System. <em>Living Reviews in Relativity</em>, 6, 1.</li>
-<li>Particle Data Group. (2022). Review of Particle Physics. <em>Progress of Theoretical and Experimental Physics</em>, 2022, 083C01.</li>
-<li>Weinberg, S. (1989). The Cosmological Constant Problem. <em>Reviews of Modern Physics</em>, 61, 1 23.</li>
-<li>Peskin, M. E., & Schroeder, D. V. (1995). <em>An Introduction to Quantum Field Theory</em>. Westview Press.</li>
-<li>Carroll, S. M. (2004). <em>Spacetime and Geometry: An Introduction to General Relativity</em>. Addison Wesley.</li>
-</ol>
-
-<p>URL of this Research Paper: <a href="https://bix.pages.dev/On-the-Energy-of-Moving-Bodies-in-the-Presence-of-Fields">https://bix.pages.dev/On-the-Energy-of-Moving-Bodies-in-the-Presence-of-Fields</a></p>
-
-<div class="footer">
-    <p>E = γ(mc² + κ(x)Φ) © 2026 by Jan Klein is licensed under Creative Commons Attribution 4.0 International</p>
+<header>
+<h1><a href="https://bix.pages.dev">bix.pages.dev</a></h1>
+</header>
+<main>
+<div class="img-row">
+<img src="JAN-KLEIN-OFFICIAL.png" alt="Jan Klein" width="200" height="200">
+<div class="list">
+<h2>Jan Klein</h2>
+<h3>Artificial</h3>
+<h3>Intelligence</h3>
+<h3>Computer</h3>
+<h3>Science</h3>
 </div>
-
+</div>
+<h3><a href="https://bix.pages.dev/On-the-Energy-of-Moving-Bodies-in-the-Presence-of-Fields.html" target="_blank" rel="noopener noreferrer">On the Energy of Moving Bodies in the Presence of Fields</a> Original Research Paper</h3>
+<h3><a href="https://bix.pages.dev/E" target="_blank" rel="noopener noreferrer">E</a> Research Paper</h3>
+<h3><a href="https://dev.ucoz.org/Understandable-Ai.html" target="_blank" rel="noopener noreferrer">UAI</a> Architect of Understandable AI</h3>
+<h3>The Next AI Revolution</h3>
+<h3>The Klein Principle</h3>
+<h3><a href="https://g.dev/janklein" target="_blank" rel="noopener noreferrer">GDE</a> Google Developer Expert</h3>
+<h3>CEO at <a href="https://dev.ucoz.org/" target="_blank" rel="noopener noreferrer">dev.ucoz.org</a> & <a href="https://wai.pages.dev/" target="_blank" rel="noopener noreferrer">WAI</a></h3>
+<h3>Contact <a href="mailto:janklein@engineer.com">Jan Klein</a></h3>
+<section class="logos">
+<img src="/UAI.webp" alt="Understandable AI logo">
+<img src="/OSS.webp" alt="Open Source Software logo">
+<img src="/MIT.webp" alt="MIT License logo">
+</section>
+<p><a href="https://orcid.org/0009-0002-2951-995X" target="_blank" rel="noopener noreferrer">ORCID: 0009-0002-2951-995X</a></p>
+</main>
+<footer>
+<p>© 2026 bix.pages.dev</p>
+</footer>
 </body>
 </html>
