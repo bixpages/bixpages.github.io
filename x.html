@@ -50,7 +50,7 @@ h1 a, h2 a, h3 a {
 
 /* image block – image on top, name below (stacked) */
 .title-image-block {
-  margin: 1.5rem 0 2rem 0;  /* spacing after h1, before next elements */
+  margin: 0 0 2rem 0;        /* top margin removed – less space between h1 and image */
   display: flex;
   flex-direction: column;    /* stack image above text */
   align-items: flex-start;   /* left align */
@@ -111,7 +111,7 @@ footer h2 {
   <h1><a href="/">bix.pages.dev</a></h1>
 </header>
 <main>
-  <!-- IMAGE ABOVE, NAME BELOW (stacked, no columns) -->
+  <!-- IMAGE ABOVE, NAME BELOW – now with less space from the main title -->
   <div class="title-image-block">
     <img src="JAN-KLEIN.png" alt="JAN KLEIN" class="profile-pic" width="210" height="210">
     <div class="profile-text">
