@@ -8,56 +8,109 @@
 <meta name="description" content="bix.pages.dev — Jan Klein, Architect of Understandable AI (UAI)">
 <link rel="icon" href="/favicon.ico">
 <style>
-body{margin:16px;font-family:Arial,sans-serif;background:#000;color:#fff;line-height:1.6;max-width:900px}
-h1{font-size:clamp(3.5rem,12vw,6rem);margin:0}
-h2{font-size:clamp(1.1rem,5vw,1.4rem);margin:1.8em 0}
-h3{font-size:clamp(2rem,5vw,2rem);margin:0;line-height:1.5}
-p{font-size:clamp(1.2rem,2.8vw,0.8rem)}
-a,a:visited,a:hover,a:active,a:focus{color:#2E2EFF;text-decoration:none;font-weight:700;font-size:inherit}
-h1 a,h2 a,h3 a{font-size:inherit;font-weight:inherit;color:#2E2EFF}
-.logos img{
-  height:100px;
-  margin-right:5px
+body {
+  margin: 16px;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+  line-height: 1.6;
+  max-width: 900px;
 }
-footer h2, footer p {margin:0; line-height:2}
-.img-row{display:flex;align-items:flex-start;gap:10px;margin:10px 0}
-.img-row img{width:190px;height:190px;flex-shrink:0}
-.img-row .list{margin:0}
-.img-row .list h2,.img-row .list h3{margin:0 0 5px 0;line-height:1.6}
-@media(max-width:500px){.img-row{flex-direction:column}}
+h1 {
+  font-size: clamp(3.5rem, 12vw, 6rem);
+  margin: 0;
+}
+h2 {
+  font-size: clamp(2rem, 5vw, 2rem);
+  margin: 0;
+  line-height: 1.5;
+}
+p {
+  font-size: clamp(1.2rem, 2.8vw, 1rem);
+  margin: 1em 0;
+}
+a, a:visited, a:hover, a:active, a:focus {
+  color: #2E2EFF;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: inherit;
+}
+h1 a, h2 a {
+  font-size: inherit;
+  font-weight: inherit;
+  color: #2E2EFF;
+}
+.title-image-block {
+  margin: 0 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.profile-pic {
+  width: 250px;
+  height: 250px;
+  border-radius: 0;
+  object-fit: cover;
+}
+.profile-text p {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: #fff;
+}
+.profile-text strong {
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  white-space: nowrap;
+}
+@media (max-width: 500px) {
+  .profile-pic {
+    width: 100%;
+    height: auto;
+    max-width: 250px;
+  }
+}
+.logos img {
+  height: 100px;
+  margin-right: 5px;
+}
+footer h2, footer p {
+  margin: 0;
+  line-height: 2;
+}
+footer h2 {
+  font-size: clamp(2rem, 5vw, 2rem);
+  margin: 0;
+}
 </style>
 </head>
 <body>
 <header>
-<h1><a href="/">bix.pages.dev</a></h1>
+  <h1><a href="/">bix.pages.dev</a></h1>
 </header>
 <main>
-<div class="img-row">
-<div class="list">
-<h2>Jan Klein, Researcher</h2>
-<h2>Quantum Physics</h2>
-<h2>Computer science</h2>
-<h2>Artificial intelligence</h2>
-<h2>Web & App Developer</h2>
-</div>
-<img src="JAN-KLEIN.png" alt="JAN KLEIN" width="210" height="210">
-</div>
-<h3><a href="https://bix.pages.dev/On-the-Energy-of-Moving-Bodies-in-the-Presence-of-Fields.html" target="_blank" rel="noopener noreferrer">On the Energy of Moving Bodies in the Presence of Fields</a></h3>
-<h3><a href="https://uai.ucoz.org/" target="_blank" rel="noopener noreferrer">UAI</a> Understandable Ai</h3>
-<h3><a href="https://g.dev/janklein" target="_blank" rel="noopener noreferrer">GDE</a> Google Developer Expert</h3>
-<h3><a href="https://www.youtube.com/playlist?list=PLd6DceIzErOlrnO6VYrWEedP-h6xv5QKo" target="_blank" rel="noopener noreferrer">Future Jazz Symphony</a></h3>
-<h1><a href="tel:+31685373879">CALL</a> | <a href="mailto:info.j.klein@gmail.com">MAIL</a></h1>
-<h3>CEO at <a href="https://wai.pages.dev/" target="_blank" rel="noopener noreferrer">WAI</a> & <a href="https://dev.ucoz.org/" target="_blank" rel="noopener noreferrer">dev.ucoz.org</a></h3>
-<section class="logos">
-<img src="/MIT.webp" alt="MIT License logo">
-<img src="/OSS.webp" alt="Open Source Software logo">
-<img src="/UAI.webp" alt="Understandable AI logo">
-</section>
+  <div class="title-image-block">
+    <img src="JAN-KLEIN.png" alt="JAN KLEIN" class="profile-pic" width="210" height="210">
+    <div class="profile-text">
+      <p><strong>Jan Klein, Researcher</strong></p>
+    </div>
+  </div>
+  <h2><a href="https://bix.pages.dev/On-the-Energy-of-Moving-Bodies-in-the-Presence-of-Fields.html" target="_blank" rel="noopener noreferrer">On the Energy of Moving Bodies in the Presence of Fields</a></h2>
+  <h2><a href="https://uai.ucoz.org/" target="_blank" rel="noopener noreferrer">UAI</a> Understandable Ai</h2>
+  <h2><a href="https://g.dev/janklein" target="_blank" rel="noopener noreferrer">GDE</a> Google Developer Expert</h2>
+  <h1><a href="tel:+31685373879">CALL</a> | <a href="mailto:info.j.klein@gmail.com">MAIL</a></h1>
+  <section class="logos">
+    <img src="/MIT.webp" alt="MIT License logo">
+    <img src="/OSS.webp" alt="Open Source Software logo">
+    <img src="/UAI.webp" alt="Understandable AI logo">
+  </section>
 </main>
 <footer>
-
-<h3><a href="https://www.linkedin.com/in/jankleinx/" target="_blank" rel="noopener noreferrer">LinkedIn</a> | <a href="https://github.com/JanKleinX" target="_blank" rel="noopener noreferrer">GitHub</a></h3>
-<p>© 2026 bix.pages.dev</p>
+  <h2><a href="https://www.linkedin.com/in/jankleinx/" target="_blank" rel="noopener noreferrer">LinkedIn</a> | <a href="https://github.com/JanKleinX" target="_blank" rel="noopener noreferrer">GitHub</a></h2>
+  <p>© 2026 bix.pages.dev</p>
 </footer>
 </body>
 </html>
