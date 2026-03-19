@@ -22,37 +22,50 @@ h1 a,h2 a,h3 a{font-size:inherit;font-weight:inherit;color:#2E2EFF}
 footer h2, footer p {margin:0; line-height:2}
 @media (max-width: 500px) {
   .img-row {
-    flex-direction: column; /* Stack image below text on mobile */
-    align-items: flex-start;
+    flex-direction: row !important; /* Keep side by side */
+    align-items: center;
+    width: 100%;
+    overflow: hidden; /* Contain the scrollable area */
   }
   
   .img-row .list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px; /* Comfortable spacing between items */
     height: auto;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
-    gap: 10px;
-    margin-bottom: 15px;
+    padding: 10px 0;
+    margin-right: 10px;
+    scrollbar-width: thin; /* Nice scrollbar in Firefox */
+  }
+  
+  /* Show scrollbar on iOS */
+  .img-row .list::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  .img-row .list::-webkit-scrollbar-thumb {
+    background: #2E2EFF;
+    border-radius: 4px;
   }
   
   .img-row .list h2 {
-    font-size: 1rem;
-    white-space: normal; /* Allow wrap */
+    font-size: 1rem; /* Readable 16px equivalent */
+    white-space: nowrap;
+    flex: 0 0 auto;
     margin: 0;
-    padding: 5px;
-    background: rgba(46, 46, 255, 0.1);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 60px;
+    padding: 0;
+    display: inline-block;
+    line-height: 1.2;
+    color: #fff;
   }
   
   .img-row img {
-    width: 200px; /* Even larger image */
-    height: 200px;
-    margin: 0 auto; /* Center it */
+    width: 150px; /* Good visible size */
+    height: 150px;
+    flex-shrink: 0;
   }
 }
 
