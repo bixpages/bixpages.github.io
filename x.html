@@ -20,11 +20,41 @@ h1 a,h2 a,h3 a{font-size:inherit;font-weight:inherit;color:#2E2EFF}
   margin-right:5px
 }
 footer h2, footer p {margin:0; line-height:2}
-.img-row{display:flex;align-items:flex-start;gap:10px;margin:10px 0}
-.img-row img{width:190px;height:190px;flex-shrink:0}
-.img-row .list{margin:0}
-.img-row .list h2,.img-row .list h3{margin:0 0 5px 0;line-height:1.6}
-@media(max-width:500px){.img-row{flex-direction:column}}
+@media (max-width: 500px) {
+  .img-row {
+    flex-direction: column; /* Stack image below text on mobile */
+    align-items: flex-start;
+  }
+  
+  .img-row .list {
+    height: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .img-row .list h2 {
+    font-size: 1rem;
+    white-space: normal; /* Allow wrap */
+    margin: 0;
+    padding: 5px;
+    background: rgba(46, 46, 255, 0.1);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 60px;
+  }
+  
+  .img-row img {
+    width: 200px; /* Even larger image */
+    height: 200px;
+    margin: 0 auto; /* Center it */
+  }
+}
 
 /* --- ADJUSTMENTS TO MATCH IMAGE HEIGHT --- */
 .img-row .list {
