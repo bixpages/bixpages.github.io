@@ -33,7 +33,7 @@ h3 {
   margin: 1.8em 0;
 }
 p {
-  font-size: clamp(1.2rem, 2.8vw, 1rem); /* adjusted min to be readable */
+  font-size: clamp(1.2rem, 2.8vw, 1rem);
   margin: 1em 0;
 }
 a, a:visited, a:hover, a:active, a:focus {
@@ -48,18 +48,18 @@ h1 a, h2 a, h3 a {
   color: #2E2EFF;
 }
 
-/* image block – now directly under title, no columns */
+/* image block – image on top, name below (stacked) */
 .title-image-block {
   margin: 1.5rem 0 2rem 0;  /* spacing after h1, before next elements */
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 24px;
+  flex-direction: column;    /* stack image above text */
+  align-items: flex-start;   /* left align */
+  gap: 8px;                  /* small gap between image and text */
 }
 .profile-pic {
-  width: 210px;
-  height: 210px;
-  border-radius: 0;        /* keep original style (square) */
+  width: 250px;
+  height: 250px;
+  border-radius: 0;
   object-fit: cover;
 }
 .profile-text p {
@@ -76,16 +76,12 @@ h1 a, h2 a, h3 a {
   font-size: clamp(1.5rem, 4vw, 2rem);
   white-space: nowrap;
 }
-/* make sure the inline text stays simple */
-.title-image-block {
-  align-items: baseline;
-}
-/* optional: if screen gets very small, stack nicely */
+/* optional: on very small screens ensure image stays full width */
 @media (max-width: 500px) {
-  .title-image-block {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+  .profile-pic {
+    width: 100%;
+    height: auto;
+    max-width: 250px;
   }
 }
 
@@ -101,12 +97,12 @@ footer h2, footer p {
   line-height: 2;
 }
 footer h2 {
-  font-size: clamp(2rem, 5vw, 2rem); /* keep same as h2 */
+  font-size: clamp(2rem, 5vw, 2rem);
   margin: 0;
 }
 /* remove any leftover list or img-row styles from previous version */
 .img-row, .list, .img-row .list {
-  display: none;  /* completely hide the old column/list structure */
+  display: none;
 }
 </style>
 </head>
@@ -114,38 +110,26 @@ footer h2 {
 <header>
   <h1><a href="/">bix.pages.dev</a></h1>
 </header>
-
 <main>
-  <!-- DIRECTLY UNDER PAGE TITLE: IMAGE + "<p><strong>Jan Klein, Researcher</strong></p>" (no columns, no h2 list) -->
+  <!-- IMAGE ABOVE, NAME BELOW (stacked, no columns) -->
   <div class="title-image-block">
     <img src="JAN-KLEIN.png" alt="JAN KLEIN" class="profile-pic" width="210" height="210">
     <div class="profile-text">
       <p><strong>Jan Klein, Researcher</strong></p>
-      <!-- pure text, no list, no columns. exactly what you requested -->
     </div>
   </div>
-
-  <!-- ALL FORMER H3 TAGS CONVERTED TO H2, keeping the original h3 formatting (clamp, line-height, etc) 
-       we have already redefined h2 to match previous h3 style -->
   <h2><a href="https://bix.pages.dev/On-the-Energy-of-Moving-Bodies-in-the-Presence-of-Fields.html" target="_blank" rel="noopener noreferrer">On the Energy of Moving Bodies in the Presence of Fields</a></h2>
-
   <h2><a href="https://uai.ucoz.org/" target="_blank" rel="noopener noreferrer">UAI</a> Understandable Ai</h2>
-
   <h2><a href="https://g.dev/janklein" target="_blank" rel="noopener noreferrer">GDE</a> Google Developer Expert</h2>
-
   <h2><a href="https://www.youtube.com/playlist?list=PLd6DceIzErOlrnO6VYrWEedP-h6xv5QKo" target="_blank" rel="noopener noreferrer">Future Jazz Symphony</a></h2>
-
   <h1><a href="tel:+31685373879">CALL</a> | <a href="mailto:info.j.klein@gmail.com">MAIL</a></h1>
-
   <h2>CEO at <a href="https://wai.pages.dev/" target="_blank" rel="noopener noreferrer">WAI</a> & <a href="https://dev.ucoz.org/" target="_blank" rel="noopener noreferrer">dev.ucoz.org</a></h2>
-
   <section class="logos">
     <img src="/MIT.webp" alt="MIT License logo">
     <img src="/OSS.webp" alt="Open Source Software logo">
     <img src="/UAI.webp" alt="Understandable AI logo">
   </section>
 </main>
-
 <footer>
   <h2><a href="https://www.linkedin.com/in/jankleinx/" target="_blank" rel="noopener noreferrer">LinkedIn</a> | <a href="https://github.com/JanKleinX" target="_blank" rel="noopener noreferrer">GitHub</a></h2>
   <p>© 2026 bix.pages.dev</p>
