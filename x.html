@@ -8,131 +8,147 @@
 <meta name="description" content="bix.pages.dev — Jan Klein, Architect of Understandable AI (UAI)">
 <link rel="icon" href="/favicon.ico">
 <style>
-body{margin:16px;font-family:Arial,sans-serif;background:#000;color:#fff;line-height:1.6;max-width:900px}
-h1{font-size:clamp(3.5rem,12vw,6rem);margin:0}
-h2{font-size:clamp(1.1rem,5vw,1.4rem);margin:1.8em 0}
-h3{font-size:clamp(2rem,5vw,2rem);margin:0;line-height:1.5}
-p{font-size:clamp(1.2rem,2.8vw,0.8rem)}
-a,a:visited,a:hover,a:active,a:focus{color:#2E2EFF;text-decoration:none;font-weight:700;font-size:inherit}
-h1 a,h2 a,h3 a{font-size:inherit;font-weight:inherit;color:#2E2EFF}
-.logos img{
-  height:100px;
-  margin-right:5px
+/* ---------- base ---------- */
+body {
+  margin: 16px;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+  line-height: 1.6;
+  max-width: 900px;
 }
-footer h2, footer p {margin:0; line-height:2}
-@media (max-width: 500px) {
-  .img-row {
-    flex-direction: row !important; /* Keep side by side */
-    align-items: center;
-    width: 100%;
-    overflow: hidden; /* Contain the scrollable area */
-  }
-  
-  .img-row .list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 20px; /* Comfortable spacing between items */
-    height: auto;
-    padding: 10px 0;
-    margin-right: 10px;
-    scrollbar-width: thin; /* Nice scrollbar in Firefox */
-  }
-  
-  /* Show scrollbar on iOS */
-  .img-row .list::-webkit-scrollbar {
-    height: 4px;
-  }
-  
-  .img-row .list::-webkit-scrollbar-thumb {
-    background: #2E2EFF;
-    border-radius: 4px;
-  }
-  
-  .img-row .list h2 {
-    font-size: 1rem; /* Readable 16px equivalent */
-    white-space: nowrap;
-    flex: 0 0 auto;
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    line-height: 1.2;
-    color: #fff;
-  }
-  
-  .img-row img {
-    width: 150px; /* Good visible size */
-    height: 150px;
-    flex-shrink: 0;
-  }
+h1 {
+  font-size: clamp(3.5rem, 12vw, 6rem);
+  margin: 0;
+}
+/* original h3 style – now reused for h2 (as requested) */
+h2 {
+  font-size: clamp(2rem, 5vw, 2rem);
+  margin: 0;
+  line-height: 1.5;
+}
+h3 {
+  /* kept only for semantic fallback, but not used in main content */
+  font-size: clamp(1.1rem, 5vw, 1.4rem);
+  margin: 1.8em 0;
+}
+p {
+  font-size: clamp(1.2rem, 2.8vw, 1rem); /* adjusted min to be readable */
+  margin: 1em 0;
+}
+a, a:visited, a:hover, a:active, a:focus {
+  color: #2E2EFF;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: inherit;
+}
+h1 a, h2 a, h3 a {
+  font-size: inherit;
+  font-weight: inherit;
+  color: #2E2EFF;
 }
 
-/* --- ADJUSTMENTS TO MATCH IMAGE HEIGHT --- */
-.img-row .list {
+/* image block – now directly under title, no columns */
+.title-image-block {
+  margin: 1.5rem 0 2rem 0;  /* spacing after h1, before next elements */
   display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* distributes h2 items evenly */
-  height: 190px; /* exactly the same as image height */
-  padding: 2px 0; /* tiny breathing space */
-  box-sizing: border-box;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
 }
-
-.img-row .list h2 {
-  margin: 0; /* remove all default margins */
-  line-height: 1.2; /* tighter line height */
-  font-size: clamp(1rem, 4vw, 1.3rem); /* slightly adjusted for fit */
-  flex: 1; /* each h2 gets equal vertical space */
-  display: flex;
-  align-items: center; /* vertically center text within each h2 block */
-  white-space: nowrap; /* keep each item on one line (adjust if needed) */
+.profile-pic {
+  width: 210px;
+  height: 210px;
+  border-radius: 0;        /* keep original style (square) */
+  object-fit: cover;
 }
-
-/* For very narrow screens (mobile) we already have column direction,
-   but inside column we keep the same exact height */
+.profile-text p {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: #fff;
+}
+/* simple separate line: Jan Klein, Researcher */
+.profile-text strong {
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  white-space: nowrap;
+}
+/* make sure the inline text stays simple */
+.title-image-block {
+  align-items: baseline;
+}
+/* optional: if screen gets very small, stack nicely */
 @media (max-width: 500px) {
-  .img-row .list {
-    height: 190px; /* remains fixed to match image even in column mode */
-    width: 100%; /* take full width */
+  .title-image-block {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
-  .img-row .list h2 {
-    white-space: normal; /* allow wrap if needed on very small screens */
-  }
+}
+
+/* ----- logos row (unchanged) ----- */
+.logos img {
+  height: 100px;
+  margin-right: 5px;
+}
+
+/* footer (unchanged) */
+footer h2, footer p {
+  margin: 0;
+  line-height: 2;
+}
+footer h2 {
+  font-size: clamp(2rem, 5vw, 2rem); /* keep same as h2 */
+  margin: 0;
+}
+/* remove any leftover list or img-row styles from previous version */
+.img-row, .list, .img-row .list {
+  display: none;  /* completely hide the old column/list structure */
 }
 </style>
 </head>
 <body>
 <header>
-<h1><a href="/">bix.pages.dev</a></h1>
+  <h1><a href="/">bix.pages.dev</a></h1>
 </header>
-<main>
-<div class="img-row">
-<div class="list">
-<h2>Jan Klein, Researcher</h2>
-<h2>Quantum Physics</h2>
-<h2>Computer science</h2>
-<h2>Artificial intelligence</h2>
-<h2>Web & App Developer</h2>
-</div>
-<img src="JAN-KLEIN.png" alt="JAN KLEIN" width="210" height="210">
-</div>
-<h3><a href="https://bix.pages.dev/On-the-Energy-of-Moving-Bodies-in-the-Presence-of-Fields.html" target="_blank" rel="noopener noreferrer">On the Energy of Moving Bodies in the Presence of Fields</a></h3>
-<h3><a href="https://uai.ucoz.org/" target="_blank" rel="noopener noreferrer">UAI</a> Understandable Ai</h3>
-<h3><a href="https://g.dev/janklein" target="_blank" rel="noopener noreferrer">GDE</a> Google Developer Expert</h3>
-<h3><a href="https://www.youtube.com/playlist?list=PLd6DceIzErOlrnO6VYrWEedP-h6xv5QKo" target="_blank" rel="noopener noreferrer">Future Jazz Symphony</a></h3>
-<h1><a href="tel:+31685373879">CALL</a> | <a href="mailto:info.j.klein@gmail.com">MAIL</a></h1>
-<h3>CEO at <a href="https://wai.pages.dev/" target="_blank" rel="noopener noreferrer">WAI</a> & <a href="https://dev.ucoz.org/" target="_blank" rel="noopener noreferrer">dev.ucoz.org</a></h3>
-<section class="logos">
-<img src="/MIT.webp" alt="MIT License logo">
-<img src="/OSS.webp" alt="Open Source Software logo">
-<img src="/UAI.webp" alt="Understandable AI logo">
-</section>
-</main>
-<footer>
 
-<h3><a href="https://www.linkedin.com/in/jankleinx/" target="_blank" rel="noopener noreferrer">LinkedIn</a> | <a href="https://github.com/JanKleinX" target="_blank" rel="noopener noreferrer">GitHub</a></h3>
-<p>© 2026 bix.pages.dev</p>
+<main>
+  <!-- DIRECTLY UNDER PAGE TITLE: IMAGE + "<p><strong>Jan Klein, Researcher</strong></p>" (no columns, no h2 list) -->
+  <div class="title-image-block">
+    <img src="JAN-KLEIN.png" alt="JAN KLEIN" class="profile-pic" width="210" height="210">
+    <div class="profile-text">
+      <p><strong>Jan Klein, Researcher</strong></p>
+      <!-- pure text, no list, no columns. exactly what you requested -->
+    </div>
+  </div>
+
+  <!-- ALL FORMER H3 TAGS CONVERTED TO H2, keeping the original h3 formatting (clamp, line-height, etc) 
+       we have already redefined h2 to match previous h3 style -->
+  <h2><a href="https://bix.pages.dev/On-the-Energy-of-Moving-Bodies-in-the-Presence-of-Fields.html" target="_blank" rel="noopener noreferrer">On the Energy of Moving Bodies in the Presence of Fields</a></h2>
+
+  <h2><a href="https://uai.ucoz.org/" target="_blank" rel="noopener noreferrer">UAI</a> Understandable Ai</h2>
+
+  <h2><a href="https://g.dev/janklein" target="_blank" rel="noopener noreferrer">GDE</a> Google Developer Expert</h2>
+
+  <h2><a href="https://www.youtube.com/playlist?list=PLd6DceIzErOlrnO6VYrWEedP-h6xv5QKo" target="_blank" rel="noopener noreferrer">Future Jazz Symphony</a></h2>
+
+  <h1><a href="tel:+31685373879">CALL</a> | <a href="mailto:info.j.klein@gmail.com">MAIL</a></h1>
+
+  <h2>CEO at <a href="https://wai.pages.dev/" target="_blank" rel="noopener noreferrer">WAI</a> & <a href="https://dev.ucoz.org/" target="_blank" rel="noopener noreferrer">dev.ucoz.org</a></h2>
+
+  <section class="logos">
+    <img src="/MIT.webp" alt="MIT License logo">
+    <img src="/OSS.webp" alt="Open Source Software logo">
+    <img src="/UAI.webp" alt="Understandable AI logo">
+  </section>
+</main>
+
+<footer>
+  <h2><a href="https://www.linkedin.com/in/jankleinx/" target="_blank" rel="noopener noreferrer">LinkedIn</a> | <a href="https://github.com/JanKleinX" target="_blank" rel="noopener noreferrer">GitHub</a></h2>
+  <p>© 2026 bix.pages.dev</p>
 </footer>
 </body>
 </html>
