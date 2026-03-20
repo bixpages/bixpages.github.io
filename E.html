@@ -77,6 +77,35 @@ li {
     padding-left: 1.2rem;
     text-indent: -1.2rem;
 }
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3.2rem;
+            height: 3.2rem;
+            border-radius: 50%;
+            background: white;
+            border: 1.5px solid #2E2EFF;
+            color: #2E2EFF;
+            font-size: 1.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 999;
+            font-family: 'Inter', sans-serif;
+            line-height: 1;
+            padding: 0;
+            opacity: 0.9;
+        }
+        #scrollTopBtn:hover {
+            background: #2E2EFF;
+            color: white;
+            border-color: #2E2EFF;
+            box-shadow: 0 8px 16px rgba(46,46,255,0.15);
 </style>
 </head>
 <body>
@@ -85,7 +114,7 @@ li {
 <h2><strong>E = γ(mc² + κ(x)Φ)</strong></h2>
 <h2><strong>Research Paper</strong></h2>
 <div class="author"><strong>Hannover, Germany, 10 March 2026 by Jan Klein - <a href="https://bix.pages.dev/" target="_blank">bix.pages.dev</a></strong></div>
-<p>Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a><span> &#x1F16D; &#x1F16F;</span>
+<p>Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a>
 <div class="abstract">
 <strong>Abstract</strong><br><br>
 For over one hundred years, Einstein's famous equation E=mc² has told us something remarkable. Mass and energy are two sides of the same coin. A small piece of mass contains an enormous amount of energy. Nuclear power plants and atomic bombs proved this was true. The equation became a symbol of modern science itself.<br><br>
@@ -308,6 +337,25 @@ The bottom line is this. This paper offers a new lens to see one of science's mo
 <p class="ref">13. Particle Data Group. (2022). Review of Particle Physics. Progress of Theoretical and Experimental Physics, 2022, 083C01.</p>
 <p class="ref">14. Weinberg, S. (1989). The Cosmological Constant Problem. Reviews of Modern Physics, 61, 1-23.</p><br>
 <P>URL of this Research Paper is <strong><a href="https://bix.pages.dev/E" target="_blank">https://bix.pages.dev/E</a></strong></p>
-<a href="https://bix.pages.dev/E">E</a> © 2026 by <a href="https://bix.pages.dev">Jan Klein</a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a><span> &#x1F16D; &#x1F16F;</span>
+<a href="https://bix.pages.dev/E">E</a> © 2026 by <a href="https://bix.pages.dev">Jan Klein</a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a>
+<button id="scrollTopBtn" title="scroll to top" aria-label="Back to top">↑</button>
+<script>
+    (function() {
+        const btn = document.getElementById('scrollTopBtn');
+        if (!btn) return;
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 400) {
+                btn.style.display = 'flex';
+            } else {
+                btn.style.display = 'flex';
+            }
+        });
+        btn.style.display = 'flex';
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    })();
+</script>
 </body>
 </html>
