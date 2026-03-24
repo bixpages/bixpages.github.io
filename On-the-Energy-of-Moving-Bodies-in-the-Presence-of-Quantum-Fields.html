@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On the Energy of Moving Bodies in the Presence of Quantum Fields</title>
+    <meta name="description" content="On the Energy of Moving Bodies in the Presence of Quantum Fields - Unified Synthesis of Mass, Motion and Field Energy - By Jan Klein" />
+    <style>
+        /* MODERN FONTS for all text — equations remain Times New Roman for clarity */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #000000;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+        .paper-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 2rem 2rem;
+        }
+        .title-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #000000;
+        }
+        /* title: on one line, smaller font */
+        .paper-title {
+            font-size: 1.65rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            color: #000000;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            white-space: normal;
+            line-height: 1.3;
+        }
+        /* subtitle: larger and bold */
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 0.4rem 0 0.8rem 0;
+            color: #000000;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            letter-spacing: -0.2px;
+        }
+        /* metadata block: all elements same line width as license, centered */
+        .metadata-block {
+            margin-top: 0.6rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            max-width: 100%;
+        }
+        .byline-row {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #000000;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            white-space: nowrap;
+        }
+        /* contact-orcid line: smaller font, one line */
+        .contact-orcid-line {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #000000;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            white-space: nowrap;
+        }
+        .contact-link {
+            color: #000000;
+            text-decoration: none;
+            border-bottom: 0.5px solid #000000;
+        }
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+        .orcid-link {
+            color: #000000;
+            text-decoration: none;
+            border-bottom: 0.5px solid #000000;
+        }
+        .orcid-link:hover {
+            text-decoration: underline;
+        }
+        .license {
+            font-size: 1rem;
+            margin-top: 0.2rem;
+            color: #000000;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            white-space: nowrap;
+        }
+        /* responsive: on small screens, allow wrapping but keep alignment */
+        @media (max-width: 700px) {
+            .byline-row, .license {
+                white-space: normal;
+                text-align: center;
+                font-size: 0.85rem;
+            }
+            .contact-orcid-line {
+                white-space: normal;
+                text-align: center;
+                font-size: 0.75rem;
+            }
+            .paper-title {
+                font-size: 1.35rem;
+            }
+            .subtitle {
+                font-size: 1.45rem;
+            }
+        }
+        h2 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin: 1.6rem 0 0.9rem 0;
+            color: #000000;
+            border: none;
+            padding-left: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        p {
+            font-size: 1.05rem;
+            line-height: 1.55;
+            margin-bottom: 0.9rem;
+            text-align: justify;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        /* equations and math expressions stay in classic serif (Times) */
+        .equation {
+            font-size: 1.5rem;
+            font-weight: 600;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            margin: 1.4rem 0;
+            padding: 0.6rem 0;
+            background: none;
+            border: none;
+            color: #000000;
+        }
+        .sum-under {
+            display: inline-block;
+            text-align: center;
+            line-height: 1.2;
+            vertical-align: middle;
+        }
+        .sum-under .sum-symbol {
+            font-size: 1.9rem;
+            display: block;
+            font-weight: 700;
+        }
+        .sum-under .sum-text {
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: block;
+            margin-top: -0.2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.3rem 0;
+            font-size: 1rem;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        th, td {
+            border: 1px solid #000000;
+            padding: 0.7rem 0.9rem;
+            vertical-align: top;
+            text-align: left;
+            background: #ffffff;
+        }
+        th {
+            background: #ffffff;
+            font-weight: 700;
+            color: #000000;
+            font-size: 1rem;
+        }
+        ul, ol {
+            margin: 0.9rem 0 1rem 1.8rem;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        li {
+            margin: 0.4rem 0;
+            font-size: 1.02rem;
+            line-height: 1.5;
+        }
+        .definition-block {
+            margin: 1.2rem 0;
+            padding: 0.8rem 1rem;
+            border-left: 2px solid #000000;
+            background: none;
+        }
+        .definition-block p {
+            margin: 0.6rem 0;
+            font-size: 1.02rem;
+        }
+        @media (max-width: 700px) {
+            .paper-container {
+                padding: 1.2rem;
+            }
+            .equation {
+                font-size: 1.2rem;
+                overflow-x: auto;
+                white-space: normal;
+                word-break: break-word;
+            }
+            p, li, .definition-block p {
+                font-size: 0.95rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+        }
+        hr {
+            border: none;
+            border-top: 0.5px solid #000000;
+            margin: 1rem 0;
+        }
+        .ref-list li {
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+        }
+        strong, b {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="paper-container">
+
+    <div class="title-section">
+        <!-- title on one line, smaller font -->
+        <div class="paper-title">On the Energy of Moving Bodies in the Presence of Quantum Fields</div>
+        <!-- subtitle larger and bold -->
+        <div class="subtitle"><strong>Unified Synthesis of Mass, Motion and Field Energy</strong></div>
+        
+        <!-- metadata block: all elements same line width as license, centered -->
+        <div class="metadata-block">
+            <div class="byline-row"><strong>Hannover, Germany, 24 March 2026 &nbsp;|&nbsp; by Jan Klein</strong></div>
+            <!-- contact + ORCID on one line, smaller font -->
+            <div class="contact-orcid-line">
+                Contact: <a href="https://bix.pages.dev/" target="_blank" rel="noopener noreferrer" class="contact-link">bix.pages.dev</a>
+                &nbsp;|&nbsp;
+                <a href="https://orcid.org/0009-0002-2951-995X" target="_blank" rel="noopener noreferrer" class="orcid-link">ORCID: 0009-0002-2951-995X</a>
+            </div>
+            <div class="license"><strong>Licensed under Creative Commons Attribution 4.0 International</strong></div>
+        </div>
+    </div>
+
+    <h2>Abstract</h2>
+    <p>Einstein's equation <strong>E = γ m c²</strong> describes the energy of a body in empty space, free of external influences. Yet every physical body is embedded in a universe filled with quantum fields: gravitational, electromagnetic, Higgs, strong nuclear, and quantum vacuum fluctuations. This paper derives the complete energy expression that accounts for all such fields. Beginning with a simple extension and progressing to a full summation, the result is a unified equation that reveals what we call “mass” to be a summary of field interactions. A rigorous derivation from the action principle is provided, alongside clear definitions of each symbol.</p>
+
+    <h2>1. The Question</h2>
+    <p>In 1905, Einstein showed that the energy of a body at rest in empty space is <strong>E = m c²</strong>. For a body in motion, the energy becomes <strong>E = γ m c²</strong>, where <strong>γ = 1/√(1 – v²/c²)</strong>.</p>
+    <p>But no body exists in empty space. Every particle moves through the gravitational field, the electromagnetic field, the Higgs field, the strong nuclear field, and quantum vacuum fluctuations. These fields contain energy. They interact with particles. They contribute to what we measure as mass. Should they not appear in the fundamental energy equation?</p>
+
+    <h2>2. Original Formula: A First Extension</h2>
+    <p>The simplest way to include a field is to add its contribution directly to the rest energy:</p>
+    <div class="equation">
+        <strong>E = γ ( m c² + κ(x) Φ )</strong>
+    </div>
+    <p>Here, <strong>Φ</strong> is the field strength at the particle's location, and <strong>κ(x)</strong> is a coupling function that may vary with position. This form preserves the structure of Einstein's equation while adding a single field term.</p>
+
+    <h2>3. The Complete Formula</h2>
+    <p>A particle is never immersed in just one field. It feels gravity, electromagnetism, the Higgs field, and the strong nuclear field. Each field has its own coupling strength and potential. Therefore, the complete expression must sum over <em>all</em> fields:</p>
+    <div class="equation">
+        <strong>E = γ ( m₀ c² + <span class="sum-under"><span class="sum-symbol">∑</span><span class="sum-text">all fields</span></span> κ<sub>i</sub>(x) Φ<sub>i</sub>(x) )</strong>
+    </div>
+    <p>where <strong>γ</strong> is the Lorentz factor, <strong>m₀</strong> is the intrinsic mass, <strong>Φ<sub>i</sub>(x)</strong> is the strength of field i, and <strong>κ<sub>i</sub>(x)</strong> is the coupling function. The original formula is the special case where only one field is considered.</p>
+
+    <h2>4. Rigorous Derivation and Symbol Definitions</h2>
+    <p>To place the expression on firm theoretical ground, we start from the action principle. For a point particle coupled to multiple fields, the action is:</p>
+    <div class="equation">
+        <strong>S = ∫ dτ [ – m₀ c² – Σ<sub>i</sub> κ<sub>i</sub>(x) Φ<sub>i</sub>(x) ]</strong>
+    </div>
+    <p>where <strong>dτ = dt/γ</strong> is the proper time. This action generalizes the standard relativistic particle action by including a sum over scalar potentials. Each term <strong>κ<sub>i</sub>Φ<sub>i</sub></strong> is Lorentz invariant, ensuring relativistic consistency. For static fields (time-independent potentials), time-translation invariance holds, and Noether's theorem yields a conserved energy. Performing the Legendre transformation gives the Hamiltonian, which in the particle's rest frame becomes:</p>
+    <div class="equation">
+        <strong>E = γ ( m₀ c² + Σ<sub>i</sub> κ<sub>i</sub>(x) Φ<sub>i</sub>(x) )</strong>
+    </div>
+    <p>This is our central result. Below we define each symbol with precision:</p>
+    
+    <div class="definition-block">
+        <p><strong>γ = (1 − v²/c²)<sup>−1/2</sup></strong> — Lorentz factor, accounting for relativistic motion.</p>
+        <p><strong>m₀</strong> — bare (intrinsic) mass parameter. For elementary fermions in the Standard Model, m₀ = 0 before electroweak symmetry breaking; mass emerges from the Higgs mechanism. For composite particles like protons, m₀ includes the rest masses of constituent quarks plus a portion of the binding energy.</p>
+        <p><strong>Φ<sub>i</sub>(x)</strong> — effective scalar potential associated with field type i. For gravity in the weak-field limit, Φ<sub>grav</sub> = –GM/r (Newtonian potential). For electromagnetism, Φ<sub>EM</sub> = A₀ (scalar potential). For the Higgs field, Φ<sub>Higgs</sub> = v (vacuum expectation value, ≈246 GeV). For the strong nuclear field, Φ<sub>strong</sub> represents the effective confining potential in the non-perturbative regime.</p>
+        <p><strong>κ<sub>i</sub>(x)</strong> — coupling strength of the particle to field i. For gravity, κ<sub>grav</sub> = m (gravitational mass). For electromagnetism, κ<sub>EM</sub> = q (electric charge). For Higgs, κ<sub>Higgs</sub> = y (Yukawa coupling). For strong interactions, κ<sub>strong</sub> = g<sub>s</sub>·C where C is a color factor.</p>
+        <p>The sum runs over all fields that couple to the particle: gravitational, electromagnetic, Higgs, strong, and any beyond-Standard-Model fields. In the absence of all fields, the expression reduces to Einstein's original <strong>E = γ m₀ c²</strong>.</p>
+    </div>
+
+    <h2>5. Explicit Form with Known Fields</h2>
+    <p>Expanding the sum for the known fields:</p>
+    <div class="equation" style="font-size: 1.3rem;">
+        <strong>E = γ ( m₀ c² + κ<sub>grav</sub>(x) Φ<sub>grav</sub>(x) + κ<sub>EM</sub>(x) Φ<sub>EM</sub>(x) + κ<sub>Higgs</sub> Φ<sub>Higgs</sub> + κ<sub>strong</sub> Φ<sub>strong</sub> + ⋯ )</strong>
+    </div>
+    <p>Each term represents a distinct physical contribution:</p>
+    <table>
+        <thead>
+            <tr><th>Field</th><th>Contribution</th>  </thead>
+        <tbody>
+            <tr><td>Gravity</td><td><strong>κ<sub>grav</sub>Φ<sub>grav</sub></strong> — in weak field limit, <strong>mΦ<sub>grav</sub></strong> (from general relativity)</td> </tr>
+            <tr><td>Electromagnetism</td><td><strong>κ<sub>EM</sub>Φ<sub>EM</sub></strong> — for charged particles, <strong>qφ</strong></td> </tr>
+            <tr><td>Higgs</td><td><strong>κ<sub>Higgs</sub>Φ<sub>Higgs</sub></strong> — gives mass to elementary particles; for the electron, this term is the entire electron mass</td> </tr>
+            <tr><td>Strong nuclear</td><td><strong>κ<sub>strong</sub>Φ<sub>strong</sub></strong> — gluon field energy; constitutes ~99% of proton mass</td> </tr>
+        </tbody>
+     </table>
+    <p>The Higgs and strong terms are labeled “constitutive, inside <strong>m</strong>” because much of what we ordinarily call “mass” is actually field energy.</p>
+
+    <h2>6. The Progression</h2>
+    <p>The three forms show how the equation generalizes:</p>
+    <div class="equation">
+        <strong>E = γ m c²  →  E = γ (m c² + κΦ)  →  E = γ ( m₀ c² + Σ κ<sub>i</sub> Φ<sub>i</sub> )</strong>
+    </div>
+    <p>In the idealized case where all fields are absent, the complete formula reduces to <strong>E = γ m₀ c²</strong>. For a body at rest: <strong>E = m₀ c²</strong>. Einstein's original equation is recovered.</p>
+
+    <h2>7. Why This Form? Physical Interpretation</h2>
+    <p><strong>From general relativity:</strong> For a particle in a weak gravitational field, the energy is <strong>E = γ (m c² + m Φ<sub>grav</sub>)</strong>. This is derived from the Schwarzschild metric and confirmed by GPS and Pound–Rebka experiments.</p>
+    <p><strong>From quantum field theory:</strong> Particle masses arise from field interactions:</p>
+    <ul>
+        <li>Electron mass: entirely from Higgs field, <strong>m<sub>e</sub> c² = κ<sub>Higgs</sub> Φ<sub>Higgs</sub></strong></li>
+        <li>Proton mass: 9 MeV from quarks + 929 MeV from strong field, <strong>m<sub>p</sub> c² = Σ m<sub>q</sub> c² + κ<sub>strong</sub> Φ<sub>strong</sub></strong></li>
+    </ul>
+    <p>Both have the form <strong>κΦ</strong>. Recognizing that all fields contribute in the same way leads to the unified sum. The derivation from the action principle confirms that the additive structure is a consequence of minimal coupling and Lorentz invariance.</p>
+
+    <h2>8. Empirical Support</h2>
+     <table>
+        <thead> <tr><th>Phenomenon</th><th>Explanation</th></tr> </thead>
+        <tbody>
+            <tr><td>GPS time dilation</td><td>Gravitational term <strong>mΦ</strong> gives <strong>Δf/f = ΔΦ/c²</strong></td></tr>
+            <tr><td>Proton mass (938 MeV)</td><td>9 MeV from quarks + 929 MeV from strong field term</td></tr>
+            <tr><td>Electron mass</td><td>Entirely from Higgs term, with zero intrinsic mass</td></tr>
+            <tr><td>Nuclear binding energy</td><td>Negative <strong>κ<sub>strong</sub>Φ<sub>strong</sub></strong> in bound state; released upon fission</td></tr>
+            <tr><td>Particle creation in colliders</td><td>Energy redistributes into new particles, each with its own <strong>m₀ c² + Σ κ<sub>i</sub> Φ<sub>i</sub></strong></td></tr>
+        </tbody>
+     </table>
+
+    <h2>9. Testable Predictions</h2>
+    <p><strong>1. Composition-dependent violations of the equivalence principle.</strong> Different materials have different proportions of field contributions. If coupling functions <strong>κ<sub>i</sub></strong> differ between field types, objects of different composition would fall at slightly different rates. Current experiments bound such effects to 1 part in <strong>10<sup>15</sup></strong>.</p>
+    <p><strong>2. Anomalous clock rates.</strong> Different atomic clock designs sample different combinations of field energies. If <strong>κ<sub>i</sub></strong> varies with field type, clocks of different designs would experience slightly different gravitational time dilation. Optical clock networks are approaching the precision needed to test this.</p>
+    <p><strong>3. Strong field corrections.</strong> Near neutron stars or black holes, where <strong>Φ/c²</strong> is not small, the expansion <strong>E = γ m c² / √(1 + 2Φ/c²) ≈ γ m c² (1 – Φ/c² + 3Φ²/2c⁴ + …)</strong> predicts quadratic corrections at the 1% level, potentially observable in gravitational wave signals.</p>
+
+    <h2>10. Conclusion</h2>
+    <p>Einstein taught us that mass and energy are one: <strong>E = γ m c²</strong>. But he considered a body in empty space. The universe is not empty. It is filled with fields — gravitational, electromagnetic, Higgs, strong — each carrying energy and interacting with every particle.</p>
+    <p>We have presented the progression:</p>
+    <div class="equation">
+        <strong>E = γ m c²  →  E = γ (m c² + κΦ)  →  E = γ ( m₀ c² + Σ κ<sub>i</sub> Φ<sub>i</sub> )</strong>
+    </div>
+    <p>The final expression reduces to Einstein's when fields are absent, explains the origin of mass in the Higgs and strong fields, unifies all field contributions, and makes testable predictions. Einstein showed that matter is frozen energy. We add that fields are the freezer.</p>
+    <p><em>This work does not replace Einstein but completes his insight, revealing that mass is not a primitive property but a summary of a particle's interactions with the fields that fill all of reality.</em></p>
+
+    <h2>11. Acknowledgments</h2>
+    <p>I would personally thank my mother for teaching me to be patient, and Allah, because only love brought me to this truth.</p>
+
+    <h2>References</h2>
+    <ol class="ref-list" style="margin-left: 1.5rem;">
+        <li>Einstein, A. (1905). Does the Inertia of a Body Depend Upon Its Energy Content? <em>Annalen der Physik</em>, 18, 639–641.</li>
+        <li>Pound, R. V., & Rebka, G. A. (1960). Apparent Weight of Photons. <em>Physical Review Letters</em>, 4, 337–341.</li>
+        <li>Higgs, P. W. (1964). Broken Symmetries and the Masses of Gauge Bosons. <em>Physical Review Letters</em>, 13, 508–509.</li>
+        <li>Wilczek, F. (1999). Mass Without Mass I: Most of Matter. <em>Physics Today</em>, 52(11), 11–13.</li>
+        <li>Ashby, N. (2003). Relativity in the Global Positioning System. <em>Living Reviews in Relativity</em>, 6, 1.</li>
+        <li>Wald, R. M. (1984). <em>General Relativity</em>. University of Chicago Press.</li>
+        <li>Peskin, M. E., & Schroeder, D. V. (1995). <em>An Introduction to Quantum Field Theory</em>. Westview Press.</li>
+    </ol>
+
+</div>
+</body>
+</html>
