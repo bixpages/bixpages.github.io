@@ -156,7 +156,7 @@
     <h3><strong>From \(\mathbf{E = \boldsymbol{\gamma} m c^2}\) to \(\displaystyle \mathbf{E = \boldsymbol{\gamma} \left( m c^2 + \sum_i \kappa_i \Phi_i \right)}\)</strong></h3>
 
     <div class="author-info">
-        <p><strong>Jan Klein, 1 April 2026, Hannover, Germany — ORCID: <a href="https://orcid.org/0009-0002-2951-995X">0009-0002-2951-995X</a><br>Contact: <a href="mailto:janklein@engineer.com">janklein@engineer.com</a> — Website: <a href="https://bix.pages.dev/">bix.pages.dev</a></strong></p>
+        <p><strong>Jan Klein, 1 April 2026, Hannover, Germany - ORCID: <a href="https://orcid.org/0009-0002-2951-995X">0009-0002-2951-995X</a><br>Contact: <a href="mailto:janklein@engineer.com">janklein@engineer.com</a> - Website: <a href="https://bix.pages.dev/">bix.pages.dev</a></strong></p>
     </div>
 
     <div class="keywords">
@@ -164,7 +164,7 @@
     </div>
 
     <div class="section-title"><strong>Abstract</strong></div>
-    <p>Einstein’s equation \(\mathbf{E = \boldsymbol{\gamma} m c^2}\) describes the energy of a body moving in empty space. Yet no physical body exists in empty space. Every particle moves through quantum fields: the Higgs field, the strong nuclear field, the electromagnetic field, the gravitational field, and quantum vacuum fluctuations. This paper asks a simple question: what happens to the energy equation when we include these fields? I present a generalized expression \(\mathbf{E = \boldsymbol{\gamma} (m_0 c^2 + \sum_i \kappa_i \Phi_i)}\) derived from the action principle. The sum runs over all fields that couple to the particle. I then examine the conceptual consequences. The extended equation suggests that what we call “mass” is not a primitive property but a summary of field interaction energies. I argue that this does not contradict Einstein but rather makes explicit an assumption in the original derivation: empty space. The paper concludes by discussing how quantum field theory already uses this structure (the Higgs mechanism, the proton mass from gluons) and why making it explicit matters for the philosophy of modern physics.</p>
+    <p>Einstein’s equation \(\mathbf{E = \boldsymbol{\gamma} m c^2}\) describes the energy of a body moving in empty space. Yet no physical body exists in empty space. Every particle moves through quantum fields: the Higgs field, the strong nuclear field, the electromagnetic field, the gravitational field, and quantum vacuum fluctuations. This paper asks a simple question: what happens to the energy equation when we include these fields? I present a generalized expression \(\mathbf{E = \boldsymbol{\gamma} (m_0 c^2 + \mathbf{\sum}_i \kappa_i \Phi_i)}\) derived from the action principle. The sum runs over all fields that couple to the particle. I then examine the conceptual consequences. The extended equation suggests that what we call “mass” is not a primitive property but a summary of field interaction energies. I argue that this does not contradict Einstein but rather makes explicit an assumption in the original derivation: empty space. The paper concludes by discussing how quantum field theory already uses this structure (the Higgs mechanism, the proton mass from gluons) and why making it explicit matters for the philosophy of modern physics.</p>
 
     <div class="page-number">1</div>
 
@@ -202,14 +202,14 @@
     <div class="section-title"><strong>4. The Complete Expression: All Quantum Fields</strong></div>
     <p>A particle is never immersed in just one field. It feels gravity, electromagnetism, the Higgs field, and the strong nuclear field. Each field has its own coupling strength and potential. Therefore, the complete expression sums over all fields:</p>
     <div class="formula">\[
-    \mathbf{E = \boldsymbol{\gamma} \left( m_0 c^2 + \sum_{i} \kappa_i(x) \Phi_i(x) \right)}
+    \mathbf{E = \boldsymbol{\gamma} \left( m_0 c^2 + \mathbf{\sum}_{i} \kappa_i(x) \Phi_i(x) \right)}
     \]</div>
     <p>where: \(\boldsymbol{\gamma = (1 - v^2/c^2)^{-1/2}}\) is the Lorentz factor, \(\mathbf{m_0}\) is the bare (intrinsic) mass parameter, \(\mathbf{\Phi_i(x)}\) is the potential associated with field \(\mathbf{i}\), and \(\boldsymbol{\kappa_i(x)}\) is the coupling function (may vary with position). The sum runs over all fields that couple to the particle: gravitational, electromagnetic, Higgs, strong, and any beyond-Standard-Model fields.</p>
 
     <div class="subsection-title"><strong>Derivation from the action principle</strong></div>
     <p>Start from the action for a point particle coupled to multiple scalar potentials:</p>
     <div class="formula">\[
-    \mathbf{S = \int d\tau \left[ -m_0 c^2 - \sum_i \kappa_i(x) \Phi_i(x) \right]}
+    \mathbf{S = \int d\tau \left[ -m_0 c^2 - \mathbf{\sum}_i \kappa_i(x) \Phi_i(x) \right]}
     \]</div>
     <p>where \(\mathbf{d\tau = dt/\gamma}\) is proper time. Each term \(\boldsymbol{\kappa_i \Phi_i}\) is Lorentz invariant if \(\mathbf{\Phi_i}\) is a scalar potential (for vector/tensor fields, the coupling involves contractions; the sum generalizes accordingly). For static fields, time-translation invariance holds, and Noether’s theorem yields a conserved energy. Performing the Legendre transformation gives the Hamiltonian, which in the particle’s rest frame becomes the expression above.</p>
 
@@ -222,12 +222,13 @@
             <tr><th>Field</th><th>Coupling \(\boldsymbol{\kappa}\)</th><th>Potential \(\mathbf{\Phi}\)</th><th>Contribution</th></tr>
         </thead>
         <tbody>
-            <tr><td>Gravity</td><td>gravitational mass \(\mathbf{m}\)</td><td>\(\mathbf{-GM/r}\)</td><td>\(\mathbf{m \Phi_{\text{grav}}}\)</td></tr>
+            <tr><td>Gravity</td><td>gravitational mass \(\mathbf{m}\)</td><td>\(\mathbf{-GM/r}\)</td><td>\(\mathbf{m \Phi_{\text{grav}}}\)</td>
+            </tr>
             <tr><td>Electromagnetism</td><td>electric charge \(\mathbf{q}\)</td><td>electrostatic potential \(\boldsymbol{\phi}\)</td><td>\(\mathbf{q \phi}\)</td></tr>
             <tr><td>Higgs</td><td>Yukawa coupling \(\mathbf{y}\)</td><td>vacuum expectation value \(\mathbf{v \approx 246\,\text{GeV}}\)</td><td>\(\mathbf{y v}\) (gives fermion masses)</td></tr>
             <tr><td>Strong (confinement)</td><td>color factor \(\mathbf{g_s \cdot C}\)</td><td>effective confining potential</td><td>gluon field energy (~99% of proton mass)</td></tr>
         </tbody>
-     </table>
+    </table>
     <p><strong>Reduction to Einstein:</strong> In the absence of all fields (\(\mathbf{\Phi_i = 0}\)), the expression reduces to \(\mathbf{E = \boldsymbol{\gamma} m_0 c^2}\). For a body at rest: \(\mathbf{E = m_0 c^2}\). Einstein’s original equation is recovered as a special case.</p>
 
     <div class="page-number">4</div>
@@ -235,18 +236,18 @@
     <div class="section-title"><strong>5. What Does This Tell Us About Mass?</strong></div>
     <p>The extended equation is physically correct. But its significance is conceptual. It forces us to reexamine what we mean by “mass.”</p>
     <div class="subsection-title"><strong>5.1 Mass as a summary, not a primitive</strong></div>
-    <p>Every term in the sum \(\mathbf{\sum \kappa_i \Phi_i}\) is a field interaction energy. The proton’s mass is 938 MeV/\(c^2\). Of this, only about 9 MeV/\(c^2\) comes from the rest masses of its constituent quarks. The remaining 929 MeV/\(c^2\) comes from the strong field energy — gluons and their interactions. The electron’s mass is entirely from the Higgs field; the bare mass \(\mathbf{m_0}\) for electrons is zero before electroweak symmetry breaking. What we call “mass” is therefore a <strong>summary</strong> of field coupling energies.</p>
+    <p>Every term in the sum \(\mathbf{\mathbf{\sum}_i \kappa_i \Phi_i}\) is a field interaction energy. The proton’s mass is 938 MeV/\(c^2\). Of this, only about 9 MeV/\(c^2\) comes from the rest masses of its constituent quarks. The remaining 929 MeV/\(c^2\) comes from the strong field energy — gluons and their interactions. The electron’s mass is entirely from the Higgs field; the bare mass \(\mathbf{m_0}\) for electrons is zero before electroweak symmetry breaking. What we call “mass” is therefore a <strong>summary</strong> of field coupling energies.</p>
 
     <div class="subsection-title"><strong>5.2 Three philosophical interpretations</strong></div>
     <p><strong>Reductionism.</strong> Mass may be <em>nothing but</em> the sum of field couplings (plus a possible irreducible \(\mathbf{m_0}\)). For elementary fermions, the Higgs mechanism achieves exactly this reduction: \(\mathbf{m_0 = 0}\). For composite particles, 99% of the proton mass is strong field energy. Ontological reduction of mass to field energies is plausible.</p>
     <p><strong>Structural realism.</strong> Mass is revealed as a <strong>relational property</strong>. A particle does not have mass in isolation. It has mass only relative to the fields to which it couples. Change the Higgs vacuum expectation value, and the electron’s mass changes. Remove the strong field, and the proton’s mass drops to 9 MeV/\(c^2\). This aligns with ontic structural realism (Ladyman, 1998; Ladyman & Ross, 2007).</p>
-    <p><strong>Conventionalism.</strong> The split between \(\mathbf{m_0}\) and \(\mathbf{\sum \kappa_i \Phi_i}\) is not empirically fixed. One could redefine \(\mathbf{m_0}\) to absorb some field terms. The physically measurable quantity is the total sum, not its partition. This echoes Poincaré’s conventionalism about geometry.</p>
+    <p><strong>Conventionalism.</strong> The split between \(\mathbf{m_0}\) and \(\mathbf{\mathbf{\sum}_i \kappa_i \Phi_i}\) is not empirically fixed. One could redefine \(\mathbf{m_0}\) to absorb some field terms. The physically measurable quantity is the total sum, not its partition. This echoes Poincaré’s conventionalism about geometry.</p>
 
     <div class="section-title"><strong>6. Case Studies from Quantum Physics</strong></div>
     <p><strong>Electron mass.</strong> In the Standard Model, the electron’s mass comes entirely from the Higgs mechanism: \(\mathbf{m_e c^2 = \kappa_{\text{Higgs}} \Phi_{\text{Higgs}}}\).</p>
-    <p><strong>Proton mass.</strong> \(\mathbf{m_p c^2 = \sum m_q c^2 + \kappa_{\text{strong}} \Phi_{\text{strong}}}\) (9 MeV from quarks + 929 MeV from gluon field).</p>
+    <p><strong>Proton mass.</strong> \(\mathbf{m_p c^2 = \mathbf{\sum} m_q c^2 + \kappa_{\text{strong}} \Phi_{\text{strong}}}\) (9 MeV from quarks + 929 MeV from gluon field).</p>
     <p><strong>Nuclear binding energy.</strong> Negative \(\boldsymbol{\kappa_{\text{strong}} \Phi_{\text{strong}}}\) in bound states reduces total mass.</p>
-    <p><strong>Particle creation in colliders.</strong> Energy redistributes into new particles, each with its own \(\mathbf{m_0 c^2 + \sum \kappa_i \Phi_i}\).</p>
+    <p><strong>Particle creation in colliders.</strong> Energy redistributes into new particles, each with its own \(\mathbf{m_0 c^2 + \mathbf{\sum}_i \kappa_i \Phi_i}\).</p>
 
     <div class="page-number">5</div>
 
@@ -265,7 +266,7 @@
     <div class="section-title"><strong>8. Conclusion</strong></div>
     <p>Einstein taught us that mass and energy are one: \(\mathbf{E = \boldsymbol{\gamma} m c^2}\). But he considered a body in empty space. The universe is not empty. It is filled with quantum fields — Higgs, strong, electromagnetic, gravitational — each carrying energy and interacting with every particle. We have presented a minimal extension:</p>
     <div class="formula">\[
-    \mathbf{E = \boldsymbol{\gamma} m c^2 \;\rightarrow\; \boldsymbol{\gamma} (m c^2 + \kappa \Phi) \;\rightarrow\; \boldsymbol{\gamma} \left( m_0 c^2 + \sum_i \kappa_i \Phi_i \right)}
+    \mathbf{E = \boldsymbol{\gamma} m c^2 \;\rightarrow\; \boldsymbol{\gamma} (m c^2 + \kappa \Phi) \;\rightarrow\; \boldsymbol{\gamma} \left( m_0 c^2 + \mathbf{\sum}_i \kappa_i \Phi_i \right)}
     \]</div>
     <p>The final expression reduces to Einstein’s when fields are absent, explains the origin of mass in the Higgs and strong fields, and unifies all field contributions under a single structure. Philosophically, <strong>mass is not a primitive property but a summary of a particle’s interactions with the fields that fill all of reality</strong>. Whether this amounts to reductionism, structural realism, or conventionalism remains an open debate — but the equation provides a concrete framework for that debate.</p>
     <p>Einstein’s \(\mathbf{E = m c^2}\) was a special case of a more general principle: energy is always energy-of-body-plus-fields. Making fields explicit is not a correction. It is a completion.</p>
@@ -275,7 +276,7 @@
     <div class="section-title"><strong>Final Reflection</strong></div>
     <p>What began as a simple question — <em>should fields appear in the energy equation?</em> — led to an extended formalism that reveals mass as a summary of field interactions. The progression</p>
     <div class="formula">\[
-    \mathbf{E = \boldsymbol{\gamma} m c^2 \;\rightarrow\; \boldsymbol{\gamma} (m c^2 + \kappa \Phi) \;\rightarrow\; \boldsymbol{\gamma} \left( m_0 c^2 + \sum_i \kappa_i \Phi_i \right)}
+    \mathbf{E = \boldsymbol{\gamma} m c^2 \;\rightarrow\; \boldsymbol{\gamma} (m c^2 + \kappa \Phi) \;\rightarrow\; \boldsymbol{\gamma} \left( m_0 c^2 + \mathbf{\sum}_i \kappa_i \Phi_i \right)}
     \]</div>
     <p>is mathematically minimal but conceptually significant. It reminds us that physics does not occur in empty space, and that what we call “mass” is never isolated from the fields that fill reality.</p>
     <p>In teaching, we often present \(\mathbf{E = m c^2}\) as a self-contained truth. Perhaps we should also teach that it is a special case — a beautiful one, but one that assumes the very emptiness our universe does not have. Making fields explicit is not a correction of Einstein but a completion of his insight.</p>
