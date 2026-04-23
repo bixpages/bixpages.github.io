@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>E = mc² | Three Known Extensions | Gravity · Electromagnetism · Higgs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', 'Inter', system-ui, 'Consolas', monospace;
+            background-color: #050510;
+            color: white;
+        }
+        
+        /* UI container - centered column */
+        .ui-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        
+        /* === TOP PANELS === */
+        .top-center {
+            position: relative;
+            width: fit-content;
+            min-width: 380px;
+            max-width: 90vw;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(12px);
+            padding: 8px 10px;
+            border-radius: 24px;
+            text-align: center;
+            margin-top: 10px;
+            pointer-events: none;
+            border: 1px solid rgba(0,255,51,0.2);
+        }
+        .main-title { font-size: 24px; font-weight: bold; color: white; letter-spacing: -0.3px; }
+        .sub-title { font-size: 13px; font-weight: 500; color: #ccddff; }
+        
+        .formula-panel {
+            position: relative;
+            width: fit-content;
+            min-width: 380px;
+            max-width: 90vw;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            padding: 6px 5px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 2px;
+            pointer-events: none;
+        }
+        .formula-display { font-size: 16px; font-weight: bold; color: #00ff33; font-family: monospace; }
+        .formula-description { font-size: 13px; font-weight: 500; color: #eef; }
+        
+        .status-panel-center {
+            position: relative;
+            width: fit-content;
+            min-width: 380px;
+            max-width: 90vw;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(8px);
+            padding: 6px 5px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 2px;
+            pointer-events: none;
+        }
+        .status-title { font-size: 16px; font-weight: bold; color: #00ff33; }
+        .status-content { font-size: 13px; font-weight: 500; color: #f0f0ff; }
+        
+        /* ========== BOTTOM ELEMENTS: Balanced vertical spacing ========== */
+        /* 1. DESCRIPTION BOX */
+        .description-box {
+            position: absolute;
+            bottom: 130px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.82);
+            backdrop-filter: blur(12px);
+            padding: 10px 24px;
+            border-radius: 60px;
+            text-align: center;
+            font-family: 'Segoe UI', 'Consolas', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            z-index: 110;
+            pointer-events: none;
+            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border: 1px solid rgba(0,255,51,0.35);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            letter-spacing: 0.3px;
+        }
+        .desc-normal { color: #00ff33; text-shadow: 0 0 4px rgba(0,255,51,0.2); }
+        .desc-highlight { color: #ffff88; text-shadow: 0 0 8px rgba(255,220,0,0.6); }
+        
+        /* 2. CONTROLS (BUTTONS) - no icons, clean text */
+        .controls-wrapper {
+            position: absolute;
+            bottom: 68px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            pointer-events: auto;
+            padding: 0 20px;
+            z-index: 115;
+        }
+        .left-group, .right-group { 
+            display: flex; 
+            gap: 10px; 
+            background: rgba(0,0,0,0.7); 
+            backdrop-filter: blur(12px); 
+            padding: 6px 16px; 
+            border-radius: 50px; 
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .center-group { 
+            display: flex; 
+            gap: 14px; 
+            background: rgba(0,0,0,0.85); 
+            backdrop-filter: blur(16px); 
+            padding: 8px 24px; 
+            border-radius: 60px; 
+            border: 1px solid rgba(0,255,51,0.3);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+        }
+        button { 
+            background: #0033ff;        /* Default button color #0033ff */
+            border: none; 
+            color: white; 
+            font-weight: 600; 
+            font-size: 13px; 
+            padding: 8px 20px; 
+            border-radius: 40px; 
+            cursor: pointer; 
+            font-family: 'Segoe UI', 'Consolas', monospace; 
+            transition: all 0.2s ease;
+            letter-spacing: 0.3px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        button:hover { 
+            transform: translateY(-2px); 
+            filter: brightness(1.1); 
+            background: #0044ff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        /* Active button uses #00ff33 */
+        .active-btn { 
+            background: #00ff33; 
+            color: #000; 
+            font-weight: bold;
+            box-shadow: 0 0 12px #00ff33; 
+            border: none;
+        }
+        .active-btn:hover {
+            background: #00ee2a;
+        }
+        .ctrl-btn { 
+            background: #0033ff; 
+            color: white; 
+            font-size: 12px; 
+            padding: 7px 16px; 
+            border: none;
+        }
+        .ctrl-btn:hover {
+            background: #0044ff;
+        }
+        .speed-select { 
+            background: #0f1722; 
+            color: #00ff99; 
+            border: 1px solid #00ff33; 
+            border-radius: 32px; 
+            padding: 7px 12px; 
+            font-size: 12px; 
+            font-family: monospace; 
+            font-weight: bold;
+            cursor: pointer; 
+            backdrop-filter: blur(4px);
+        }
+        
+        /* 3. FOOTER LINK - no icons, clean text */
+        .footer-link {
+            position: absolute;
+            bottom: 16px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            pointer-events: auto;
+            font-family: 'Segoe UI', 'Inter', monospace;
+            font-size: 13px;
+            font-weight: 500;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(12px);
+            padding: 8px 20px;
+            width: fit-content;
+            margin: 0 auto;
+            border-radius: 40px;
+            z-index: 120;
+            border: 1px solid rgba(0,255,51,0.3);
+            transition: all 0.2s;
+            letter-spacing: 0.2px;
+        }
+        .footer-link a {
+            color: #88ffaa;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0px;          /* no icons, no gap needed */
+            font-weight: 600;
+        }
+        .footer-link a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 6px #00ff88;
+            text-decoration: underline;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 780px) {
+            .description-box { font-size: 12px; padding: 7px 18px; bottom: 118px; white-space: normal; max-width: 85vw; text-align: center; }
+            .controls-wrapper { gap: 12px; bottom: 58px; flex-wrap: wrap; justify-content: center; }
+            .center-group { gap: 8px; padding: 5px 16px; }
+            button { font-size: 10px; padding: 5px 12px; }
+            .ctrl-btn { font-size: 10px; padding: 5px 12px; }
+            .left-group, .right-group { padding: 4px 12px; gap: 6px; }
+            .footer-link { font-size: 11px; bottom: 12px; padding: 5px 16px; }
+            .status-panel-center, .formula-panel, .top-center { min-width: 280px; }
+            .main-title { font-size: 16px; }
+            .sub-title { font-size: 10px; }
+        }
+        
+        @media (max-width: 550px) {
+            .description-box { bottom: 108px; font-size: 10px; padding: 6px 14px; }
+            .controls-wrapper { bottom: 52px; gap: 8px; }
+            .center-group { gap: 4px; padding: 4px 12px; }
+            button { font-size: 9px; padding: 4px 10px; }
+            .footer-link { bottom: 8px; font-size: 9px; padding: 4px 12px; }
+        }
+    </style>
+</head>
+<body>
+<div class="ui-container">
+    <!-- top info panels -->
+    <div class="top-center"><div class="main-title">Three Known Extensions of E = mc²</div><div class="sub-title">Two Valid (Gravity, Electromagnetism) + One Conceptual (Higgs)</div></div>
+    <div class="formula-panel"><div class="formula-display" id="formulaDisplay">E = γ(mc² + mΦ)</div><div class="formula-description" id="formulaDesc">Gravity: relativistic energy with gravitational potential</div></div>
+    <div class="status-panel-center"><div class="status-title" id="statusTitle">Gravity field</div><div class="status-content" id="statusMsg">Deep central curve | Warm amber mass | Cool cyan test particles orbit</div></div>
+    
+    <!-- description box -->
+    <div class="description-box"><span id="descText" class="desc-normal">Gravity: Mass curves spacetime → orbiting particles follow geodesics</span></div>
+
+    <!-- control buttons - no icons, clean text only -->
+    <div class="controls-wrapper">
+        <div class="left-group">
+            <select id="speedSelect" class="speed-select">
+                <option value="0.5">0.5x</option><option value="0.6">0.6x</option><option value="0.7">0.7x</option>
+                <option value="0.8">0.8x</option><option value="0.9">0.9x</option><option value="1.0" selected>1.0x</option>
+                <option value="1.1">1.1x</option><option value="1.2">1.2x</option><option value="1.3">1.3x</option>
+                <option value="1.4">1.4x</option><option value="1.5">1.5x</option>
+            </select>
+            <button id="pauseBtn" class="ctrl-btn">Pause</button>
+        </div>
+        <div class="center-group">
+            <button id="btnGravity" class="active-btn">Gravity field</button>
+            <button id="btnEM">Electromagnetism</button>
+            <button id="BtnHiggs">Higgs field</button>
+        </div>
+        <div class="right-group">
+            <button id="screenshotBtn" class="ctrl-btn">Screenshot</button>
+        </div>
+    </div>
+    
+    <!-- footer link - no icon, clean text -->
+    <div class="footer-link">
+        <a href="https://bix.pages.dev/Three-Known-Extensions-of-E-mc2" target="_blank" rel="noopener noreferrer">
+            Read Full Paper: Three Known Extensions of E = mc²
+        </a>
+    </div>
+</div>
+
+<script type="importmap">{ "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/" } }</script>
+<script type="module">
+    import * as THREE from 'three';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+    
+    // Setup scene
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x050510);
+    scene.fog = new THREE.FogExp2(0x050510, 0.006);
+    
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.3, 30);
+    camera.position.set(0, 2.2, 7.8);
+    camera.lookAt(0, 0, 0);
+    
+    const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    document.body.appendChild(renderer.domElement);
+    
+    const renderScene = new RenderPass(scene, camera);
+    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.5, 0.3, 0.2);
+    bloomPass.threshold = 0.1;
+    bloomPass.strength = 0.45;
+    const effectComposer = new EffectComposer(renderer);
+    effectComposer.addPass(renderScene);
+    effectComposer.addPass(bloomPass);
+    
+    // Lighting
+    const ambient = new THREE.AmbientLight(0x22223b);
+    scene.add(ambient);
+    const mainLight = new THREE.DirectionalLight(0xffe6cc, 1.0);
+    mainLight.position.set(2, 5, 3);
+    scene.add(mainLight);
+    const fillLight = new THREE.PointLight(0x6688aa, 0.5);
+    fillLight.position.set(-1, 2, 2);
+    scene.add(fillLight);
+    const backLight = new THREE.PointLight(0xffaa77, 0.4);
+    backLight.position.set(0, 1.5, -3.5);
+    scene.add(backLight);
+    const rimLight = new THREE.PointLight(0xff8855, 0.3);
+    rimLight.position.set(1.2, 1, -2);
+    scene.add(rimLight);
+    
+    // Starfield
+    const starGeo = new THREE.BufferGeometry();
+    const starPos = [];
+    for (let i = 0; i < 1600; i++) { starPos.push((Math.random() - 0.5) * 200); starPos.push((Math.random() - 0.5) * 100); starPos.push((Math.random() - 0.5) * 80 - 40); }
+    starGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(starPos), 3));
+    const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xaaccff, size: 0.055, transparent: true, opacity: 0.5 }));
+    scene.add(stars);
+    
+    // Global state
+    let activeGroup = null, currentAnimation = null, simTime = 0, paused = false, speed = 1.0, lastTimestamp = 0;
+    const descSpan = document.getElementById('descText');
+    let highlightTimeout = null;
+    let currentDefaultDescription = "Gravity: Mass curves spacetime → orbiting particles follow geodesics";
+    
+    function setDescription(text, isEvent = false, defaultText = null) {
+        if (defaultText !== null) currentDefaultDescription = defaultText;
+        if (highlightTimeout) { clearTimeout(highlightTimeout); highlightTimeout = null; }
+        if (isEvent) {
+            descSpan.innerText = text;
+            descSpan.className = 'desc-highlight';
+            highlightTimeout = setTimeout(() => {
+                descSpan.innerText = currentDefaultDescription;
+                descSpan.className = 'desc-normal';
+                highlightTimeout = null;
+            }, 1500);
+        } else {
+            descSpan.innerText = text;
+            descSpan.className = 'desc-normal';
+        }
+    }
+    
+    // Curved grid generator with surface net color #0033ff
+    // UNIFIED DIMENSIONS: width 7.0, depth 5.4 for ALL simulations (gravity, em, higgs)
+    function createCurvedGrid(width, depth, segments, baseY, curveDepth) {
+        const geometry = new THREE.PlaneGeometry(width, depth, segments, segments);
+        geometry.rotateX(-Math.PI / 2);
+        const positions = geometry.attributes.position.array;
+        for (let i = 0; i <= segments; i++) {
+            for (let j = 0; j <= segments; j++) {
+                const idx = (i * (segments + 1) + j) * 3;
+                const x = positions[idx];
+                const z = positions[idx+2];
+                const dist = Math.sqrt(x*x + z*z);
+                const dip = -curveDepth * Math.exp(-dist * dist / 1.6);
+                positions[idx+1] = baseY + dip;
+            }
+        }
+        geometry.computeVertexNormals();
+        // Surface net color: #0033ff as requested
+        const material = new THREE.MeshStandardMaterial({ 
+            color: 0x0033ff, 
+            wireframe: true, 
+            transparent: true, 
+            opacity: 0.85, 
+            emissive: 0x001133,
+            side: THREE.DoubleSide
+        });
+        const gridMesh = new THREE.Mesh(geometry, material);
+        return { mesh: gridMesh, geometry, positions };
+    }
+    
+    function clearScene() { if (activeGroup) { scene.remove(activeGroup); activeGroup = null; } currentAnimation = null; }
+    
+    // ========== GRAVITY (now using same surface dimensions 7.0x5.4) ==========
+    function buildGravity() {
+        const group = new THREE.Group();
+        // FIX: width 7.0, depth 5.4 to match other simulations
+        const { mesh: gridMesh, geometry, positions } = createCurvedGrid(7.0, 5.4, 64, -0.35, 0.70);
+        group.add(gridMesh);
+        const ball = new THREE.Mesh(new THREE.SphereGeometry(0.68, 96, 96), new THREE.MeshStandardMaterial({ color: 0xffaa55, emissive: 0xcc7722, emissiveIntensity: 0.5, roughness: 0.3 }));
+        ball.position.y = -0.08;
+        group.add(ball);
+        const halo = new THREE.Mesh(new THREE.SphereGeometry(0.94, 48, 48), new THREE.MeshPhongMaterial({ color: 0xffaa66, emissive: 0xff6633, transparent: true, opacity: 0.28 }));
+        halo.position.y = -0.08;
+        group.add(halo);
+        const orbiter = new THREE.Mesh(new THREE.SphereGeometry(0.13, 32, 32), new THREE.MeshStandardMaterial({ color: 0xffdd99, emissive: 0xff8844 }));
+        group.add(orbiter);
+        const blueOrbiters = [];
+        for (let i = 0; i < 30; i++) {
+            const p = new THREE.Mesh(new THREE.SphereGeometry(0.07, 16, 16), new THREE.MeshStandardMaterial({ color: 0x44ccff, emissive: 0x2288cc }));
+            p.userData = { angle: (i / 30) * Math.PI * 2, radius: 1.3 + Math.random() * 1.6, speed: 0.3 + Math.random() * 0.5 };
+            group.add(p);
+            blueOrbiters.push(p);
+        }
+        let keplerTime = 0;
+        const update = (delta, now) => {
+            const d = delta * speed;
+            keplerTime += d * 1.1;
+            const r = 1.9 + Math.sin(keplerTime * 1.3) * 0.35;
+            orbiter.position.x = Math.cos(keplerTime) * r;
+            orbiter.position.z = Math.sin(keplerTime) * r;
+            orbiter.position.y = -0.15 + Math.sin(keplerTime * 2) * 0.06;
+            blueOrbiters.forEach(p => { p.userData.angle += p.userData.speed * d * 0.5; p.position.x = Math.cos(p.userData.angle) * p.userData.radius; p.position.z = Math.sin(p.userData.angle) * p.userData.radius; p.position.y = -0.18 + Math.sin(p.userData.angle * 2) * 0.1; });
+            const s = 1 + Math.sin(now * 1.5) * 0.01;
+            ball.scale.set(s, s, s); halo.scale.set(s, s, s);
+        };
+        return { group, update };
+    }
+    
+    // ========== ELECTROMAGNETISM ==========
+    function buildEM() {
+        const group = new THREE.Group();
+        const { mesh: gridMesh, geometry, positions } = createCurvedGrid(7.0, 5.4, 64, -0.35, 0.72);
+        group.add(gridMesh);
+        const wavePacket = new THREE.Mesh(new THREE.SphereGeometry(0.58, 96, 96), new THREE.MeshStandardMaterial({ color: 0xffaa55, emissive: 0xcc7722, emissiveIntensity: 0.6 }));
+        group.add(wavePacket);
+        const halo = new THREE.Mesh(new THREE.SphereGeometry(0.88, 48, 48), new THREE.MeshPhongMaterial({ color: 0xffaa66, emissive: 0xff6633, transparent: true, opacity: 0.32 }));
+        group.add(halo);
+        const electron = new THREE.Mesh(new THREE.SphereGeometry(0.28, 64, 64), new THREE.MeshStandardMaterial({ color: 0x44ccff, emissive: 0x2288cc }));
+        const positron = new THREE.Mesh(new THREE.SphereGeometry(0.28, 64, 64), new THREE.MeshStandardMaterial({ color: 0xff8866, emissive: 0xcc5533 }));
+        electron.visible = false; positron.visible = false;
+        group.add(electron, positron);
+        const blueOrbs = [];
+        for (let i = 0; i < 35; i++) {
+            const orb = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 12), new THREE.MeshStandardMaterial({ color: 0x44ccff }));
+            orb.userData = { angle: Math.random() * Math.PI * 2, radius: 1.2 + Math.random() * 1.5, speed: 0.3 + Math.random() * 0.5 };
+            group.add(orb); blueOrbs.push(orb);
+        }
+        let packetX = -3.6, pairActive = false, pairTimer = 0, lastEvent = 0;
+        const update = (delta, now) => {
+            const d = delta * speed;
+            packetX += 0.9 * d;
+            if (packetX > 3.6) { packetX = -3.6; pairActive = false; electron.visible = false; positron.visible = false; }
+            wavePacket.position.set(packetX, -0.02, 0); halo.position.copy(wavePacket.position);
+            wavePacket.material.emissiveIntensity = 0.55 + Math.sin(now * 8) * 0.3;
+            blueOrbs.forEach(p => { p.userData.angle += p.userData.speed * d; p.position.x = Math.cos(p.userData.angle) * p.userData.radius; p.position.z = Math.sin(p.userData.angle) * p.userData.radius; p.position.y = -0.12 + Math.sin(p.userData.angle * 2) * 0.1; });
+            if (!pairActive && packetX > -0.5 && packetX < 0.6 && (now - lastEvent) > 1.5) {
+                pairActive = true; pairTimer = 1.6;
+                electron.visible = true; positron.visible = true;
+                electron.position.set(packetX + 0.55, -0.12, 0.6); positron.position.set(packetX - 0.55, -0.12, -0.5);
+                setDescription("Pair production: γ → e⁻ + e⁺ | E ≥ 2mₑc²", true, "Electromagnetism: Photon wave packet travels through quantum field");
+                lastEvent = now;
+            }
+            if (pairActive) { pairTimer -= d; if (pairTimer <= 0) { electron.visible = false; positron.visible = false; pairActive = false; } else { const sep = 0.65 + (1.6 - pairTimer) * 0.9; electron.position.x = packetX + sep; positron.position.x = packetX - sep; } }
+            for (let i = 0; i <= 64; i++) for (let j = 0; j <= 64; j++) { const idx = (i * 65 + j) * 3; const x = positions[idx], z = positions[idx+2]; let dip = -0.72 * Math.exp(-(x*x+z*z) / 1.5); const dxp = x - packetX; if (Math.sqrt(dxp*dxp + z*z) < 1.2) dip -= 0.1; positions[idx+1] = -0.35 + dip + Math.sin(now * 1.2) * 0.012; }
+            geometry.attributes.position.needsUpdate = true;
+        };
+        return { group, update };
+    }
+    
+    // ========== HIGGS ==========
+    function buildHiggs() {
+        const group = new THREE.Group();
+        const { mesh: gridMesh, geometry, positions } = createCurvedGrid(7.0, 5.4, 64, -0.35, 0.74);
+        group.add(gridMesh);
+        const massParticle = new THREE.Mesh(new THREE.SphereGeometry(0.58, 96, 96), new THREE.MeshStandardMaterial({ color: 0xffbb66, emissive: 0xcc8822 }));
+        massParticle.visible = false; group.add(massParticle);
+        const stream = []; for (let i = 0; i < 85; i++) { const p = new THREE.Mesh(new THREE.SphereGeometry(0.07, 12, 12), new THREE.MeshStandardMaterial({ color: 0xffaa66, emissive: 0xff5522 })); group.add(p); stream.push(p); }
+        const blueOrbits = []; for (let i = 0; i < 40; i++) { const orb = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 12), new THREE.MeshStandardMaterial({ color: 0x44ccff })); orb.userData = { angle: Math.random() * Math.PI * 2, radius: 1.1 + Math.random() * 1.7, speed: 0.25 + Math.random() * 0.45 }; group.add(orb); blueOrbits.push(orb); }
+        let energy = 0, massActive = false, resetTimer = 0, lastEvent = 0;
+        const update = (delta, now) => {
+            const d = delta * speed;
+            stream.forEach((p, idx) => { const t = (now * 0.7 + idx * 0.04) % 1; const radius = 3.3 - t * 2.9; const angle = idx * 0.45 + now * 0.8; p.position.set(Math.cos(angle) * radius, Math.sin(angle * 1.2) * 0.2, Math.sin(angle * 0.8) * radius); });
+            blueOrbits.forEach(p => { p.userData.angle += p.userData.speed * d * 0.7; p.position.x = Math.cos(p.userData.angle) * p.userData.radius; p.position.z = Math.sin(p.userData.angle) * p.userData.radius; p.position.y = -0.18 + Math.sin(p.userData.angle * 2) * 0.12; });
+            if (!massActive) { energy += d * 0.9; if (energy > 2.4 && (now - lastEvent) > 2.0) { massActive = true; massParticle.visible = true; massParticle.scale.set(0.2,0.2,0.2); resetTimer = 2.4; setDescription("Higgs mechanism: Energy condenses into mass | mc² = y·v", true, "Higgs: Energy stream flows into the field"); lastEvent = now; } } 
+            else { resetTimer -= d; const tFact = 1 - (resetTimer / 2.4); const osc = Math.sin(tFact * Math.PI * 6) * (1 - tFact * 0.7); const s = 0.3 + (1.5 - tFact * 0.8) + osc * 0.45; massParticle.scale.set(s,s,s); massParticle.material.emissiveIntensity = 0.55 + Math.abs(osc)*0.5; if (resetTimer <= 0) { massParticle.visible = false; massActive = false; energy = 0; } }
+            for (let i = 0; i <= 64; i++) for (let j = 0; j <= 64; j++) { const idx = (i * 65 + j) * 3; const x = positions[idx], z = positions[idx+2]; let dip = -0.74 * Math.exp(-(x*x+z*z) / 1.45); if (massActive) { const t = 1 - (resetTimer / 2.4); dip += Math.sin(t * Math.PI * 5.5) * 0.15 * (1 - t * 0.6); } positions[idx+1] = -0.35 + dip + Math.sin(now) * 0.01; }
+            geometry.attributes.position.needsUpdate = true;
+        };
+        return { group, update };
+    }
+    
+    function setMode(mode) {
+        clearScene();
+        let sim, formula = "", desc = "", title = "", msg = "", baseDesc = "";
+        if (mode === 'gravity') { sim = buildGravity(); formula = "E = γ(mc² + mΦ)"; desc = "Gravity: relativistic energy with gravitational potential"; title = "Gravity field"; msg = "Deep central curve | Warm amber mass | Cool cyan test particles orbit"; baseDesc = "Gravity: Mass curves spacetime → orbiting particles follow geodesics"; }
+        else if (mode === 'em') { sim = buildEM(); formula = "E = √[(p−qA)²c² + m₀²c⁴] + qϕ"; desc = "Electromagnetism: relativistic energy with EM potential"; title = "Electromagnetism"; msg = "Wave packet pair production | Blue quantum foam | Photon → e⁻ e⁺"; baseDesc = "Electromagnetism: Photon wave packet travels through quantum field"; }
+        else { sim = buildHiggs(); formula = "mc² = y·v"; desc = "Higgs: mass from Yukawa coupling × vacuum expectation value"; title = "Higgs field"; msg = "Energy condenses into mass | Strong up/down oscillation | Mexican hat"; baseDesc = "Higgs: Energy stream flows into the field"; }
+        activeGroup = sim.group; currentAnimation = sim.update; scene.add(activeGroup);
+        document.getElementById('formulaDisplay').innerText = formula; document.getElementById('formulaDesc').innerText = desc;
+        document.getElementById('statusTitle').innerText = title; document.getElementById('statusMsg').innerText = msg;
+        setDescription(baseDesc, false, baseDesc);
+        document.querySelectorAll('button').forEach(btn => btn.classList.remove('active-btn'));
+        if (mode === 'gravity') document.getElementById('btnGravity').classList.add('active-btn');
+        if (mode === 'em') document.getElementById('btnEM').classList.add('active-btn');
+        if (mode === 'higgs') document.getElementById('BtnHiggs').classList.add('active-btn');
+    }
+    
+    document.getElementById('btnGravity').onclick = () => setMode('gravity');
+    document.getElementById('btnEM').onclick = () => setMode('em');
+    document.getElementById('BtnHiggs').onclick = () => setMode('higgs');
+    document.getElementById('speedSelect').onchange = () => { speed = parseFloat(document.getElementById('speedSelect').value); };
+    document.getElementById('pauseBtn').onclick = () => { paused = !paused; document.getElementById('pauseBtn').innerHTML = paused ? 'Resume' : 'Pause'; setDescription(paused ? "Simulation paused" : "Simulation resumed", true, currentDefaultDescription); };
+    document.getElementById('screenshotBtn').onclick = () => { effectComposer.render(); const canvas = renderer.domElement; const link = document.createElement('a'); link.download = 'quantum_field_extension.png'; link.href = canvas.toDataURL(); link.click(); setDescription("Screenshot saved", true, currentDefaultDescription); };
+    
+    setMode('gravity');
+    effectComposer.render();
+    
+    function animate() {
+        const now = performance.now();
+        let delta = Math.min(0.033, (now - lastTimestamp) / 1000);
+        lastTimestamp = now;
+        if (!paused && currentAnimation && delta > 0.001) { simTime += delta * speed; currentAnimation(delta, simTime); }
+        stars.rotation.y += 0.0003;
+        effectComposer.render();
+        requestAnimationFrame(animate);
+    }
+    lastTimestamp = performance.now();
+    animate();
+    
+    window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); effectComposer.setSize(window.innerWidth, window.innerHeight); renderer.setSize(window.innerWidth, window.innerHeight); });
+</script>
+</body>
+</html>
