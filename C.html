@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>X Asteroids - Mobile Test</title>
+    <style>
+        body { 
+            margin: 0; background: #000; overflow: hidden; color: #fff; 
+            font-family: 'Courier New', Courier, monospace; 
+            touch-action: none; -webkit-user-select: none; user-select: none; 
+        }
+        canvas { display: block; }
+        
+        /* UI Elements */
+        #header { position: absolute; top: 10px; width: 100%; text-align: center; pointer-events: none; }
+        #header h1 { margin: 0; font-size: 24px; letter-spacing: 2px; }
+        
+        #score-ui { position: absolute; top: 15px; left: 15px; font-size: 18px; pointer-events: none; }
+        #lives-ui { position: absolute; top: 40px; left: 15px; pointer-events: none; }
+        #high-ui { position: absolute; top: 15px; right: 15px; text-align: right; font-size: 12px; pointer-events: none; }
+        
+        #reset-btn { pointer-events: auto; cursor: pointer; text-decoration: underline; font-size: 10px; opacity: 0.4; }
+
+        #msg {
+            position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+            text-align: center; display: none; background: #000; padding: 20px; border: 1px solid #fff; z-index: 100;
+        }
+
+        /* Mobile Ergonomics */
+        #controls { 
+            position: absolute; bottom: 40px; left: 0; width: 100%; 
+            display: flex; justify-content: space-between; padding: 0 30px; 
+            box-sizing: border-box; pointer-events: none; 
+        }
+        
+        .btn { 
+            width: 75px; height: 75px; border: 2px solid rgba(255,255,255,0.3); 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            background: rgba(255,255,255,0.05); font-size: 10px; font-weight: bold; 
+            pointer-events: auto; transition: transform 0.1s;
+        }
+        
+        /* Visual feedback for touch */
+        .btn:active { 
+            background: rgba(255,255,255,0.2); 
+            border-color: #fff;
+            transform: scale(1.1);
+        }
+
+        .btn-dir { margin-bottom: 10px; }
+        .btn-fire { width: 90px; height: 90px; border-color: rgba(255,255,255,0.6); }
+
+        footer { position: absolute; bottom: 5px; width: 100%; text-align: center; font-size: 10px; opacity: 0.5; }
+        .blink { animation: b 1s infinite; }
+        @keyframes b { 50% { opacity: 0; } }
+    </style>
+</head>
+<body>
+    <div id="score-ui"><span id="cur-score">0</span></div>
+    <div id="lives-ui"></div>
+    <div id="high-ui">
+        <div id="score-list"></div>
+        <div id="reset-btn" onclick="resetScores()">RESET</div>
+    </div>
+    
+    <div id="msg">
+        <h1 id="status">GAME OVER</h1>
+        <div>NAME: <span id="name-in" class="blink"></span></div>
+        <p style="font-size: 12px;">TAP FIRE TO RESTART</p>
+    </div>
+
+    <div id="controls">
+        <div class="column">
+            <div class="btn btn-dir" id="b-l">LEFT</div>
+            <div class="btn btn-dir" id="b-r">RIGHT</div>
+            <div class="btn" id="b-h" style="width:60px; height:60px; margin-top:10px;">HYP</div>
+        </div>
+        <div class="column" style="display:flex; flex-direction:column; align-items:flex-end; justify-content:flex-end;">
+            <div class="btn btn-dir" id="b-u" style="margin-bottom:20px;">THRUST</div>
+            <div class="btn btn-fire" id="b-f">FIRE</div>
+        </div>
+    </div>
+
+    <canvas id="g"></canvas>
+
+<script>
+    const canvas = document.getElementById("g"), ctx = canvas.getContext("2d");
+    const scoreEl = document.getElementById("cur-score"), msgEl = document.getElementById("msg");
+    const nameEl = document.getElementById("name-in"), listEl = document.getElementById("score-list"), livesEl = document.getElementById("lives-ui");
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    let score, lives, ship, roids, lasers, gameActive, pName, invuln;
+    const defaultScores = [{n:"BIX", s:1000}, {n:"AST", s:500}];
+    let highScores = JSON.parse(localStorage.getItem("ast_scores")) || defaultScores;
+
+    function resetScores() {
+        if (confirm("Really Reset Scores?")) {
+            localStorage.removeItem("ast_scores");
+            location.reload();
+        }
+    }
+
+    function init() {
+        score = 0; lives = 3; pName = ""; gameActive = true; lasers = [];
+        scoreEl.innerText = score; msgEl.style.display = "none";
+        resetShip();
+        roids = []; for(let i=0; i<4; i++) spawnRoid();
+        renderScores(); updateLivesUI();
+    }
+
+    function resetShip() {
+        ship = { x: canvas.width/2, y: canvas.height/2, r: 13, a: Math.PI/2, rot: 0, th: false, t: {x:0, y:0} };
+        invuln = 100;
+    }
+
+    function updateLivesUI() {
+        livesEl.innerHTML = "";
+        for(let i=0; i<lives; i++) livesEl.innerHTML += `<svg width="18" height="18" style="margin-right:5px"><path d="M9 3 L15 15 L9 12 L3 15 Z" fill="none" stroke="white" stroke-width="1.5"/></svg>`;
+    }
+
+    function spawnRoid(x, y, r = 40) {
+        let rx = x ?? Math.random() * canvas.width, ry = y ?? Math.random() * canvas.height;
+        if (!x && Math.hypot(ship.x - rx, ship.y - ry) < 100) return spawnRoid();
+        roids.push({
+            x: rx, y: ry, r: r, 
+            xv: (Math.random()-0.5)*2, yv: (Math.random()-0.5)*2, 
+            v: Math.floor(Math.random()*3+7), 
+            off: Array.from({length:10}, () => Math.random()*0.4+0.8)
+        });
+    }
+
+    function shoot() {
+        if (!gameActive) return;
+        lasers.push({ x: ship.x + 16*Math.cos(ship.a), y: ship.y - 16*Math.sin(ship.a), xv: 8*Math.cos(ship.a), yv: -8*Math.sin(ship.a), life: 60 });
+    }
+
+    function triggerHyper() {
+        ship.x = Math.random()*canvas.width; ship.y = Math.random()*canvas.height; 
+        ship.t = {x:0,y:0};
+        if(Math.random() < 0.15) loseLife(); 
+    }
+
+    // Touch Handling with Multitouch Support
+    const bind = (id, fnStart, fnEnd) => {
+        const el = document.getElementById(id);
+        el.addEventListener('touchstart', (e) => { e.preventDefault(); fnStart(); }, {passive: false});
+        if(fnEnd) el.addEventListener('touchend', (e) => { e.preventDefault(); fnEnd(); }, {passive: false});
+    };
+
+    bind('b-l', () => ship.rot = 0.07, () => ship.rot = 0);
+    bind('b-r', () => ship.rot = -0.07, () => ship.rot = 0);
+    bind('b-u', () => ship.th = true, () => ship.th = false);
+    bind('b-h', () => triggerHyper());
+    bind('b-f', () => { if(!gameActive) init(); else shoot(); });
+
+    function loseLife() {
+        lives--; updateLivesUI();
+        if (lives <= 0) { gameActive = false; msgEl.style.display = "block"; } else resetShip();
+    }
+
+    function renderScores() { listEl.innerHTML = highScores.map(s => `<div>${s.n} ${s.s}</div>`).join(''); }
+
+    function loop() {
+        ctx.fillStyle = "#000"; ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.strokeStyle = "#fff"; ctx.lineWidth = 1.5;
+
+        if (gameActive) {
+            if (invuln > 0) invuln--;
+            ship.a += ship.rot;
+            if (ship.th) { ship.t.x += 0.12 * Math.cos(ship.a); ship.t.y -= 0.12 * Math.sin(ship.a); } 
+            else { ship.t.x *= 0.99; ship.t.y *= 0.99; }
+            ship.x += ship.t.x; ship.y += ship.t.y;
+            
+            if(ship.x<0) ship.x=canvas.width; else if(ship.x>canvas.width) ship.x=0;
+            if(ship.y<0) ship.y=canvas.height; else if(ship.y>canvas.height) ship.y=0;
+            
+            if (invuln === 0 || Math.floor(invuln/5)%2===0) {
+                ctx.beginPath();
+                ctx.moveTo(ship.x + 16*Math.cos(ship.a), ship.y - 16*Math.sin(ship.a)); 
+                ctx.lineTo(ship.x - 14*(Math.cos(ship.a)+0.8*Math.sin(ship.a)), ship.y + 14*(Math.sin(ship.a)-0.8*Math.cos(ship.a))); 
+                ctx.lineTo(ship.x - 7*Math.cos(ship.a), ship.y + 7*Math.sin(ship.a)); 
+                ctx.lineTo(ship.x - 14*(Math.cos(ship.a)-0.8*Math.sin(ship.a)), ship.y + 14*(Math.sin(ship.a)+0.8*Math.cos(ship.a))); 
+                ctx.closePath(); ctx.stroke();
+            }
+        }
+
+        for (let i = lasers.length-1; i>=0; i--) {
+            let l = lasers[i]; l.x += l.xv; l.y += l.yv; l.life--;
+            if(l.x<0) l.x=canvas.width; else if(l.x>canvas.width) l.x=0;
+            if(l.y<0) l.y=canvas.height; else if(l.y>canvas.height) l.y=0;
+            ctx.fillStyle = "#fff"; ctx.fillRect(l.x, l.y, 2, 2);
+            if (l.life <= 0) lasers.splice(i,1);
+        }
+
+        for (let i = roids.length-1; i>=0; i--) {
+            let r = roids[i]; r.x += r.xv; r.y += r.yv;
+            if(r.x < -r.r) r.x = canvas.width+r.r; else if(r.x > canvas.width+r.r) r.x = -r.r;
+            if(r.y < -r.r) r.y = canvas.height+r.r; else if(r.y > canvas.height+r.r) r.y = -r.r;
+            ctx.beginPath(); ctx.moveTo(r.x + r.r*r.off[0]*Math.cos(0), r.y + r.r*r.off[0]*Math.sin(0));
+            for(let j=1; j<r.v; j++) ctx.lineTo(r.x + r.r*r.off[j]*Math.cos(j*Math.PI*2/r.v), r.y + r.r*r.off[j]*Math.sin(j*Math.PI*2/r.v));
+            ctx.closePath(); ctx.stroke();
+            if (gameActive && invuln === 0 && Math.hypot(ship.x-r.x, ship.y-r.y) < r.r + 5) loseLife();
+            for (let j=lasers.length-1; j>=0; j--) {
+                if (Math.hypot(lasers[j].x-r.x, lasers[j].y-r.y) < r.r) {
+                    if (r.r > 15) { spawnRoid(r.x, r.y, r.r/2); spawnRoid(r.x, r.y, r.r/2); }
+                    roids.splice(i,1); lasers.splice(j,1); score += 100; scoreEl.innerText = score;
+                    if(roids.length === 0) for(let k=0; k<4; k++) spawnRoid();
+                    break;
+                }
+            }
+        }
+        requestAnimationFrame(loop);
+    }
+    init(); loop();
+</script>
+</body>
+</html>
