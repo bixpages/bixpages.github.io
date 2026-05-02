@@ -17,18 +17,10 @@
             display: flex; flex-direction: column; align-items: center; pointer-events: none; 
         }
 
-        /* Line 1: Title Centered */
         h1 { margin: 0; font-size: 36px; letter-spacing: 5px; text-transform: uppercase; text-align: center; }
-
-        /* Line 2: Original Controls Description Centered */
         #desc { margin: 10px 0; font-size: 16px; text-align: center; font-weight: bold; width: 100%; }
 
-        /* Line 3: Stats Row (Score Left, High Score Right) */
-        #stats-row { 
-            width: 90%; display: flex; justify-content: space-between; align-items: flex-start; 
-            margin-top: 5px;
-        }
-
+        #stats-row { width: 90%; display: flex; justify-content: space-between; align-items: flex-start; margin-top: 5px; }
         #score-ui { font-size: 28px; text-align: left; }
         #high-ui { font-size: 18px; text-align: right; pointer-events: auto; }
         #score-list { margin-top: 5px; font-size: 20px; }
@@ -39,14 +31,17 @@
             text-align: center; display: none; background: #000; padding: 30px; border: 3px solid #fff; z-index: 100;
         }
 
-        /* Mobile Controls */
+        /* Hidden input to trigger mobile keyboard */
+        #hidden-input {
+            position: absolute; opacity: 0; pointer-events: none; left: -9999px;
+        }
+
         #controls { 
             position: absolute; bottom: 50px; left: 0; width: 100%; 
             display: none; justify-content: space-between; padding: 0 40px; 
             box-sizing: border-box; pointer-events: none; 
         }
         
-        /* Hype button above left and right controls on bottom left */
         .left-controls-stack { display: flex; flex-direction: column; align-items: center; gap: 20px; }
         .movement-row { display: flex; gap: 20px; }
 
@@ -65,18 +60,19 @@
 
         footer { position: absolute; bottom: 15px; width: 100%; text-align: center; pointer-events: auto; }
         footer a { color: #fff; text-decoration: none; font-size: 18px; font-weight: bold; border-bottom: 2px solid #fff; }
-        
         .blink { animation: b 1s infinite; }
         @keyframes b { 50% { opacity: 0; } }
     </style>
 </head>
 <body>
+    <!-- Hidden input for mobile keyboard -->
+    <input type="text" id="hidden-input" maxlength="3" autocomplete="off">
+
     <div id="ui-wrapper">
         <h1>X Asteroids</h1>
         <div id="desc">Turn = Left/Right Arrow | Thrust = Up Arrow | Fire = Space | Hyperspace = Shift</div>
-        
         <div id="stats-row">
-            <div id="left-side">
+            <div>
                 <div id="score-ui">Score: <span id="cur-score">0</span></div>
                 <div id="lives-ui" style="margin-top: 10px;"></div>
             </div>
@@ -119,6 +115,7 @@
     const scoreEl = document.getElementById("cur-score"), msgEl = document.getElementById("msg");
     const nameEl = document.getElementById("name-in"), listEl = document.getElementById("score-list"), livesEl = document.getElementById("lives-ui");
     const namePrompt = document.getElementById("name-prompt"), restartHint = document.getElementById("restart-hint");
+    const hiddenInput = document.getElementById("hidden-input");
 
     function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
     window.addEventListener('resize', resize);
@@ -134,6 +131,7 @@
         score = 0; lives = 3; pName = ""; gameActive = true; enteringName = false; lasers = [];
         scoreEl.innerText = score; msgEl.style.display = "none";
         namePrompt.style.display = "none"; restartHint.style.display = "block";
+        hiddenInput.value = ""; hiddenInput.blur();
         resetShip();
         roids = []; for(let i=0; i<5; i++) spawnRoid();
         renderScores(); updateLivesUI();
@@ -169,7 +167,29 @@
     bind('b-r', () => ship.rot = -0.08, () => ship.rot = 0);
     bind('b-u', () => ship.th = true, () => ship.th = false);
     bind('b-h', () => triggerHyper());
-    bind('b-f', () => { if(!gameActive && !enteringName) init(); else shoot(); });
+    bind('b-f', () => { 
+        if(!gameActive && !enteringName) init(); 
+        else if (enteringName) hiddenInput.focus();
+        else shoot(); 
+    });
+
+    // Handle Initials via hidden input
+    hiddenInput.addEventListener('input', (e) => {
+        if (!enteringName) return;
+        pName = hiddenInput.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+        nameEl.innerText = pName;
+        
+        if (pName.length === 3) {
+            highScores.push({n:pName, s:score});
+            highScores.sort((a,b)=>b.s-a.s);
+            highScores = highScores.slice(0,5);
+            localStorage.setItem("ast_scores", JSON.stringify(highScores));
+            renderScores();
+            enteringName = false;
+            hiddenInput.blur();
+            restartHint.style.display = "block";
+        }
+    });
 
     window.onkeydown = (e) => {
         if (gameActive) {
@@ -178,20 +198,7 @@
             if (e.code === "ArrowUp") ship.th = true;
             if (e.code === "Space") { e.preventDefault(); shoot(); }
             if (e.key === "Shift") triggerHyper();
-        } else if (enteringName) {
-            if (e.key.length === 1 && pName.length < 3 && /[a-z0-9]/i.test(e.key)) {
-                pName += e.key.toUpperCase(); nameEl.innerText = pName;
-                if (pName.length === 3) {
-                    highScores.push({n:pName, s:score});
-                    highScores.sort((a,b)=>b.s-a.s);
-                    highScores = highScores.slice(0,5);
-                    localStorage.setItem("ast_scores", JSON.stringify(highScores));
-                    renderScores();
-                    enteringName = false;
-                    restartHint.style.display = "block";
-                }
-            }
-        } else if (e.code === "Space") init();
+        } else if (!enteringName && e.code === "Space") init();
     };
     window.onkeyup = (e) => { if(e.code === "ArrowLeft" || e.code === "ArrowRight") ship.rot = 0; if(e.code === "ArrowUp") ship.th = false; };
 
@@ -205,6 +212,9 @@
                 namePrompt.style.display = "block";
                 restartHint.style.display = "none";
                 pName = ""; nameEl.innerText = "";
+                hiddenInput.value = "";
+                // Small delay to ensure UI is ready for focus
+                setTimeout(() => hiddenInput.focus(), 100);
             }
         } else resetShip();
     }
