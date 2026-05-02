@@ -12,53 +12,44 @@
         }
         canvas { display: block; }
         
-        #header { position: absolute; top: 20px; width: 100%; text-align: center; pointer-events: none; }
-        #header h1 { margin: 0; font-size: 36px; letter-spacing: 5px; color: #fff; text-transform: uppercase; }
-        #header p { margin: 10px 0; font-size: 16px; color: #fff; font-weight: bold; }
-
-        /* NEW: mobile-only readable score line below title */
-        .mobile-score-line {
-            display: none;
-            position: absolute;
-            top: 85px;
-            left: 0;
-            width: 100%;
-            pointer-events: none;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-        }
-        .mobile-score-left {
-            position: absolute;
-            left: 10px;
-            font-size: 24px;
-            color: #fff;
-        }
-        .mobile-score-right {
-            position: absolute;
-            right: 10px;
-            font-size: 24px;
-            color: #fff;
+        #ui-wrapper { 
+            position: absolute; top: 20px; width: 100%; 
+            display: flex; flex-direction: column; align-items: center; pointer-events: none; 
         }
 
-        #score-ui { position: absolute; top: 25px; left: 25px; font-size: 28px; color: #fff; pointer-events: none; }
-        #lives-ui { position: absolute; top: 65px; left: 25px; pointer-events: none; }
-        
-        #high-ui { position: absolute; top: 25px; right: 25px; text-align: right; font-size: 18px; color: #fff; pointer-events: none; }
+        /* Line 1: Title Centered */
+        h1 { margin: 0; font-size: 36px; letter-spacing: 5px; text-transform: uppercase; text-align: center; }
+
+        /* Line 2: Original Controls Description Centered */
+        #desc { margin: 10px 0; font-size: 16px; text-align: center; font-weight: bold; width: 100%; }
+
+        /* Line 3: Stats Row (Score Left, High Score Right) */
+        #stats-row { 
+            width: 90%; display: flex; justify-content: space-between; align-items: flex-start; 
+            margin-top: 5px;
+        }
+
+        #score-ui { font-size: 28px; text-align: left; }
+        #high-ui { font-size: 18px; text-align: right; pointer-events: auto; }
         #score-list { margin-top: 5px; font-size: 20px; }
-        
-        #reset-btn { pointer-events: auto; cursor: pointer; text-decoration: underline; font-size: 16px; margin-top: 10px; display: inline-block; color: #fff; }
+        #reset-btn { cursor: pointer; text-decoration: underline; font-size: 16px; margin-top: 10px; display: inline-block; color: #fff; }
 
         #msg {
             position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);
-            text-align: center; display: none; background: #000; padding: 30px; border: 3px solid #fff; z-index: 100; color: #fff;
+            text-align: center; display: none; background: #000; padding: 30px; border: 3px solid #fff; z-index: 100;
         }
 
+        /* Mobile Controls */
         #controls { 
             position: absolute; bottom: 50px; left: 0; width: 100%; 
             display: none; justify-content: space-between; padding: 0 40px; 
             box-sizing: border-box; pointer-events: none; 
         }
         
+        /* Hype button above left and right controls on bottom left */
+        .left-controls-stack { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .movement-row { display: flex; gap: 20px; }
+
         .btn { 
             width: 90px; height: 90px; border: 3px solid #fff; 
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
@@ -69,9 +60,7 @@
 
         @media (max-width: 1200px) {
             #controls { display: flex; }
-            #header p { display: none; }
-            /* SHOW mobile score line on mobile */
-            .mobile-score-line { display: block; }
+            #desc { display: none; } 
         }
 
         footer { position: absolute; bottom: 15px; width: 100%; text-align: center; pointer-events: auto; }
@@ -82,23 +71,21 @@
     </style>
 </head>
 <body>
-    <div id="header">
+    <div id="ui-wrapper">
         <h1>X Asteroids</h1>
-        <p>Turn = Left/Right Arrow | Thrust = Up Arrow | Fire = Space | Hyperspace = Shift</p>
-    </div>
-
-    <!-- NEW: mobile score line below title -->
-    <div class="mobile-score-line">
-        <div class="mobile-score-left">Score: <span id="mobile-score">0</span></div>
-        <div class="mobile-score-right">High Score: <span id="mobile-high">5000</span></div>
-    </div>
-
-    <div id="score-ui">Score: <span id="cur-score">0</span></div>
-    <div id="lives-ui"></div>
-    <div id="high-ui">
-        High Score
-        <div id="score-list"></div>
-        <div id="reset-btn" onclick="resetScores()">Reset</div>
+        <div id="desc">Turn = Left/Right Arrow | Thrust = Up Arrow | Fire = Space | Hyperspace = Shift</div>
+        
+        <div id="stats-row">
+            <div id="left-side">
+                <div id="score-ui">Score: <span id="cur-score">0</span></div>
+                <div id="lives-ui" style="margin-top: 10px;"></div>
+            </div>
+            <div id="high-ui">
+                High Score
+                <div id="score-list"></div>
+                <div id="reset-btn" onclick="resetScores()">Reset</div>
+            </div>
+        </div>
     </div>
     
     <div id="msg">
@@ -110,12 +97,13 @@
         <p id="restart-hint" style="font-size: 18px; margin-top: 20px;">Press Fire/Space to Restart</p>
     </div>
 
-    <!-- CHANGE 1: Hyp button ABOVE Left button -->
     <div id="controls">
-        <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="left-controls-stack">
             <div class="btn" id="b-h" style="width: 75px; height: 75px;">Hyp</div>
-            <div class="btn" id="b-l">Left</div>
-            <div class="btn" id="b-r">Right</div>
+            <div class="movement-row">
+                <div class="btn" id="b-l">Left</div>
+                <div class="btn" id="b-r">Right</div>
+            </div>
         </div>
         <div style="display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end; gap: 25px;">
             <div class="btn" id="b-u">Thrust</div>
@@ -131,10 +119,6 @@
     const scoreEl = document.getElementById("cur-score"), msgEl = document.getElementById("msg");
     const nameEl = document.getElementById("name-in"), listEl = document.getElementById("score-list"), livesEl = document.getElementById("lives-ui");
     const namePrompt = document.getElementById("name-prompt"), restartHint = document.getElementById("restart-hint");
-    
-    // NEW: mobile score elements
-    const mobileScoreSpan = document.getElementById("mobile-score");
-    const mobileHighSpan = document.getElementById("mobile-high");
 
     function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
     window.addEventListener('resize', resize);
@@ -148,9 +132,7 @@
 
     function init() {
         score = 0; lives = 3; pName = ""; gameActive = true; enteringName = false; lasers = [];
-        scoreEl.innerText = score;
-        if(mobileScoreSpan) mobileScoreSpan.innerText = score;
-        msgEl.style.display = "none";
+        scoreEl.innerText = score; msgEl.style.display = "none";
         namePrompt.style.display = "none"; restartHint.style.display = "block";
         resetShip();
         roids = []; for(let i=0; i<5; i++) spawnRoid();
@@ -189,55 +171,6 @@
     bind('b-h', () => triggerHyper());
     bind('b-f', () => { if(!gameActive && !enteringName) init(); else shoot(); });
 
-    // CHANGE 4: Mobile initials fix - hidden input for keyboard
-    let mobileInput = null;
-    function openMobileKeyboard() {
-        if (!enteringName) return;
-        if (!mobileInput) {
-            mobileInput = document.createElement('input');
-            mobileInput.type = 'text';
-            mobileInput.setAttribute('inputmode', 'text');
-            mobileInput.style.position = 'fixed';
-            mobileInput.style.bottom = '-100px';
-            mobileInput.style.left = '0';
-            mobileInput.style.opacity = '0.01';
-            mobileInput.style.height = '30px';
-            mobileInput.style.width = '200px';
-            mobileInput.style.pointerEvents = 'auto';
-            document.body.appendChild(mobileInput);
-            
-            mobileInput.addEventListener('input', function(e) {
-                if (!enteringName) return;
-                let val = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
-                if (val.length > 3) val = val.slice(0,3);
-                pName = val;
-                nameEl.innerText = pName;
-                if (pName.length === 3) {
-                    highScores.push({n:pName, s:score});
-                    highScores.sort((a,b)=>b.s-a.s);
-                    highScores = highScores.slice(0,5);
-                    localStorage.setItem("ast_scores", JSON.stringify(highScores));
-                    renderScores();
-                    enteringName = false;
-                    restartHint.style.display = "block";
-                    namePrompt.style.display = "none";
-                    mobileInput.value = '';
-                    mobileInput.blur();
-                }
-            });
-        }
-        mobileInput.value = pName;
-        mobileInput.focus();
-    }
-
-    // Auto-open keyboard on mobile when name prompt appears
-    const nameObserver = new MutationObserver(function(mutations) {
-        if (namePrompt.style.display === 'block' && /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-            setTimeout(openMobileKeyboard, 100);
-        }
-    });
-    nameObserver.observe(namePrompt, { attributes: true, attributeFilter: ['style'] });
-
     window.onkeydown = (e) => {
         if (gameActive) {
             if (e.code === "ArrowLeft") ship.rot = 0.08;
@@ -256,7 +189,6 @@
                     renderScores();
                     enteringName = false;
                     restartHint.style.display = "block";
-                    namePrompt.style.display = "none";
                 }
             }
         } else if (e.code === "Space") init();
@@ -277,10 +209,7 @@
         } else resetShip();
     }
 
-    function renderScores() { 
-        listEl.innerHTML = highScores.map(s => `<div>${s.n} ${s.s}</div>`).join('');
-        if(mobileHighSpan) mobileHighSpan.innerText = highScores[0].s;
-    }
+    function renderScores() { listEl.innerHTML = highScores.map(s => `<div>${s.n} ${s.s}</div>`).join(''); }
 
     function loop() {
         ctx.fillStyle = "#000"; ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -321,9 +250,7 @@
             for (let j=lasers.length-1; j>=0; j--) {
                 if (Math.hypot(lasers[j].x-r.x, lasers[j].y-r.y) < r.r) {
                     if (r.r > 15) { spawnRoid(r.x, r.y, r.r/2); spawnRoid(r.x, r.y, r.r/2); }
-                    roids.splice(i,1); lasers.splice(j,1); score += 100; 
-                    scoreEl.innerText = score;
-                    if(mobileScoreSpan) mobileScoreSpan.innerText = score;
+                    roids.splice(i,1); lasers.splice(j,1); score += 100; scoreEl.innerText = score;
                     if(roids.length === 0) for(let k=0; k<5; k++) spawnRoid();
                     break;
                 }
