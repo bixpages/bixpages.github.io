@@ -12,21 +12,28 @@
         }
         canvas { display: block; }
         
-        #header { position: absolute; top: 20px; width: 100%; text-align: center; pointer-events: none; }
-        #header h1 { margin: 0; font-size: 36px; letter-spacing: 5px; color: #fff; text-transform: uppercase; }
-        #header p { margin: 10px 0; font-size: 16px; color: #fff; font-weight: bold; }
+        #ui-wrapper { 
+            position: absolute; top: 20px; width: 100%; 
+            display: flex; flex-direction: column; align-items: center; pointer-events: none; 
+        }
 
-        #score-ui { position: absolute; top: 25px; left: 25px; font-size: 28px; color: #fff; pointer-events: none; }
-        #lives-ui { position: absolute; top: 65px; left: 25px; pointer-events: none; }
-        
-        #high-ui { position: absolute; top: 25px; right: 25px; text-align: right; font-size: 18px; color: #fff; pointer-events: none; }
+        h1 { margin: 0; font-size: 36px; letter-spacing: 5px; text-transform: uppercase; text-align: center; }
+        #desc { margin: 10px 0; font-size: 16px; text-align: center; font-weight: bold; width: 100%; }
+
+        #stats-row { width: 90%; display: flex; justify-content: space-between; align-items: flex-start; margin-top: 5px; }
+        #score-ui { font-size: 28px; text-align: left; }
+        #high-ui { font-size: 18px; text-align: right; pointer-events: auto; }
         #score-list { margin-top: 5px; font-size: 20px; }
-        
-        #reset-btn { pointer-events: auto; cursor: pointer; text-decoration: underline; font-size: 16px; margin-top: 10px; display: inline-block; color: #fff; }
+        #reset-btn { cursor: pointer; text-decoration: underline; font-size: 16px; margin-top: 10px; display: inline-block; color: #fff; }
 
         #msg {
             position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);
-            text-align: center; display: none; background: #000; padding: 30px; border: 3px solid #fff; z-index: 100; color: #fff;
+            text-align: center; display: none; background: #000; padding: 30px; border: 3px solid #fff; z-index: 100;
+        }
+
+        /* Hidden input to trigger mobile keyboard */
+        #hidden-input {
+            position: absolute; opacity: 0; pointer-events: none; left: -9999px;
         }
 
         #controls { 
@@ -35,6 +42,9 @@
             box-sizing: border-box; pointer-events: none; 
         }
         
+        .left-controls-stack { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .movement-row { display: flex; gap: 20px; }
+
         .btn { 
             width: 90px; height: 90px; border: 3px solid #fff; 
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
@@ -45,28 +55,33 @@
 
         @media (max-width: 1200px) {
             #controls { display: flex; }
-            #header p { display: none; } 
+            #desc { display: none; } 
         }
 
         footer { position: absolute; bottom: 15px; width: 100%; text-align: center; pointer-events: auto; }
         footer a { color: #fff; text-decoration: none; font-size: 18px; font-weight: bold; border-bottom: 2px solid #fff; }
-        
         .blink { animation: b 1s infinite; }
         @keyframes b { 50% { opacity: 0; } }
     </style>
 </head>
 <body>
-    <div id="header">
-        <h1>X Asteroids</h1>
-        <p>Turn = Left/Right Arrow | Thrust = Up Arrow | Fire = Space | Hyperspace = Shift</p>
-    </div>
+    <!-- Hidden input for mobile keyboard -->
+    <input type="text" id="hidden-input" maxlength="3" autocomplete="off">
 
-    <div id="score-ui">Score: <span id="cur-score">0</span></div>
-    <div id="lives-ui"></div>
-    <div id="high-ui">
-        High Score
-        <div id="score-list"></div>
-        <div id="reset-btn" onclick="resetScores()">Reset</div>
+    <div id="ui-wrapper">
+        <h1>X Asteroids</h1>
+        <div id="desc">Turn = Left/Right Arrow | Thrust = Up Arrow | Fire = Space | Hyperspace = Shift</div>
+        <div id="stats-row">
+            <div>
+                <div id="score-ui">Score: <span id="cur-score">0</span></div>
+                <div id="lives-ui" style="margin-top: 10px;"></div>
+            </div>
+            <div id="high-ui">
+                High Score
+                <div id="score-list"></div>
+                <div id="reset-btn" onclick="resetScores()">Reset</div>
+            </div>
+        </div>
     </div>
     
     <div id="msg">
@@ -79,10 +94,12 @@
     </div>
 
     <div id="controls">
-        <div style="display: flex; flex-direction: column; gap: 20px;">
-            <div class="btn" id="b-l">Left</div>
-            <div class="btn" id="b-r">Right</div>
+        <div class="left-controls-stack">
             <div class="btn" id="b-h" style="width: 75px; height: 75px;">Hyp</div>
+            <div class="movement-row">
+                <div class="btn" id="b-l">Left</div>
+                <div class="btn" id="b-r">Right</div>
+            </div>
         </div>
         <div style="display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end; gap: 25px;">
             <div class="btn" id="b-u">Thrust</div>
@@ -98,6 +115,7 @@
     const scoreEl = document.getElementById("cur-score"), msgEl = document.getElementById("msg");
     const nameEl = document.getElementById("name-in"), listEl = document.getElementById("score-list"), livesEl = document.getElementById("lives-ui");
     const namePrompt = document.getElementById("name-prompt"), restartHint = document.getElementById("restart-hint");
+    const hiddenInput = document.getElementById("hidden-input");
 
     function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
     window.addEventListener('resize', resize);
@@ -113,6 +131,7 @@
         score = 0; lives = 3; pName = ""; gameActive = true; enteringName = false; lasers = [];
         scoreEl.innerText = score; msgEl.style.display = "none";
         namePrompt.style.display = "none"; restartHint.style.display = "block";
+        hiddenInput.value = ""; hiddenInput.blur();
         resetShip();
         roids = []; for(let i=0; i<5; i++) spawnRoid();
         renderScores(); updateLivesUI();
@@ -148,7 +167,29 @@
     bind('b-r', () => ship.rot = -0.08, () => ship.rot = 0);
     bind('b-u', () => ship.th = true, () => ship.th = false);
     bind('b-h', () => triggerHyper());
-    bind('b-f', () => { if(!gameActive && !enteringName) init(); else shoot(); });
+    bind('b-f', () => { 
+        if(!gameActive && !enteringName) init(); 
+        else if (enteringName) hiddenInput.focus();
+        else shoot(); 
+    });
+
+    // Handle Initials via hidden input
+    hiddenInput.addEventListener('input', (e) => {
+        if (!enteringName) return;
+        pName = hiddenInput.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+        nameEl.innerText = pName;
+        
+        if (pName.length === 3) {
+            highScores.push({n:pName, s:score});
+            highScores.sort((a,b)=>b.s-a.s);
+            highScores = highScores.slice(0,5);
+            localStorage.setItem("ast_scores", JSON.stringify(highScores));
+            renderScores();
+            enteringName = false;
+            hiddenInput.blur();
+            restartHint.style.display = "block";
+        }
+    });
 
     window.onkeydown = (e) => {
         if (gameActive) {
@@ -157,20 +198,7 @@
             if (e.code === "ArrowUp") ship.th = true;
             if (e.code === "Space") { e.preventDefault(); shoot(); }
             if (e.key === "Shift") triggerHyper();
-        } else if (enteringName) {
-            if (e.key.length === 1 && pName.length < 3 && /[a-z0-9]/i.test(e.key)) {
-                pName += e.key.toUpperCase(); nameEl.innerText = pName;
-                if (pName.length === 3) {
-                    highScores.push({n:pName, s:score});
-                    highScores.sort((a,b)=>b.s-a.s);
-                    highScores = highScores.slice(0,5);
-                    localStorage.setItem("ast_scores", JSON.stringify(highScores));
-                    renderScores();
-                    enteringName = false;
-                    restartHint.style.display = "block";
-                }
-            }
-        } else if (e.code === "Space") init();
+        } else if (!enteringName && e.code === "Space") init();
     };
     window.onkeyup = (e) => { if(e.code === "ArrowLeft" || e.code === "ArrowRight") ship.rot = 0; if(e.code === "ArrowUp") ship.th = false; };
 
@@ -184,6 +212,9 @@
                 namePrompt.style.display = "block";
                 restartHint.style.display = "none";
                 pName = ""; nameEl.innerText = "";
+                hiddenInput.value = "";
+                // Small delay to ensure UI is ready for focus
+                setTimeout(() => hiddenInput.focus(), 100);
             }
         } else resetShip();
     }
