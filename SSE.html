@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Search Engine - 5 Platforms</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            color: #ffffff;
+            border-bottom: 1px solid #333;
+        }
+        
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        
+        .subtitle {
+            font-size: 0.9em;
+            opacity: 0.7;
+            margin-bottom: 12px;
+        }
+        
+        .rate-limit {
+            font-size: 0.85em;
+            color: #00FF33;
+            background: transparent;
+            display: inline-block;
+            padding: 0;
+            font-weight: normal;
+        }
+        
+        .search-box {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 15px 25px;
+            margin: 25px auto;
+            max-width: 800px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            display: flex;
+            gap: 10px;
+            border: 1px solid #333;
+        }
+        
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 1.1em;
+            padding: 12px 15px;
+            background: #0a0a0a;
+            color: #ffffff;
+            border-radius: 6px;
+        }
+        
+        .search-input::placeholder {
+            color: #666;
+        }
+        
+        .search-input:focus {
+            background: #0d0d0d;
+            border: 1px solid #555;
+        }
+        
+        .search-button {
+            background: #333;
+            color: #ffffff;
+            border: 1px solid #555;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .search-button:hover {
+            background: #444;
+        }
+        
+        .search-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .spinner {
+            border: 3px solid #333;
+            border-top: 3px solid #ffffff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .stats {
+            background: #111;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border: 1px solid #333;
+        }
+        
+        .stats-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #222;
+        }
+        
+        .query-info {
+            font-weight: 500;
+            color: #ffffff;
+        }
+        
+        .total-results {
+            font-weight: 600;
+            color: #ffffff;
+            background: #1a1a1a;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        
+        .platform-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: flex-start;
+        }
+        
+        .stat-item {
+            background: #1a1a1a;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            color: #ffffff;
+        }
+        
+        .stat-item strong {
+            color: #ffffff;
+        }
+        
+        .platform-section {
+            background: #111;
+            border-radius: 8px;
+            margin: 16px 0;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        
+        .platform-header {
+            background: #0a0a0a;
+            padding: 12px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.05em;
+            border-bottom: 1px solid #222;
+        }
+        
+        .platform-header:hover {
+            background: #0f0f0f;
+        }
+        
+        .platform-name {
+            color: #ffffff;
+        }
+        
+        .result-count {
+            background: #1a1a1a;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            color: #ffffff;
+        }
+        
+        .toggle-icon {
+            font-size: 1em;
+            transition: transform 0.3s;
+            color: #666;
+        }
+        
+        .platform-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .platform-content.expanded {
+            max-height: 40000px;
+            transition: max-height 0.5s ease-in;
+        }
+        
+        .result-card {
+            padding: 16px 20px;
+            border-bottom: 1px solid #222;
+            transition: background 0.2s;
+        }
+        
+        .result-card:hover {
+            background: #0a0a0a;
+        }
+        
+        .result-title {
+            font-size: 1em;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+        
+        .result-title a {
+            color: #4da6ff;
+            text-decoration: none;
+        }
+        
+        .result-title a:hover {
+            color: #80bfff;
+            text-decoration: underline;
+        }
+        
+        .result-authors {
+            color: #aaa;
+            font-size: 0.85em;
+            margin-bottom: 4px;
+        }
+        
+        .result-year {
+            color: #777;
+            font-size: 0.8em;
+            margin-bottom: 4px;
+        }
+        
+        .result-abstract {
+            color: #ccc;
+            font-size: 0.85em;
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+        
+        .result-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+            font-size: 0.75em;
+            color: #666;
+        }
+        
+        .no-results {
+            padding: 30px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .error {
+            background: #1a0000;
+            color: #ff6666;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border: 1px solid #330000;
+            font-size: 0.85em;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 30px;
+            border-top: 1px solid #333;
+            font-size: 0.9em;
+        }
+        
+        .footer p {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        
+        .footer a {
+            color: #4da6ff;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 12px;
+            }
+            .search-box {
+                flex-direction: column;
+            }
+            .platform-header {
+                font-size: 0.95em;
+                padding: 10px 15px;
+            }
+            .result-card {
+                padding: 12px 15px;
+            }
+            .stats-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .platform-stats {
+                gap: 6px;
+            }
+            .stat-item {
+                font-size: 0.7em;
+                padding: 3px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Scientific Search Engine</h1>
+            <div class="subtitle">5 Academic Platforms | 20 Results Each | Real Time Search</div>
+            <div class="rate-limit">1 request per 10 seconds. Please wait between searches!</div>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" class="search-input" id="searchInput" placeholder="Enter your research query... e.g., 'solar energy', 'CRISPR', 'machine learning'" 
+                   onkeypress="if(event.key==='Enter') search()">
+            <button class="search-button" id="searchBtn" onclick="search()">Search</button>
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div>Searching across 5 platforms... Please wait</div>
+        </div>
+        
+        <div id="results"></div>
+        
+        <div class="footer">
+            <p><a href="https://bix.pages.dev" target="_blank" rel="noopener noreferrer">bix.pages.dev</a></p>
+        </div>
+    </div>
+    
+    <script>
+        // Number of results per platform (exactly 20)
+        const RESULTS_PER_PLATFORM = 20;
+        
+        async function search() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (!query) return;
+            
+            const searchBtn = document.getElementById('searchBtn');
+            const loadingDiv = document.getElementById('loading');
+            const resultsDiv = document.getElementById('results');
+            
+            searchBtn.disabled = true;
+            loadingDiv.style.display = 'block';
+            resultsDiv.innerHTML = '';
+            
+            try {
+                // Search all 5 reliable platforms in parallel
+                const [
+                    openalexResults, crossrefResults, doajResults, 
+                    europePMCResults, pubmedResults
+                ] = await Promise.all([
+                    searchOpenAlex(query),
+                    searchCrossref(query),
+                    searchDOAJ(query),
+                    searchEuropePMC(query),
+                    searchPubMed(query)
+                ]);
+                
+                displayResults({
+                    OpenAlex: openalexResults,
+                    Crossref: crossrefResults,
+                    DOAJ: doajResults,
+                    'Europe PMC': europePMCResults,
+                    PubMed: pubmedResults
+                }, query);
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="error">Error: ${error.message}<br><br>Some APIs may be temporarily unavailable. Please wait a few seconds and try again.</div>`;
+            } finally {
+                searchBtn.disabled = false;
+                loadingDiv.style.display = 'none';
+            }
+        }
+        
+        // ========== PLATFORM 1: OpenAlex ==========
+        async function searchOpenAlex(query) {
+            try {
+                const url = `https://api.openalex.org/works?search=${encodeURIComponent(query)}&per-page=${RESULTS_PER_PLATFORM}&sort=relevance_score:desc`;
+                const response = await fetch(url);
+                const data = await response.json();
+                const results = [];
+                const works = data.results || [];
+                
+                for (let i = 0; i < Math.min(works.length, RESULTS_PER_PLATFORM); i++) {
+                    const work = works[i];
+                    const authors = [];
+                    if (work.authorships) {
+                        for (let j = 0; j < work.authorships.length && j < 5; j++) {
+                            const authorName = work.authorships[j]?.author?.display_name;
+                            if (authorName) authors.push(authorName);
+                        }
+                    }
+                    results.push({
+                        title: work.title || "No title",
+                        authors: authors.length > 0 ? authors.slice(0, 3).join(", ") + (authors.length > 3 ? " et al." : "") : "Unknown authors",
+                        year: work.publication_year || "N/A",
+                        abstract: work.abstract ? work.abstract.substring(0, 500) : "No abstract available",
+                        url: work.doi ? `https://doi.org/${work.doi}` : (work.id || "#"),
+                        citations: work.cited_by_count || 0,
+                        doi: work.doi || ""
+                    });
+                }
+                return results;
+            } catch (error) {
+                console.error("OpenAlex error:", error);
+                return [];
+            }
+        }
+        
+        // ========== PLATFORM 2: Crossref ==========
+        async function searchCrossref(query) {
+            try {
+                const url = `https://api.crossref.org/works?query=${encodeURIComponent(query)}&rows=${RESULTS_PER_PLATFORM}&sort=relevance`;
+                const response = await fetch(url, { headers: { 'Accept': 'application/json' } });
+                const data = await response.json();
+                const results = [];
+                const items = data.message?.items || [];
+                
+                for (let i = 0; i < Math.min(items.length, RESULTS_PER_PLATFORM); i++) {
+                    const item = items[i];
+                    const authors = (item.author || []).map(a => `${a.given || ''} ${a.family || ''}`.trim()).filter(Boolean);
+                    results.push({
+                        title: item.title?.[0] || "No title",
+                        authors: authors.length > 0 ? authors.slice(0, 3).join(", ") + (authors.length > 3 ? " et al." : "") : "Unknown authors",
+                        year: item.created?.dateParts?.[0]?.[0] || item.issued?.dateParts?.[0]?.[0] || "N/A",
+                        abstract: item.abstract ? item.abstract.replace(/<[^>]*>/g, '').substring(0, 500) : "No abstract available",
+                        url: item.DOI ? `https://doi.org/${item.DOI}` : "#",
+                        citations: "N/A",
+                        doi: item.DOI || ""
+                    });
+                }
+                return results;
+            } catch (error) {
+                console.error("Crossref error:", error);
+                return [];
+            }
+        }
+        
+        // ========== PLATFORM 3: DOAJ ==========
+        async function searchDOAJ(query) {
+            try {
+                const url = `https://doaj.org/api/v2/search/articles/${encodeURIComponent(query)}?pageSize=${RESULTS_PER_PLATFORM}`;
+                const response = await fetch(url, { headers: { 'Accept': 'application/json' } });
+                const data = await response.json();
+                const results = [];
+                const articles = data.results || [];
+                
+                for (let i = 0; i < Math.min(articles.length, RESULTS_PER_PLATFORM); i++) {
+                    const bibjson = articles[i].bibjson || {};
+                    const authors = (bibjson.author || []).map(a => a.name).filter(Boolean);
+                    results.push({
+                        title: bibjson.title || "No title",
+                        authors: authors.length > 0 ? authors.slice(0, 3).join(", ") + (authors.length > 3 ? " et al." : "") : "Unknown authors",
+                        year: bibjson.year || "N/A",
+                        abstract: bibjson.abstract ? bibjson.abstract.substring(0, 500) : "No abstract available",
+                        url: bibjson.url?.[0] || articles[i].id || "#",
+                        citations: "N/A",
+                        journal: bibjson.journal?.title || bibjson.journal_title || ""
+                    });
+                }
+                return results;
+            } catch (error) {
+                console.error("DOAJ error:", error);
+                return [];
+            }
+        }
+        
+        // ========== PLATFORM 4: Europe PMC ==========
+        async function searchEuropePMC(query) {
+            try {
+                const url = `https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=${encodeURIComponent(query)}&format=json&pageSize=${RESULTS_PER_PLATFORM}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                const results = [];
+                const articles = data.resultList?.result || [];
+                
+                for (let i = 0; i < Math.min(articles.length, RESULTS_PER_PLATFORM); i++) {
+                    const article = articles[i];
+                    results.push({
+                        title: article.title || "No title",
+                        authors: article.authorString || "Unknown authors",
+                        year: article.pubYear || "N/A",
+                        abstract: article.abstractText ? article.abstractText.substring(0, 500) : "No abstract available",
+                        url: article.doi ? `https://doi.org/${article.doi}` : `https://europepmc.org/article/${article.source}/${article.id}`,
+                        citations: article.citedByCount || 0,
+                        doi: article.doi || ""
+                    });
+                }
+                return results;
+            } catch (error) {
+                console.error("Europe PMC error:", error);
+                return [];
+            }
+        }
+        
+        // ========== PLATFORM 5: PubMed ==========
+        async function searchPubMed(query) {
+            try {
+                const searchUrl = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmax=${RESULTS_PER_PLATFORM}&sort=relevance&format=json`;
+                const searchResponse = await fetch(searchUrl);
+                const searchData = await searchResponse.json();
+                const ids = searchData.esearchresult?.idlist || [];
+                
+                if (ids.length === 0) return [];
+                
+                const fetchUrl = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=${ids.join(',')}&format=json`;
+                const fetchResponse = await fetch(fetchUrl);
+                const fetchData = await fetchResponse.json();
+                const results = [];
+                
+                for (const id of ids) {
+                    const article = fetchData.result?.[id];
+                    if (article) {
+                        const authors = (article.authors || []).map(a => a.name).filter(Boolean);
+                        results.push({
+                            title: article.title || "No title",
+                            authors: authors.length > 0 ? authors.slice(0, 3).join(", ") + (authors.length > 3 ? " et al." : "") : "Unknown authors",
+                            year: article.pubdate ? article.pubdate.substring(0, 4) : "N/A",
+                            abstract: "Abstract available on PubMed",
+                            url: `https://pubmed.ncbi.nlm.nih.gov/${id}/`,
+                            citations: "N/A",
+                            doi: article.elocationid || ""
+                        });
+                    }
+                }
+                return results.slice(0, RESULTS_PER_PLATFORM);
+            } catch (error) {
+                console.error("PubMed error:", error);
+                return [];
+            }
+        }
+        
+        function displayResults(platformResults, query) {
+            const resultsDiv = document.getElementById('results');
+            
+            let totalResults = 0;
+            
+            // Calculate total results
+            for (const [platform, results] of Object.entries(platformResults)) {
+                totalResults += results.length;
+            }
+            
+            // Create stats for all platforms in one line
+            const allPlatformsList = Object.entries(platformResults);
+            const allStats = allPlatformsList.map(([platform, results]) => 
+                `<div class="stat-item"><strong>${platform}:</strong> ${results.length}</div>`
+            ).join('');
+            
+            const statsHtml = `
+                <div class="stats">
+                    <div class="stats-top">
+                        <div class="query-info">Search: "${query}"</div>
+                        <div class="total-results">Total: ${totalResults} results</div>
+                    </div>
+                    <div class="platform-stats">
+                        ${allStats}
+                    </div>
+                </div>
+            `;
+            
+            const platformsHtml = allPlatformsList.map(([platform, results]) => {
+                const hasResults = results && results.length > 0;
+                
+                return `
+                    <div class="platform-section">
+                        <div class="platform-header" onclick="togglePlatform(this)">
+                            <span class="platform-name">${platform}</span>
+                            <div style="display: flex; gap: 12px; align-items: center;">
+                                <span class="result-count">${results.length} results</span>
+                                <span class="toggle-icon">▼</span>
+                            </div>
+                        </div>
+                        <div class="platform-content expanded">
+                            ${hasResults ? results.map(result => renderResultCard(result)).join('') : 
+                              `<div class="no-results">No results found for "${query}" on ${platform}</div>`}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            resultsDiv.innerHTML = statsHtml + platformsHtml;
+        }
+        
+        function renderResultCard(result) {
+            const title = result.title || 'No title available';
+            const url = result.url || '#';
+            const authors = result.authors || 'Unknown authors';
+            const year = result.year || 'N/A';
+            const abstract = result.abstract || 'No abstract available.';
+            const citations = result.citations !== undefined ? result.citations : 'N/A';
+            
+            const displayTitle = title.length > 150 ? title.substring(0, 150) + '...' : title;
+            const displayAbstract = abstract.length > 400 ? abstract.substring(0, 400) + '...' : abstract;
+            
+            return `
+                <div class="result-card">
+                    <div class="result-title">
+                        <a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(displayTitle)}</a>
+                    </div>
+                    <div class="result-authors">${escapeHtml(authors)}</div>
+                    <div class="result-year">${escapeHtml(year)}</div>
+                    ${displayAbstract !== 'No abstract available.' && displayAbstract !== 'No abstract available' && !displayAbstract.includes('metadata only') && !displayAbstract.includes('free full text') ? 
+                      `<div class="result-abstract">${escapeHtml(displayAbstract)}</div>` : ''}
+                    <div class="result-meta">
+                        ${citations !== 'N/A' ? `<span>Citations: ${citations}</span>` : ''}
+                        ${result.doi ? `<span>DOI: ${escapeHtml(result.doi.substring(0, 50))}${result.doi.length > 50 ? '...' : ''}</span>` : ''}
+                        ${result.journal ? `<span>Journal: ${escapeHtml(result.journal)}</span>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function togglePlatform(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.toggle-icon');
+            content.classList.toggle('expanded');
+            icon.textContent = content.classList.contains('expanded') ? '▼' : '▶';
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = document.getElementById('searchInput');
+            input.placeholder = "Search 5 reliable platforms: OpenAlex, Crossref, DOAJ, Europe PMC, PubMed";
+        });
+    </script>
+</body>
+</html>
